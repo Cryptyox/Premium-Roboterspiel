@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://blocks.meshlib" type="MeshLibrary" id=1]
+
+[node name="World" type="Spatial"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 1 )
+cell_size = Vector3( 1, 1, 1 )
+cell_center_z = false
+data = {
+"cells": PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 131069, 0, 0 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="DirectionalLight" type="DirectionalLight" parent="GridMap"]
+transform = Transform( 0.710333, -0.383332, 0.590325, 0, 0.83869, 0.54461, -0.703866, -0.386854, 0.595749, 3.80477, 4.37646, 9 )

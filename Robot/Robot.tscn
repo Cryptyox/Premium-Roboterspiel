@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Robot" type="KinematicBody"]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+
+[node name="Camera" type="Camera" parent="."]
