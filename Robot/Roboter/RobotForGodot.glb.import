@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/RobotForGodot.glb-18cb44424843cdea7a48f698afb64038.scn"
+path="res://.import/RobotForGodot.glb-41a0542aae5ae3f53f0bf74ead850696.scn"
 
 [deps]
 
-source_file="res://RobotForGodot.glb"
-dest_files=[ "res://.import/RobotForGodot.glb-18cb44424843cdea7a48f698afb64038.scn" ]
+source_file="res://Roboter/RobotForGodot.glb"
+dest_files=[ "res://.import/RobotForGodot.glb-41a0542aae5ae3f53f0bf74ead850696.scn" ]
 
 [params]
 

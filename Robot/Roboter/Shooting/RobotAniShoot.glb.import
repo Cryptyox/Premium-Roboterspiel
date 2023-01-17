@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/RobotAniShoot.glb-0055f99edef115d5b16f33cd340ca4c7.scn"
+path="res://.import/RobotAniShoot.glb-62e80e9b666d9d9c75ac9796ba8d2956.scn"
 
 [deps]
 
-source_file="res://Shooting/RobotAniShoot.glb"
-dest_files=[ "res://.import/RobotAniShoot.glb-0055f99edef115d5b16f33cd340ca4c7.scn" ]
+source_file="res://Roboter/Shooting/RobotAniShoot.glb"
+dest_files=[ "res://.import/RobotAniShoot.glb-62e80e9b666d9d9c75ac9796ba8d2956.scn" ]
 
 [params]
 
