@@ -17,7 +17,7 @@ var facing_right = true
 var jumping = false
 
 # kann in der luft einmal springen
-var doublejump = false
+var doublejump = true
 var jumping2 = false
 
 # läuft für 'duration' sekunden doppelt so schnell
@@ -56,6 +56,7 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
 	
 	jumping = !is_on_floor()
+	jumping2 = !is_on_floor()
 
 
 
@@ -141,11 +142,13 @@ func get_v_y(delta, dir):
 		if dir == 1:
 			velocity.y = JUMP_FORCE
 			jumping = true
-			
+		return
+	
 	if jumping && !jumping2 && doublejump:
 		if dir == 1:
-			velocity.y = JUMP_FORCE / 2
+			velocity.y = JUMP_FORCE * 3 / 4
 			jumping2 = true
+		return
 	
 	if dir == -1:
 		velocity.y = -(MAX_FALL_SPEED / 2)
