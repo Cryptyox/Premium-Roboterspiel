@@ -5,7 +5,7 @@
 [sub_resource type="GDScript" id=2]
 script/source = "extends KinematicBody
 
-const JUMP_FORCE = 9     
+const JUMP_FORCE = 10     
 const GRAVITY = 16 
 const MAX_FALL_SPEED = 30       
 const MAX_MOVE_SPEED = 7.5 
@@ -18,7 +18,7 @@ var jumping = false
 
 # kann in der luft einmal springen
 var doublejump = true
-var jumping2 = false
+var jumping2 = true
 
 # läuft für 'duration' sekunden doppelt so schnell
 var speedboost = true
@@ -56,7 +56,6 @@ func _physics_process(delta):
 	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
 	
 	jumping = !is_on_floor()
-	jumping2 = !is_on_floor()
 
 
 
@@ -79,7 +78,7 @@ func get_input(delta):
 		input.y -= 1
 		
 	
-	if Input.is_action_pressed(\"ability\") && speedboost:
+	if Input.is_action_pressed(\"ability\") && speedboost && cooldown == ABILITY_COOLDOWN:
 		timer -= delta
 	input = do_ability(delta, input)
 	
@@ -103,7 +102,6 @@ func do_ability(delta, input):
 			timer = ABILITY_DURATION
 			cooldown -= delta
 		input.x *= 2
-		input.y *= 2
 		return input
 	else:
 		return input
@@ -122,11 +120,29 @@ func get_v_x(delta, dir):
 	# angegeben werden
 	# Setzt das Vorzeichen für die Bewegung in x-Richtung
 	
-	#velocity.x = dir * MAX_MOVE_SPEED * delta
-	#if velocity.x > MAX_MOVE_SPEED || velocity.x < -MAX_MOVE_SPEED:
-	#	velocity.x = dir * MAX_MOVE_SPEED
+	#velocity.x = dir * MAX_MOVE_SPEED
 	
-	velocity.x = dir * MAX_MOVE_SPEED
+	if dir == 0:
+		if velocity.x < -0.5:
+			dir += 1
+		if velocity.x > 0.5:
+			dir -= 1
+		else:
+			velocity.x = 0
+	
+	velocity.x += dir + dir * MAX_MOVE_SPEED * delta
+	 
+	
+	#velocity.x += dir
+	#velocity.x *= 1 + 10 * delta
+	
+	
+	
+	if velocity.x > MAX_MOVE_SPEED || velocity.x < -MAX_MOVE_SPEED:
+		velocity.x = dir * MAX_MOVE_SPEED
+	
+	
+	
 
 
 
@@ -136,19 +152,23 @@ func get_v_y(delta, dir):
 	velocity.y -= GRAVITY * delta
 	if velocity.y < -MAX_FALL_SPEED:
 		velocity.y = -MAX_FALL_SPEED
+		
+	
 	
 	if !jumping:
 		velocity.y = -0.1
 		if dir == 1:
 			velocity.y = JUMP_FORCE
 			jumping = true
+		#if velocity.y < 2:
+			#jumping2 = false	
 		return
 	
-	if jumping && !jumping2 && doublejump:
-		if dir == 1:
-			velocity.y = JUMP_FORCE * 3 / 4
-			jumping2 = true
-		return
+	#if jumping && !jumping2 && doublejump:
+	#	if dir == 1:
+	#		velocity.y = JUMP_FORCE * 3 / 4
+	#		jumping2 = true
+	#	return
 	
 	if dir == -1:
 		velocity.y = -(MAX_FALL_SPEED / 2)
@@ -161,9 +181,8 @@ func flip():
 	facing_right = !facing_right
 "
 
-[sub_resource type="CapsuleShape" id=1]
-radius = 0.917904
-height = 0.213644
+[sub_resource type="CylinderShape" id=3]
+radius = 0.781103
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -172,8 +191,8 @@ move_lock_z = true
 script = SubResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.0211, 0 )
-shape = SubResource( 1 )
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.0211, 0 )
+shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 2.21352, 2.18411, 13.9903 )
