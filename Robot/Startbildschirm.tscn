@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=1]
+[ext_resource path="res://UI/Playbutton.png" type="Texture" id=2]
+[ext_resource path="res://PlayButton.gd" type="Script" id=3]
+
+[node name="Ui Interface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="PlayButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = -12.0
+margin_bottom = 200.0
+rect_scale = Vector2( 0.25, 0.25 )
+rect_pivot_offset = Vector2( 600, 500 )
+texture_normal = ExtResource( 2 )
+script = ExtResource( 3 )
