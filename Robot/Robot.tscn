@@ -48,6 +48,8 @@ func _physics_process(delta):
 	
 	var input = get_input(delta)
 	
+	
+	
 	get_v_x(delta, input.x)
 	get_v_y(delta, input.y)
 	
@@ -72,8 +74,13 @@ func _physics_process(delta):
 	var xDif = velocity.x - oldx
 	var yDif = velocity.y - oldy
 	
-	if xDif == 0 && yDif == 0:
+	if input.x == 0 && input.y == 0:
 		play_anim(\"Idle\")
+	
+	if  input.y == 1:
+		play_anim(\"Jump\")
+		if jumping:
+			play_anim(\"DoppelSprung\")
 	
 	if yDif == 0 && abs(velocity.x) > 0:
 		if abs(oldx) < abs(velocity.x):
@@ -82,13 +89,6 @@ func _physics_process(delta):
 			play_anim(\"Break\")
 		else:
 			play_anim(\"Drive\")
-	
-	if  oldy == -0.1 && yDif < 0:
-		play_anim(\"Jump\")
-		return
-		
-	if !is_on_floor() && oldy != -0.1 &&velocity.y > 0:
-		play_anim(\"DoppelSprung\")
 	
 	
 	
