@@ -10,8 +10,6 @@ extends TextureButton
 #func _ready():
 	
 
+#Funktion lädt bei Knopfdurck Hauptscene
 func _button_pressed():
-	print("Hello world!")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	get_tree().change_scene("res://Robot.tscn")
