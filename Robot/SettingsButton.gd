@@ -14,4 +14,5 @@ func _pressed() -> void:
 func _ready():
 	pass 
 
-
+func _on_SettingsButton_pressed():
+	pass # Replace with function body.

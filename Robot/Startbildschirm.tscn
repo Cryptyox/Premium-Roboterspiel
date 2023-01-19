@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=1]
 [ext_resource path="res://UI/Playbutton.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Cheese.gd" type="Script" id=10]
 [ext_resource path="res://UI/Cheese-Sound-Effect.wav" type="AudioStream" id=11]
 [ext_resource path="res://WallpaperVideo.gd" type="Script" id=12]
+[ext_resource path="res://Settings.gd" type="Script" id=13]
 
 [node name="Ui Interface" type="Control"]
 anchor_right = 1.0
@@ -67,22 +68,6 @@ texture_hover = ExtResource( 8 )
 expand = true
 script = ExtResource( 4 )
 
-[node name="SettingsButton2" type="TextureButton" parent="Buttons"]
-anchor_left = 0.5
-anchor_top = 0.7125
-anchor_right = 0.5
-anchor_bottom = 0.7125
-margin_left = 883.0
-margin_top = 866.5
-margin_right = 1133.0
-margin_bottom = 1116.5
-rect_scale = Vector2( 0.8, 0.8 )
-rect_pivot_offset = Vector2( 127, 126 )
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 8 )
-expand = true
-script = ExtResource( 4 )
-
 [node name="Cheese" type="TextureButton" parent="Buttons"]
 anchor_left = 0.5
 anchor_top = 0.7125
@@ -100,3 +85,11 @@ script = ExtResource( 10 )
 
 [node name="CheeseSoundeffect" type="AudioStreamPlayer" parent="Buttons/Cheese"]
 stream = ExtResource( 11 )
+
+[node name="Settings" type="Popup" parent="."]
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 13 )
+
+[connection signal="pressed" from="Buttons/SettingsButton" to="WallpaperVideo" method="_on_SettingsButton_pressed"]

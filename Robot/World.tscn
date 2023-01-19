@@ -24,4 +24,4 @@ transform = Transform( 0.944502, -0.0920007, 0.31536, 0.0196638, 0.974095, 0.225
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0 )
 
 [editable path="Robot"]
-[editable path="Robot/RobotAnimatedDJ"]
+[editable path="Robot/Graphics"]

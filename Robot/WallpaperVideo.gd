@@ -16,3 +16,6 @@ func _process(delta):
 		pass
 	else:
 		play()
+
+
+
