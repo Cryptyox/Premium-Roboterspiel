@@ -14,11 +14,12 @@ var velocity = Vector3.ZERO
 
 var facing_right = true
 
-var jumping = false
+var jumping = false # not allowed to jump false
 
 # kann in der luft einmal springen
 var doublejump = true
-var jumping2 = false
+var no2Jump = true   # should prevent using a double jump on the ground
+var jumping2 = false  # not allowed to jump again true
 
 # läuft für 'duration' sekunden doppelt so schnell
 var speedboost = true
@@ -40,8 +41,6 @@ func _ready():
 # Hauptfunktion der Physikalischen Prozesse
 func _physics_process(delta):   
 	
-	var grounded = is_on_floor()
-	
 	var input = get_input(delta)
 	
 	get_v_x(delta, input.x)
@@ -57,7 +56,10 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
 	
-	#jumping = !is_on_floor()
+	jumping = !is_on_floor()
+	if is_on_floor():
+		jumping2 = false
+		no2Jump = true
 
 
 
@@ -76,7 +78,7 @@ func get_input(delta):
 		input.x -= 1
 	if Input.is_action_pressed(\"jump\"):
 		input.y += 1
-	if Input.is_action_just_released(\"jump\") && jumping2 == false:
+	if Input.is_action_just_released(\"jump\") && jumping:
 		jumping2 = false
 	if Input.is_action_pressed(\"crouch\"):
 		input.y -= 1
@@ -156,7 +158,10 @@ func get_v_x(delta, dir):
 
 
 func get_v_y(delta, dir):
-		
+	
+	if is_on_ceiling():
+		velocity.y = 0
+	
 	velocity.y -= GRAVITY * delta
 	if velocity.y < -MAX_FALL_SPEED:
 		velocity.y = -MAX_FALL_SPEED
@@ -168,9 +173,19 @@ func get_v_y(delta, dir):
 		if dir == 1:
 			velocity.y = JUMP_FORCE
 			jumping = true
-		#if velocity.y < 2:
-			#jumping2 = false	
 		return
+	
+	
+	
+	
+	if jumping && !jumping2 && doublejump && !no2Jump:
+		if dir == 1:
+			velocity.y = JUMP_FORCE * 3/5
+			jumping2 = true
+		return
+	
+	
+	
 	
 	
 	
@@ -178,17 +193,13 @@ func get_v_y(delta, dir):
 		velocity.y = -(MAX_FALL_SPEED / 2)
 	
 	
-	#if jumping && !jumping2 && doublejump:
-	#	if dir == 1:
-	#		velocity.y = JUMP_FORCE * 3 / 4
-	#		jumping2 = true
-	#	return
+	
 
 
 
 
 func flip():
-	$Graphics.rotation_degrees.y *= -1
+	$Graphics.rotation_degrees.y += 180
 	facing_right = !facing_right
 "
 
@@ -206,7 +217,7 @@ transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.02
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 2.21352, 2.18411, 13.9903 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 8.61394 )
 
 [node name="Graphics" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.386903, 0 )
