@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=1]
 [ext_resource path="res://UI/Playbutton.png" type="Texture" id=2]
 [ext_resource path="res://PlayButton.gd" type="Script" id=3]
+[ext_resource path="res://SettingsButton.gd" type="Script" id=4]
+[ext_resource path="res://UI/CoggWheel.png" type="Texture" id=5]
+[ext_resource path="res://UI/CheeseButton.png" type="Texture" id=6]
+[ext_resource path="res://UI/CheeseButtonHover.png" type="Texture" id=7]
+[ext_resource path="res://UI/CoggWheelHover.png" type="Texture" id=8]
+[ext_resource path="res://UI/PlaybuttonHover.png" type="Texture" id=9]
+[ext_resource path="res://Cheese.gd" type="Script" id=10]
+[ext_resource path="res://UI/Cheese-Sound-Effect.wav" type="AudioStream" id=11]
+[ext_resource path="res://WallpaperVideo.gd" type="Script" id=12]
 
 [node name="Ui Interface" type="Control"]
 anchor_right = 1.0
@@ -11,24 +20,83 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="VideoPlayer" type="VideoPlayer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="WallpaperVideo" type="VideoPlayer" parent="."]
+anchor_right = 1.04102
+anchor_bottom = 1.04097
 stream = ExtResource( 1 )
 autoplay = true
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="PlayButton" type="TextureButton" parent="."]
+[node name="Buttons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 1283, 1147 )
+
+[node name="PlayButton" type="TextureButton" parent="Buttons"]
 anchor_left = 0.5
 anchor_top = 0.7125
 anchor_right = 0.5
 anchor_bottom = 0.7125
-margin_left = -125.0
-margin_top = -125.0
-margin_right = 125.0
-margin_bottom = 125.0
+margin_left = 1139.0
+margin_top = 870.5
+margin_right = 1389.0
+margin_bottom = 1120.5
+rect_pivot_offset = Vector2( 130, 249 )
 texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 9 )
 expand = true
 script = ExtResource( 3 )
+
+[node name="SettingsButton" type="TextureButton" parent="Buttons"]
+anchor_left = 0.5
+anchor_top = 0.7125
+anchor_right = 0.5
+anchor_bottom = 0.7125
+margin_left = 883.0
+margin_top = 866.5
+margin_right = 1133.0
+margin_bottom = 1116.5
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( 127, 126 )
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 8 )
+expand = true
+script = ExtResource( 4 )
+
+[node name="SettingsButton2" type="TextureButton" parent="Buttons"]
+anchor_left = 0.5
+anchor_top = 0.7125
+anchor_right = 0.5
+anchor_bottom = 0.7125
+margin_left = 883.0
+margin_top = 866.5
+margin_right = 1133.0
+margin_bottom = 1116.5
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( 127, 126 )
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 8 )
+expand = true
+script = ExtResource( 4 )
+
+[node name="Cheese" type="TextureButton" parent="Buttons"]
+anchor_left = 0.5
+anchor_top = 0.7125
+anchor_right = 0.5
+anchor_bottom = 0.7125
+margin_left = 1415.67
+margin_top = 891.167
+margin_right = 1665.67
+margin_bottom = 1141.17
+rect_scale = Vector2( 0.8, 0.8 )
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 7 )
+expand = true
+script = ExtResource( 10 )
+
+[node name="CheeseSoundeffect" type="AudioStreamPlayer" parent="Buttons/Cheese"]
+stream = ExtResource( 11 )
