@@ -9,12 +9,14 @@ var velocity = Vector3.ZERO
 
 var facing_right = true
 
-var jumping = false # not allowed to jump false
+var jumping = false
+var able = true
 
 # kann in der luft einmal springen
 var doublejump = true
-var no2Jump = true   # should prevent using a double jump on the ground
-var jumping2 = false  # not allowed to jump again true
+
+var jumping2 = false
+var able2 = true
 
 # läuft für 'duration' sekunden doppelt so schnell
 var speedboost = true
@@ -36,6 +38,13 @@ func _ready():
 # Hauptfunktion der Physikalischen Prozesse
 func _physics_process(delta):   
 	
+	if is_on_floor():
+		able = true
+		jumping = false
+		jumping2 = false
+	else:
+		jumping = true
+		
 	var input = get_input(delta)
 	
 	get_v_x(delta, input.x)
@@ -50,11 +59,6 @@ func _physics_process(delta):
 	#move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60))
 	
 	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
-	
-	jumping = !is_on_floor()
-	if is_on_floor():
-		jumping2 = false
-		no2Jump = true
 
 
 
@@ -71,10 +75,11 @@ func get_input(delta):
 		input.x += 1
 	if Input.is_action_pressed("move_left"):
 		input.x -= 1
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") && able:
 		input.y += 1
-	if Input.is_action_just_released("jump") && jumping:
-		jumping2 = false
+		able = false
+	if Input.is_action_just_released("jump") && jumping && !jumping2:
+		able2 = true
 	if Input.is_action_pressed("crouch"):
 		input.y -= 1
 		
@@ -176,7 +181,7 @@ func jump(dir):
 	
 	
 func jump2(dir):
-	if !jumping2 && doublejump && !no2Jump:
+	if !jumping2 && doublejump:
 		if dir == 1:
 			velocity.y = JUMP_FORCE * 3/5
 			jumping2 = true
