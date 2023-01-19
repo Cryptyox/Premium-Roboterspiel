@@ -230,7 +230,7 @@ transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.02
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 8.61394 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 7.67966 )
 
 [node name="Graphics" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.386903, 0 )
