@@ -7,12 +7,18 @@
 [node name="Ui Interface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="VideoPlayer" type="VideoPlayer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 stream = ExtResource( 1 )
 autoplay = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="PlayButton" type="TextureButton" parent="."]
 anchor_left = 0.5
@@ -26,4 +32,5 @@ margin_bottom = 200.0
 rect_scale = Vector2( 0.25, 0.25 )
 rect_pivot_offset = Vector2( 600, 500 )
 texture_normal = ExtResource( 2 )
+expand = true
 script = ExtResource( 3 )
