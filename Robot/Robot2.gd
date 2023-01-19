@@ -154,15 +154,18 @@ func get_v_x(delta, dir):
 
 func get_v_y(delta, dir):
 	
+	# stop_on_ceiling
 	if is_on_ceiling():
 		velocity.y = 0
-	
+		
+		
+	# do_gravity
 	velocity.y -= GRAVITY * delta
 	if velocity.y < -MAX_FALL_SPEED:
 		velocity.y = -MAX_FALL_SPEED
 		
 	
-	
+func jump(dir):
 	if !jumping:
 		velocity.y = -0.1
 		if dir == 1:
@@ -172,8 +175,8 @@ func get_v_y(delta, dir):
 	
 	
 	
-	
-	if jumping && !jumping2 && doublejump && !no2Jump:
+func jump2(dir):
+	if !jumping2 && doublejump && !no2Jump:
 		if dir == 1:
 			velocity.y = JUMP_FORCE * 3/5
 			jumping2 = true
@@ -183,7 +186,7 @@ func get_v_y(delta, dir):
 	
 	
 	
-	
+func crouch(dir):
 	if dir == -1:
 		velocity.y = -(MAX_FALL_SPEED / 2)
 	
