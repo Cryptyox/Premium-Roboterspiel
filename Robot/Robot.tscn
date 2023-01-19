@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Roboter/RobotForGodotAnimationFixed.glb" type="PackedScene" id=1]
+[ext_resource path="res://Roboter/RobotAnimatedDJ.glb" type="PackedScene" id=1]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends KinematicBody
@@ -35,13 +35,16 @@ onready var anim_player = $Graphics/AnimationPlayer
 
 
 func _ready():
-	Engine.target_fps = 60
+	Engine.target_fps = 400
+
 
 
 
 
 # Hauptfunktion der Physikalischen Prozesse
 func _physics_process(delta):   
+	var oldx = velocity.x
+	var oldy = velocity.y
 	
 	var input = get_input(delta)
 	
@@ -65,6 +68,31 @@ func _physics_process(delta):
 		jumping2 = false
 	else:
 		jumping = true
+	
+	var xDif = velocity.x - oldx
+	var yDif = velocity.y - oldy
+	
+	if xDif == 0 && yDif == 0:
+		play_anim(\"Idle\")
+	
+	if yDif == 0 && abs(velocity.x) > 0:
+		if abs(oldx) < abs(velocity.x):
+			play_anim(\"Accellerate\")
+		elif abs(oldx) > abs(velocity.x):
+			play_anim(\"Break\")
+		else:
+			play_anim(\"Drive\")
+	
+	if  oldy == -0.1 && yDif < 0:
+		play_anim(\"Jump\")
+		return
+		
+	if !is_on_floor() && oldy != -0.1 &&velocity.y > 0:
+		play_anim(\"DoppelSprung\")
+	
+	
+	
+	
 
 
 
@@ -177,6 +205,10 @@ func get_v_y(delta, dir):
 	if !jumping:
 		velocity.y = -0.1
 	
+	if able && jumping:
+		able = false
+		able2 = true
+		
 	# if space is pressed
 	if dir == 1:
 		if !jumping && able:
@@ -209,11 +241,15 @@ func crouch(dir):
 		velocity.y = -(MAX_FALL_SPEED / 2)
 
 
-
-
 func flip():
 	$Graphics.rotation_degrees.y += 180
 	facing_right = !facing_right
+
+
+func play_anim(anim):
+	if anim_player.current_animation == anim:
+		return
+	anim_player.play(anim)
 "
 
 [sub_resource type="CylinderShape" id=3]
@@ -233,6 +269,6 @@ shape = SubResource( 3 )
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 7.67966 )
 
 [node name="Graphics" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.386903, 0 )
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.389076, 0 )
 
 [editable path="Graphics"]
