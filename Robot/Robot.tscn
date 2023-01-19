@@ -18,7 +18,7 @@ var jumping = false
 
 # kann in der luft einmal springen
 var doublejump = true
-var jumping2 = true
+var jumping2 = false
 
 # läuft für 'duration' sekunden doppelt so schnell
 var speedboost = true
@@ -40,6 +40,8 @@ func _ready():
 # Hauptfunktion der Physikalischen Prozesse
 func _physics_process(delta):   
 	
+	var grounded = is_on_floor()
+	
 	var input = get_input(delta)
 	
 	get_v_x(delta, input.x)
@@ -55,7 +57,7 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
 	
-	jumping = !is_on_floor()
+	#jumping = !is_on_floor()
 
 
 
@@ -74,6 +76,8 @@ func get_input(delta):
 		input.x -= 1
 	if Input.is_action_pressed(\"jump\"):
 		input.y += 1
+	if Input.is_action_just_released(\"jump\") && jumping2 == false:
+		jumping2 = false
 	if Input.is_action_pressed(\"crouch\"):
 		input.y -= 1
 		
@@ -89,13 +93,16 @@ func get_input(delta):
 
 # Die Funktion trägt dazu bei, den speed bost für die Zeit aufrechtzuerhalten
 func do_ability(delta, input):
+	
 	if timer == ABILITY_DURATION && cooldown == ABILITY_COOLDOWN:
 		return input
+		
 	elif cooldown != ABILITY_COOLDOWN:
 		cooldown -= delta
 		if cooldown < delta:
 			cooldown = ABILITY_COOLDOWN
 		return input
+		
 	elif timer != ABILITY_DURATION:
 		timer -= delta
 		if timer < delta:
@@ -103,6 +110,7 @@ func do_ability(delta, input):
 			cooldown -= delta
 		input.x *= 2
 		return input
+		
 	else:
 		return input
 	 
@@ -164,14 +172,17 @@ func get_v_y(delta, dir):
 			#jumping2 = false	
 		return
 	
+	
+	
+	if dir == -1:
+		velocity.y = -(MAX_FALL_SPEED / 2)
+	
+	
 	#if jumping && !jumping2 && doublejump:
 	#	if dir == 1:
 	#		velocity.y = JUMP_FORCE * 3 / 4
 	#		jumping2 = true
 	#	return
-	
-	if dir == -1:
-		velocity.y = -(MAX_FALL_SPEED / 2)
 
 
 
