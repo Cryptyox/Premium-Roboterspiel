@@ -16,7 +16,7 @@ var able = true
 var doublejump = true
 
 var jumping2 = false
-var able2 = true
+var able2 = false
 
 # läuft für 'duration' sekunden doppelt so schnell
 var speedboost = true
@@ -30,21 +30,17 @@ onready var anim_player = $Graphics/AnimationPlayer
 
 
 func _ready():
-	Engine.target_fps = 60
+	Engine.target_fps = 400
+
 
 
 
 
 # Hauptfunktion der Physikalischen Prozesse
 func _physics_process(delta):   
+	var oldx = velocity.x
+	var oldy = velocity.y
 	
-	if is_on_floor():
-		able = true
-		jumping = false
-		jumping2 = false
-	else:
-		jumping = true
-		
 	var input = get_input(delta)
 	
 	get_v_x(delta, input.x)
@@ -59,6 +55,16 @@ func _physics_process(delta):
 	#move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60))
 	
 	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
+	
+	if is_on_floor():
+		able = true
+		able2 = false
+		jumping = false
+		jumping2 = false
+	else:
+		jumping = true
+	
+	
 
 
 
@@ -75,9 +81,8 @@ func get_input(delta):
 		input.x += 1
 	if Input.is_action_pressed("move_left"):
 		input.x -= 1
-	if Input.is_action_pressed("jump") && able:
+	if Input.is_action_pressed("jump"):
 		input.y += 1
-		able = false
 	if Input.is_action_just_released("jump") && jumping && !jumping2:
 		able2 = true
 	if Input.is_action_pressed("crouch"):
@@ -130,28 +135,33 @@ func get_v_x(delta, dir):
 	# angegeben werden
 	# Setzt das Vorzeichen für die Bewegung in x-Richtung
 	
-	#velocity.x = dir * MAX_MOVE_SPEED
-	
+	var temp_dir = dir
 	if dir == 0:
 		if velocity.x < -0.5:
 			dir += 1
-		if velocity.x > 0.5:
+			play_anim("Break")
+		elif velocity.x > 0.5:
 			dir -= 1
+			play_anim("Break")
 		else:
 			velocity.x = 0
+	else:
+		if velocity.y == 0:
+			play_anim("Accellerate")
+		
+		play_anim("Drive")
+	velocity.x += dir + 0.25 * dir * MAX_MOVE_SPEED * delta
 	
-	velocity.x += dir + dir * MAX_MOVE_SPEED * delta
 	 
+	if velocity.x != 0:
+		temp_dir = velocity.x / abs(velocity.x)
 	
-	#velocity.x += dir
-	#velocity.x *= 1 + 10 * delta
-	
-	
-	
-	if velocity.x > MAX_MOVE_SPEED || velocity.x < -MAX_MOVE_SPEED:
-		velocity.x = dir * MAX_MOVE_SPEED
-	
-	
+	var maxS = MAX_MOVE_SPEED
+	if timer < ABILITY_DURATION:
+		maxS *= 2
+		
+	if velocity.x > maxS || velocity.x < -maxS:
+		velocity.x = temp_dir * maxS
 	
 
 
@@ -168,39 +178,50 @@ func get_v_y(delta, dir):
 	velocity.y -= GRAVITY * delta
 	if velocity.y < -MAX_FALL_SPEED:
 		velocity.y = -MAX_FALL_SPEED
-		
 	
-func jump(dir):
+	# so the player constantly is pushed into the ground
 	if !jumping:
 		velocity.y = -0.1
-		if dir == 1:
-			velocity.y = JUMP_FORCE
-			jumping = true
-		return
+	
+	# if space is pressed
+	if dir == 1:
+		if !jumping && able:
+			jump(dir)
+		
+		elif !jumping2 && able2 && doublejump:
+			jump2(dir)
+	
+	# if s is pressed
+	elif dir == -1:
+		crouch(dir)
 	
 	
-	
+
+func jump(dir):
+	velocity.y = JUMP_FORCE
+	jumping = true
+	able = false
+	play_anim("Jump")
+
+
 func jump2(dir):
-	if !jumping2 && doublejump:
-		if dir == 1:
-			velocity.y = JUMP_FORCE * 3/5
-			jumping2 = true
-		return
+	velocity.y = JUMP_FORCE * 3/4
+	jumping2 = true
+	able2 = false
 	
-	
-	
-	
-	
+
+
 func crouch(dir):
 	if dir == -1:
 		velocity.y = -(MAX_FALL_SPEED / 2)
-	
-	
-	
-
-
 
 
 func flip():
 	$Graphics.rotation_degrees.y += 180
 	facing_right = !facing_right
+
+
+func play_anim(anim):
+	if anim_player.current_animation == anim:
+		return
+	anim_player.play(anim)
