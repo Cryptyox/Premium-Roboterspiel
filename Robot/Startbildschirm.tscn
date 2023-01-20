@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=1]
 [ext_resource path="res://UI/Playbutton.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://UI/Cheese-Sound-Effect.wav" type="AudioStream" id=11]
 [ext_resource path="res://WallpaperVideo.gd" type="Script" id=12]
 [ext_resource path="res://Settings.gd" type="Script" id=13]
+[ext_resource path="res://OptionButton.gd" type="Script" id=14]
 
 [node name="Ui Interface" type="Control"]
 anchor_right = 1.0
@@ -92,4 +93,20 @@ margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 13 )
 
-[connection signal="pressed" from="Buttons/SettingsButton" to="WallpaperVideo" method="_on_SettingsButton_pressed"]
+[node name="SelectResButton" type="OptionButton" parent="Settings"]
+margin_left = 824.0
+margin_top = 234.0
+margin_right = 1778.0
+margin_bottom = 480.0
+script = ExtResource( 14 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Settings"]
+margin_left = 824.0
+margin_top = 137.0
+margin_right = 1778.0
+margin_bottom = 222.0
+text = "Choose Resolution"
+fit_content_height = true
+
+[connection signal="pressed" from="Buttons/SettingsButton" to="Settings" method="_on_SettingsButton_pressed"]
+[connection signal="item_selected" from="Settings/SelectResButton" to="Settings" method="_on_SelectResButton_item_selected"]
