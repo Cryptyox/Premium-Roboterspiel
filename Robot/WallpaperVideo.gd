@@ -19,3 +19,8 @@ func _process(delta):
 
 
 
+
+
+func _on_Settings_popup_hide():
+	stop()
+	play()
