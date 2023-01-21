@@ -37,25 +37,36 @@ var jumpscycle = 0
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
 
 
-
 func _ready():
 	Engine.target_fps = 400
 	$Graphics/RBGODO/AnimationTree.active = true
 	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",0)
-	
-func IsMovingRounded():
-		return (abs(velocity.length()) > 1)
-
 
 
 # Hauptfunktion der Physikalischen Prozesse
-func _physics_process(delta):   
-	var oldx = velocity.x
-	var oldy = velocity.y
-	
+func _physics_process(delta): 
 	var input = get_input(delta)
 	
 	
+	#all animations are beeing handled here
+	if !IsMovingRounded():
+		if lean > 0:
+			lean = lean - leanchange
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
+	
+	if input.x == 1 or input.x == -1:
+		if lean < 1:
+			lean = lean + leanchange
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
+	
+	if Input.is_action_pressed(\"jump\") && able:
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
+		
+	elif Input.is_action_pressed(\"jump\") && able2:
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
+		
+	if Input.is_action_pressed(\"shoot\"):
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Shoot_Ani/active\",true)
 	
 	get_v_x(delta, input.x)
 	get_v_y(delta, input.y)
@@ -77,97 +88,15 @@ func _physics_process(delta):
 		jumping2 = false
 	else:
 		jumping = true
-	
-	var xDif = velocity.x - oldx
-	var yDif = velocity.y - oldy
-	
-	
-	#if abs(xDif) && abs(yDif) <= 1:
-	#	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-	#	if lean > 0:
-	#		lean = lean - 0.1
-	#	else:
-	#		pass
-	#if abs(xDif) >= 0.1:
-	#	if lean < 1:
-	#		lean = lean + 0.1
-	#	else:
-	#		pass
-	#	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-		
-	
-		
-#	if input.x == 0 && input.y == 0:
-#		play_anim(\"Idle\")
-	
-#	if  input.y == 1:
-#		play_anim(\"Jump\")
-#		if jumping:
-#			play_anim(\"DoppelSprung\")
-	
-#	if yDif == 0 && abs(velocity.x) > 0:
-#		if abs(oldx) < abs(velocity.x):
-#			play_anim(\"Accellerate\")
-#		elif abs(oldx) > abs(velocity.x):
-#			play_anim(\"Break\")
-#		else:
-#			play_anim(\"Drive\")
-	
-	#all animations are beeing handled here
-	if is_on_floor() == true:
-			jumpscycle = 0
-	
-	if IsMovingRounded() == false:
-		if lean > 0:
-			lean = lean - leanchange
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-	
-	if input.x == 1 or input.x == -1:
-		if lean < 1:
-			lean = lean + leanchange
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-	
-	if Input.is_action_pressed(\"jump\") && jumpscycle == 0:
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
-		jumpscycle = jumpscycle +1
-		
-	elif Input.is_action_pressed(\"jump\") && jumpscycle == 1:
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
-		jumpscycle = jumpscycle +1
-	
-	else:
-		pass
-	
-		
-	#old jump animation script by Timon
-	#if Input.is_action_pressed(\"jump\"):
-	#	if jumpscycle == 0:
-	#		#jump_Animation
-	#		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
-	#		jumpscycle = jumpscycle +1
-	#		print(\"jumpnormal\")
-	#		
-	#	elif jumpscycle == 1:
-	#		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
-	#		jumpscycle = jumpscycle +1
-	#		print(\"jumpdouble\")
-	#		
-	#		
-	#	elif jumpscycle > 1:
-	#		print(\"no more jumps\")
-	#		pass
 
-		
-		
-		
-		
-	if Input.is_action_pressed(\"shoot\"):
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Shoot_Ani/active\",true)
 
-		
-	
-	
 
+
+
+
+
+func IsMovingRounded():
+		return (abs(velocity.length()) > 1)
 
 # Die Funktion get_input() fragt den input bezüglich der Bewegung des Roboters
 # im aktuellen Frames ab. Es wird ein 3d Vektor erstellt der per Vorzeichen die
@@ -316,14 +245,7 @@ func flip():
 	for x in range(15):
 		$Graphics.rotation_degrees.y += 12
 		yield(get_tree().create_timer(0.001), \"timeout\")
-		
-		
 
-
-#func play_anim(anim):
-#	if anim_player.current_animation == anim:
-#		return
-#	anim_player.play(anim)
 "
 
 [sub_resource type="CylinderShape" id=3]
@@ -381,7 +303,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale" ]
+node_connections = [ "output", 0, "Blend_doublejump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "TimeScale", 0, "Doppelsprung" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
