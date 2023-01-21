@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=1]
 [ext_resource path="res://UI/Playbutton.png" type="Texture" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://UI/MenuTestMusic_Royalityfree.mp3" type="AudioStream" id=17]
 [ext_resource path="res://VolumeSlider.gd" type="Script" id=18]
 [ext_resource path="res://UI/Tick_Slider.png" type="Texture" id=19]
+[ext_resource path="res://UI/Cross.png" type="Texture" id=20]
+[ext_resource path="res://UI/CrossHover.png" type="Texture" id=21]
+[ext_resource path="res://QuitButton.gd" type="Script" id=22]
 
 [node name="Ui Interface" type="Control"]
 anchor_right = 1.0
@@ -92,6 +95,16 @@ script = ExtResource( 10 )
 
 [node name="CheeseSoundeffect" type="AudioStreamPlayer" parent="Buttons/Cheese"]
 stream = ExtResource( 11 )
+
+[node name="QuitButton" type="TextureButton" parent="Buttons"]
+margin_left = 472.333
+margin_top = 422.333
+margin_right = 972.333
+margin_bottom = 922.333
+rect_scale = Vector2( 0.2, 0.2 )
+texture_normal = ExtResource( 20 )
+texture_hover = ExtResource( 21 )
+script = ExtResource( 22 )
 
 [node name="Settings" type="Popup" parent="."]
 visible = true
