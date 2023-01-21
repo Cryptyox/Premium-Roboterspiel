@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Roboter/RBGODO.glb" type="PackedScene" id=1]
 
@@ -330,11 +330,11 @@ func flip():
 radius = 0.781103
 
 [sub_resource type="AnimationNodeBlend2" id=11]
-filters = [ "Armature/Skeleton:Heightcontroll", "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Main", "Armature/Skeleton:R_Fix", "Armature/Skeleton:R_Fix.001", "Armature/Skeleton:R_SpringBack", "Armature/Skeleton:R_SpringBack.001", "Armature/Skeleton:R_SpringFront", "Armature/Skeleton:R_SpringFront.001", "Armature/Skeleton:R_legUP", "Armature/Skeleton:R_legUP.001", "Armature/Skeleton:R_legUP.002", "Armature/Skeleton:R_legUP.003", "Armature/Skeleton:R_legUPSta", "Armature/Skeleton:R_legUPSta.001", "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
+filters = [ "Armature/Skeleton:Heightcontroll", "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Main", "Armature/Skeleton:R_Fix", "Armature/Skeleton:R_Fix.001", "Armature/Skeleton:R_SpringBack", "Armature/Skeleton:R_SpringBack.001", "Armature/Skeleton:R_SpringFront", "Armature/Skeleton:R_SpringFront.001", "Armature/Skeleton:R_legUP", "Armature/Skeleton:R_legUP.001", "Armature/Skeleton:R_legUP.002", "Armature/Skeleton:R_legUP.003", "Armature/Skeleton:R_legUPSta", "Armature/Skeleton:R_legUPSta.001", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
 
 [sub_resource type="AnimationNodeOneShot" id=7]
 filter_enabled = true
-filters = [ "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
+filters = [ "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
 
 [sub_resource type="AnimationNodeOneShot" id=6]
 
@@ -356,8 +356,10 @@ animation = "Jump"
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Shoot"
 
+[sub_resource type="AnimationNodeTimeScale" id=13]
+
 [sub_resource type="AnimationNodeBlendTree" id=12]
-graph_offset = Vector2( -193.018, -103.171 )
+graph_offset = Vector2( -314.801, -119.925 )
 nodes/Blend_Idle_Drive/node = SubResource( 11 )
 nodes/Blend_Idle_Drive/position = Vector2( 160, -160 )
 nodes/Blend_Shoot_Ani/node = SubResource( 7 )
@@ -376,8 +378,10 @@ nodes/Jump/node = SubResource( 10 )
 nodes/Jump/position = Vector2( -20, 220 )
 nodes/ShootAni/node = SubResource( 8 )
 nodes/ShootAni/position = Vector2( -20, 100 )
+nodes/TimeScale/node = SubResource( 13 )
+nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "Doppelsprung", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "output", 0, "Blend_doublejump" ]
+node_connections = [ "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -405,5 +409,6 @@ parameters/Blend_Idle_Drive/blend_amount = 0.0
 parameters/Blend_Shoot_Ani/active = false
 parameters/Blend_doublejump/active = false
 parameters/Blend_jump/active = false
+parameters/TimeScale/scale = 1.0
 
 [editable path="Graphics/RBGODO"]
