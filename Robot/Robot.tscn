@@ -307,7 +307,7 @@ filters = [ "Armature/Skeleton:Heightcontroll", "Armature/Skeleton:LowArm_L", "A
 
 [sub_resource type="AnimationNodeOneShot" id=7]
 filter_enabled = true
-filters = [ "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Main", "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
+filters = [ "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
 
 [sub_resource type="AnimationNodeOneShot" id=6]
 
@@ -332,7 +332,7 @@ animation = "Shoot"
 [sub_resource type="AnimationNodeTimeScale" id=13]
 
 [sub_resource type="AnimationNodeBlendTree" id=12]
-graph_offset = Vector2( -170.913, -90.3664 )
+graph_offset = Vector2( -175.913, -142.366 )
 nodes/Blend_Idle_Drive/node = SubResource( 11 )
 nodes/Blend_Idle_Drive/position = Vector2( 160, -160 )
 nodes/Blend_Shoot_Ani/node = SubResource( 7 )

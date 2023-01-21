@@ -28,6 +28,9 @@ transform = Transform( 0.944502, -0.0920007, 0.31536, 0.0196638, 0.974095, 0.225
 [node name="Robot" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0 )
 
+[node name="Camera" parent="Robot" index="1"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 10.8776 )
+
 [node name="RBGODO" parent="Robot/Graphics" index="0"]
 transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.533638, 0 )
 
