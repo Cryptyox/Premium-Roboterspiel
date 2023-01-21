@@ -5,61 +5,100 @@
 [sub_resource type="GDScript" id=2]
 script/source = "extends KinematicBody
 
+# positive y-speed when jumping (pixels per second)
 const JUMP_FORCE = 10     
+# negative y-acceleration to display gravity
 const GRAVITY = 16 
+# maximum y-speed the player can have downwards
 const MAX_FALL_SPEED = 30       
+# maximum y-speed the player can have without using any abilities
+# when using an ability, player can wlek twice as fast (15)
 const MAX_MOVE_SPEED = 7.5 
 
+# holds the information of the current velocioty of the player
 var velocity = Vector3.ZERO
 
+# determines the direction the player is looking
 var facing_right = true
 
+
+# id true while the player is in the air
 var jumping = false
+# is true when the player is able two make his first jump
 var able = true
 
-# kann in der luft einmal springen
+# is true when the level allows to jump mid air once
 var doublejump = true
 
-var jumping2 = false
+# is true when the player is able to make the second jump
 var able2 = false
+# is true when the second jump was used
+var jumping2 = false
 
-# läuft für 'duration' sekunden doppelt so schnell
-var speedboost = true
-const ABILITY_DURATION = 5
-var timer = ABILITY_DURATION
-const ABILITY_COOLDOWN = 5
+
+# is true when the level allows to activate the ability speedboost
+var speedboost = true  
+
+# the ability will move the player double the speed for 5 seconds
+const ABILITY_DURATION = 5  
+# to measure when the ability runs out
+var duration = ABILITY_DURATION
+# cooldown time until the player can activate the ability again
+const ABILITY_COOLDOWN = 10
+# to measure time of cooldown
 var cooldown = ABILITY_COOLDOWN
 
+# variables to determine which animition to play when starting or stopping to walk
+# e.g. while accerating the player leans forward
 var lean = 0
 var leanchange = 0.2
-var jumpscycle = 0
 
+# instance to play eanimations
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
 
 
-
+# when starting the scene, this will set conditions
 func _ready():
+	# target fps, should be so the wheel does not appear to spin in the wrong direction when moving
 	Engine.target_fps = 400
+	
 	$Graphics/RBGODO/AnimationTree.active = true
 	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",0)
-	
-func IsMovingRounded():
-		return (abs(velocity.length()) > 1)
-
 
 
 # Hauptfunktion der Physikalischen Prozesse
-func _physics_process(delta):   
-	var oldx = velocity.x
-	var oldy = velocity.y
-	
+func _physics_process(delta): 
+	# will get the direction of movement in a vector (x and y can be 1 or -1)
 	var input = get_input(delta)
 	
 	
+	#all animations are beeing handled here
+	if !IsMovingRounded():
+		if lean > 0:
+			lean = lean - leanchange
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
 	
+	if input.x == 1 or input.x == -1:
+		if lean < 1:
+			lean = lean + leanchange
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
+	
+	if Input.is_action_pressed(\"jump\") && able:
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
+		
+	elif Input.is_action_pressed(\"jump\") && able2:
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
+		
+	if Input.is_action_pressed(\"shoot\"):
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Shoot_Ani/active\",true)
+	
+	
+	# determines x velovity
 	get_v_x(delta, input.x)
+	# determines y velovity
 	get_v_y(delta, input.y)
 	
+	# will flip the facing of the player, when moving opposite direction
 	if input.x < 0 and facing_right:
 		flip()
 	if input.x > 0 and !facing_right:
@@ -70,108 +109,26 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
 	
+	# if on floor the variables concerning the jumps have to be reset
 	if is_on_floor():
 		able = true
 		able2 = false
 		jumping = false
 		jumping2 = false
 	else:
-		jumping = true
-	
-	var xDif = velocity.x - oldx
-	var yDif = velocity.y - oldy
-	
-	
-	#if abs(xDif) && abs(yDif) <= 1:
-	#	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-	#	if lean > 0:
-	#		lean = lean - 0.1
-	#	else:
-	#		pass
-	#if abs(xDif) >= 0.1:
-	#	if lean < 1:
-	#		lean = lean + 0.1
-	#	else:
-	#		pass
-	#	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-		
-	
-		
-#	if input.x == 0 && input.y == 0:
-#		play_anim(\"Idle\")
-	
-#	if  input.y == 1:
-#		play_anim(\"Jump\")
-#		if jumping:
-#			play_anim(\"DoppelSprung\")
-	
-#	if yDif == 0 && abs(velocity.x) > 0:
-#		if abs(oldx) < abs(velocity.x):
-#			play_anim(\"Accellerate\")
-#		elif abs(oldx) > abs(velocity.x):
-#			play_anim(\"Break\")
-#		else:
-#			play_anim(\"Drive\")
-	
-	#all animations are beeing handled here
-	if is_on_floor() == true:
-			jumpscycle = 0
-	
-	if IsMovingRounded() == false:
-		if lean > 0:
-			lean = lean - leanchange
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-	
-	if input.x == 1 or input.x == -1:
-		if lean < 1:
-			lean = lean + leanchange
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
-	
-	if Input.is_action_pressed(\"jump\") && jumpscycle == 0:
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
-		jumpscycle = jumpscycle +1
-		
-	elif Input.is_action_pressed(\"jump\") && jumpscycle == 1:
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
-		jumpscycle = jumpscycle +1
-	
-	else:
-		pass
-	
-		
-	#old jump animation script by Timon
-	#if Input.is_action_pressed(\"jump\"):
-	#	if jumpscycle == 0:
-	#		#jump_Animation
-	#		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
-	#		jumpscycle = jumpscycle +1
-	#		print(\"jumpnormal\")
-	#		
-	#	elif jumpscycle == 1:
-	#		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
-	#		jumpscycle = jumpscycle +1
-	#		print(\"jumpdouble\")
-	#		
-	#		
-	#	elif jumpscycle > 1:
-	#		print(\"no more jumps\")
-	#		pass
-
-		
-		
-		
-		
-	if Input.is_action_pressed(\"shoot\"):
-		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Shoot_Ani/active\",true)
-
-		
-	
-	
+		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
+		jumping = true 
 
 
-# Die Funktion get_input() fragt den input bezüglich der Bewegung des Roboters
-# im aktuellen Frames ab. Es wird ein 3d Vektor erstellt der per Vorzeichen die
-# Richtung der Bewegung festlegt
+
+
+
+
+
+func IsMovingRounded():
+		return (abs(velocity.length()) > 1)
+
+# get_input returns a vector with x and y directions in form of signs (x and y can be 1 or -1)
 func get_input(delta):
 	var input = Vector3.ZERO
 	
@@ -181,6 +138,7 @@ func get_input(delta):
 		input.x -= 1
 	if Input.is_action_pressed(\"jump\"):
 		input.y += 1
+	# only when the jump buitton is released after the first jump, the player can make the second jump
 	if Input.is_action_just_released(\"jump\") && jumping && !jumping2:
 		able2 = true
 	if Input.is_action_pressed(\"crouch\"):
@@ -188,7 +146,7 @@ func get_input(delta):
 		
 	
 	if Input.is_action_pressed(\"ability\") && speedboost && cooldown == ABILITY_COOLDOWN:
-		timer -= delta
+		duration -= delta
 	input = do_ability(delta, input)
 	
 	return input
@@ -196,10 +154,12 @@ func get_input(delta):
 
 
 
-# Die Funktion trägt dazu bei, den speed bost für die Zeit aufrechtzuerhalten
+# when the ability speed boost is activated, the x values in the input vector are set to the 
+# absolute value of 2 so the speed is multiplied with 2
+# also measures whether the ability is still on cooldown
 func do_ability(delta, input):
 	
-	if timer == ABILITY_DURATION && cooldown == ABILITY_COOLDOWN:
+	if duration == ABILITY_DURATION && cooldown == ABILITY_COOLDOWN:
 		return input
 		
 	elif cooldown != ABILITY_COOLDOWN:
@@ -208,10 +168,10 @@ func do_ability(delta, input):
 			cooldown = ABILITY_COOLDOWN
 		return input
 		
-	elif timer != ABILITY_DURATION:
-		timer -= delta
-		if timer < delta:
-			timer = ABILITY_DURATION
+	elif duration != ABILITY_DURATION:
+		duration -= delta
+		if duration < delta:
+			duration = ABILITY_DURATION
 			cooldown -= delta
 		input.x *= 2
 		return input
@@ -223,107 +183,120 @@ func do_ability(delta, input):
 
 
 
-# get_v_x berechnet die Geschwindigkeit in x-Richtung
+# get_v_x sets the new velocity on the x-axis inside the global variable velocity (type: Vector3D)
 func get_v_x(delta, dir):
-	# delta ist die Anzahl der Frames innerhalb einer Sekunde
-	# 60 FPS --> delta = 1/60 
-	# bei Berechnung von Geschwindigkeit ohne delta, Charakter langsamer
-	# wenn weniger Frames
-	# Bei Berechnung mit delta, kann Geschwindigkeit in pixel pro sekunde
-	# angegeben werden
-	# Setzt das Vorzeichen für die Bewegung in x-Richtung
+	# delta is a set value of frames per second so when calculating velocity, it will be independent
+	# of fps but will give the same position, as now speeds can be calculated in pixels/second instead
 	
 	var temp_dir = dir
+	
+	# when moving and the keys are no longer held down, this will provide a smooth force in opposite
+	# directrion of the current velocity, so it seems as the player is breaking
 	if dir == 0:
+		# when no keys (a or d) held input.x == 0 so opposite direction is applied
 		if velocity.x < -0.5:
 			dir += 1
 		elif velocity.x > 0.5:
 			dir -= 1
+		# if the value is below .5 in each direction the player will stand still or he will slide 
+		# unintendedly over the ground
 		else:
 			velocity.x = 0
 	
+	# this formula will give accelerated movement
 	velocity.x += dir + 0.25 * dir * MAX_MOVE_SPEED * delta
 	
-	 
+	# this will give temp_dir the direction of the motion in 1 or -1
 	if velocity.x != 0:
 		temp_dir = velocity.x / abs(velocity.x)
 	
+	# max Speed will be determined so dependent of the ability speedboost
 	var maxS = MAX_MOVE_SPEED
-	if timer < ABILITY_DURATION:
+	if duration < ABILITY_DURATION:
 		maxS *= 2
-		
+	
+	# if the velocity is bigger then the max, it wil be cut down to max Velocity	
 	if velocity.x > maxS || velocity.x < -maxS:
 		velocity.x = temp_dir * maxS
 	
 
 
 
-
+# this function will determine the speed in y-direction
 func get_v_y(delta, dir):
 	
-	# stop_on_ceiling
+	# when mid-air and the player hits the ceiling, he should not stick at it because of momentum
+	# for that to happen it is cut down to a specific value, that makes it feel more natural
 	if is_on_ceiling():
 		velocity.y = 0
 		
 		
-	# do_gravity
+	# this bit will calculate the new y velocity as a result of gravity
 	velocity.y -= GRAVITY * delta
 	if velocity.y < -MAX_FALL_SPEED:
 		velocity.y = -MAX_FALL_SPEED
 	
-	# so the player constantly is pushed into the ground
+	# so the player constantly is pushed into the ground and will not float on the ground
 	if !jumping:
 		velocity.y = -0.1
 	
+	# this part will disable the player to jump for the first time when falling of a ledge
+	# and enabling the player to take the second jump instead
 	if able && jumping:
 		able = false
 		able2 = true
 		
-	# if space is pressed
+	# if space is pressed the player will jump if able to
 	if dir == 1:
+		# if not already jumping and able to jump
 		if !jumping && able:
 			jump(dir)
 		
+		# if not haveing used the second jump, if able to jump twice and the feature
+		# doubljump is active
 		elif !jumping2 && able2 && doublejump:
 			jump2(dir)
 	
-	# if s is pressed
+	# if s is pressed player will quickly drop downm to the floor
 	elif dir == -1:
 		crouch(dir)
 	
 	
-
+# this will apply the jump force to the y-velocity of the player
 func jump(dir):
 	velocity.y = JUMP_FORCE
+	# upon called player is now jumping
 	jumping = true
+	# player is not anymore able to use first jump
 	able = false
 
-
+# this will apply a part of jump force to the y-velocity of the player as second jump
 func jump2(dir):
 	velocity.y = JUMP_FORCE * 3/4
+	# player has used second jump
 	jumping2 = true
+	# player is not anymore able to use second jump
 	able2 = false
 	
 
-
+# this will apply high negative y-velocity so the player is down to the ground very quickly
 func crouch(dir):
-	if dir == -1:
-		velocity.y = -(MAX_FALL_SPEED / 2)
+	velocity.y = -(MAX_FALL_SPEED / 2)
 
-
+# if facing the wrong way, this method will flip the direction the player is looking to
 func flip():
 	facing_right = !facing_right
 	for x in range(15):
 		$Graphics.rotation_degrees.y += 12
 		yield(get_tree().create_timer(0.001), \"timeout\")
-		
-		
 
 
-#func play_anim(anim):
-#	if anim_player.current_animation == anim:
-#		return
-#	anim_player.play(anim)
+# if called, the player will die, respawn and the try-counter goes up by 1
+func die():
+	pass
+	#return to spwan point()
+	#tries +1
+	#time continues
 "
 
 [sub_resource type="CylinderShape" id=3]
@@ -381,7 +354,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale" ]
+node_connections = [ "output", 0, "Blend_doublejump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "TimeScale", 0, "Doppelsprung" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
