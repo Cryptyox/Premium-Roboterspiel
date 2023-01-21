@@ -307,7 +307,7 @@ filters = [ "Armature/Skeleton:Heightcontroll", "Armature/Skeleton:LowArm_L", "A
 
 [sub_resource type="AnimationNodeOneShot" id=7]
 filter_enabled = true
-filters = [ "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
+filters = [ "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Main", "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
 
 [sub_resource type="AnimationNodeOneShot" id=6]
 
@@ -332,7 +332,7 @@ animation = "Shoot"
 [sub_resource type="AnimationNodeTimeScale" id=13]
 
 [sub_resource type="AnimationNodeBlendTree" id=12]
-graph_offset = Vector2( -314.801, -119.925 )
+graph_offset = Vector2( -170.913, -90.3664 )
 nodes/Blend_Idle_Drive/node = SubResource( 11 )
 nodes/Blend_Idle_Drive/position = Vector2( 160, -160 )
 nodes/Blend_Shoot_Ani/node = SubResource( 7 )
@@ -354,7 +354,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "output", 0, "Blend_doublejump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "TimeScale", 0, "Doppelsprung" ]
+node_connections = [ "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
