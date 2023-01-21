@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Roboter/RobotAnimatedDJ.glb" type="PackedScene" id=1]
+[ext_resource path="res://Roboter/RBGODO.glb" type="PackedScene" id=1]
 
 [sub_resource type="GDScript" id=2]
 script/source = "extends KinematicBody
@@ -30,14 +30,21 @@ var timer = ABILITY_DURATION
 const ABILITY_COOLDOWN = 5
 var cooldown = ABILITY_COOLDOWN
 
-onready var anim_player = $Graphics/AnimationPlayer
+var lean = 0
+var leanchange = 0.2
+var jumpscycle = 0
+
+onready var anim_player = $Graphics/RBGODO/AnimationPlayer
 
 
 
 func _ready():
 	Engine.target_fps = 400
-
-
+	$Graphics/RBGODO/AnimationTree.active = true
+	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",0)
+	
+func IsMovingRounded():
+		return (abs(velocity.length()) > 1)
 
 
 
@@ -74,28 +81,92 @@ func _physics_process(delta):
 	var xDif = velocity.x - oldx
 	var yDif = velocity.y - oldy
 	
-	if input.x == 0 && input.y == 0:
-		play_anim(\"Idle\")
 	
-	if  input.y == 1:
-		play_anim(\"Jump\")
-		if jumping:
-			play_anim(\"DoppelSprung\")
+	#if abs(xDif) && abs(yDif) <= 1:
+	#	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
+	#	if lean > 0:
+	#		lean = lean - 0.1
+	#	else:
+	#		pass
+	#if abs(xDif) >= 0.1:
+	#	if lean < 1:
+	#		lean = lean + 0.1
+	#	else:
+	#		pass
+	#	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
+		
 	
-	if yDif == 0 && abs(velocity.x) > 0:
-		if abs(oldx) < abs(velocity.x):
-			play_anim(\"Accellerate\")
-		elif abs(oldx) > abs(velocity.x):
-			play_anim(\"Break\")
-		else:
-			play_anim(\"Drive\")
+		
+#	if input.x == 0 && input.y == 0:
+#		play_anim(\"Idle\")
 	
+#	if  input.y == 1:
+#		play_anim(\"Jump\")
+#		if jumping:
+#			play_anim(\"DoppelSprung\")
 	
+#	if yDif == 0 && abs(velocity.x) > 0:
+#		if abs(oldx) < abs(velocity.x):
+#			play_anim(\"Accellerate\")
+#		elif abs(oldx) > abs(velocity.x):
+#			play_anim(\"Break\")
+#		else:
+#			play_anim(\"Drive\")
 	
+	#all animations are beeing handled here
+	if is_on_floor() == true:
+			jumpscycle = 0
 	
+	if IsMovingRounded() == false:
+		if lean > 0:
+			lean = lean - leanchange
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
+	
+	if input.x == 1 or input.x == -1:
+		if lean < 1:
+			lean = lean + leanchange
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",lean)
+	
+	if Input.is_action_pressed(\"jump\") && jumpscycle == 0:
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
+		jumpscycle = jumpscycle +1
+		
+	elif Input.is_action_pressed(\"jump\") && jumpscycle == 1:
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
+		jumpscycle = jumpscycle +1
+	
+	else:
+		pass
+	
+		
+	#old jump animation script by Timon
+	#if Input.is_action_pressed(\"jump\"):
+	#	if jumpscycle == 0:
+	#		#jump_Animation
+	#		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
+	#		jumpscycle = jumpscycle +1
+	#		print(\"jumpnormal\")
+	#		
+	#	elif jumpscycle == 1:
+	#		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
+	#		jumpscycle = jumpscycle +1
+	#		print(\"jumpdouble\")
+	#		
+	#		
+	#	elif jumpscycle > 1:
+	#		print(\"no more jumps\")
+	#		pass
 
+		
+		
+		
+		
+	if Input.is_action_pressed(\"shoot\"):
+		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Shoot_Ani/active\",true)
 
-
+		
+	
+	
 
 
 # Die Funktion get_input() fragt den input bezüglich der Bewegung des Roboters
@@ -103,7 +174,6 @@ func _physics_process(delta):
 # Richtung der Bewegung festlegt
 func get_input(delta):
 	var input = Vector3.ZERO
-	
 	
 	if Input.is_action_pressed(\"move_right\"):
 		input.x += 1
@@ -242,18 +312,72 @@ func crouch(dir):
 
 
 func flip():
-	$Graphics.rotation_degrees.y += 180
 	facing_right = !facing_right
+	for x in range(15):
+		$Graphics.rotation_degrees.y += 12
+		yield(get_tree().create_timer(0.001), \"timeout\")
+		
+		
 
 
-func play_anim(anim):
-	if anim_player.current_animation == anim:
-		return
-	anim_player.play(anim)
+#func play_anim(anim):
+#	if anim_player.current_animation == anim:
+#		return
+#	anim_player.play(anim)
 "
 
 [sub_resource type="CylinderShape" id=3]
 radius = 0.781103
+
+[sub_resource type="AnimationNodeBlend2" id=11]
+filters = [ "Armature/Skeleton:Heightcontroll", "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Main", "Armature/Skeleton:R_Fix", "Armature/Skeleton:R_Fix.001", "Armature/Skeleton:R_SpringBack", "Armature/Skeleton:R_SpringBack.001", "Armature/Skeleton:R_SpringFront", "Armature/Skeleton:R_SpringFront.001", "Armature/Skeleton:R_legUP", "Armature/Skeleton:R_legUP.001", "Armature/Skeleton:R_legUP.002", "Armature/Skeleton:R_legUP.003", "Armature/Skeleton:R_legUPSta", "Armature/Skeleton:R_legUPSta.001", "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
+
+[sub_resource type="AnimationNodeOneShot" id=7]
+filter_enabled = true
+filters = [ "Armature/Skeleton:Target", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
+
+[sub_resource type="AnimationNodeOneShot" id=6]
+
+[sub_resource type="AnimationNodeOneShot" id=5]
+filters = [ "Armature/Skeleton:Heightcontroll", "Armature/Skeleton:R_Fix", "Armature/Skeleton:R_Fix.001", "Armature/Skeleton:R_SpringBack", "Armature/Skeleton:R_SpringBack.001", "Armature/Skeleton:R_SpringFront", "Armature/Skeleton:R_SpringFront.001", "Armature/Skeleton:R_legUP", "Armature/Skeleton:R_legUP.001", "Armature/Skeleton:R_legUP.002", "Armature/Skeleton:R_legUP.003", "Armature/Skeleton:R_legUPSta", "Armature/Skeleton:R_legUPSta.001" ]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "DoppelSprung"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Drive-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Idle-loop"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Shoot"
+
+[sub_resource type="AnimationNodeBlendTree" id=12]
+graph_offset = Vector2( -38, -29 )
+nodes/Blend_Idle_Drive/node = SubResource( 11 )
+nodes/Blend_Idle_Drive/position = Vector2( 160, -160 )
+nodes/Blend_Shoot_Ani/node = SubResource( 7 )
+nodes/Blend_Shoot_Ani/position = Vector2( 380, -120 )
+nodes/Blend_doublejump/node = SubResource( 6 )
+nodes/Blend_doublejump/position = Vector2( 800, 40 )
+nodes/Blend_jump/node = SubResource( 5 )
+nodes/Blend_jump/position = Vector2( 600, -60 )
+nodes/Doppelsprung/node = SubResource( 1 )
+nodes/Doppelsprung/position = Vector2( 540, 240 )
+nodes/Drive/node = SubResource( 4 )
+nodes/Drive/position = Vector2( -40, -40 )
+nodes/Idle-loop/node = SubResource( 9 )
+nodes/Idle-loop/position = Vector2( -40, -160 )
+nodes/Jump/node = SubResource( 10 )
+nodes/Jump/position = Vector2( 400, 120 )
+nodes/ShootAni/node = SubResource( 8 )
+nodes/ShootAni/position = Vector2( -20, 100 )
+nodes/output/position = Vector2( 1040, 40 )
+node_connections = [ "output", 0, "Blend_doublejump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "Doppelsprung", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -266,9 +390,20 @@ transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.02
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 7.67966 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 10.8776 )
 
-[node name="Graphics" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.389076, 0 )
+[node name="Graphics" type="Spatial" parent="."]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
 
-[editable path="Graphics"]
+[node name="RBGODO" parent="Graphics" instance=ExtResource( 1 )]
+
+[node name="AnimationTree" type="AnimationTree" parent="Graphics/RBGODO"]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/Blend_Idle_Drive/blend_amount = 0.0
+parameters/Blend_Shoot_Ani/active = false
+parameters/Blend_doublejump/active = false
+parameters/Blend_jump/active = false
+
+[editable path="Graphics/RBGODO"]
