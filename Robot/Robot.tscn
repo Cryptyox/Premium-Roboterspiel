@@ -190,6 +190,12 @@ func get_v_x(delta, dir):
 	
 	var temp_dir = dir
 	
+	# not working
+		# if the player slides on the wall, some of the momentum should be removed
+		#if is_on_wall() && !is_on_ceiling():
+		#	velocity.x /= 2
+	
+	
 	# when moving and the keys are no longer held down, this will provide a smooth force in opposite
 	# directrion of the current velocity, so it seems as the player is breaking
 	if dir == 0:
@@ -218,6 +224,8 @@ func get_v_x(delta, dir):
 	# if the velocity is bigger then the max, it wil be cut down to max Velocity	
 	if velocity.x > maxS || velocity.x < -maxS:
 		velocity.x = temp_dir * maxS
+	
+	
 	
 
 
@@ -354,7 +362,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
+node_connections = [ "output", 0, "Blend_doublejump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "TimeScale", 0, "Doppelsprung", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
