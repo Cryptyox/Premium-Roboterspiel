@@ -35,19 +35,31 @@ parameters/TimeScale/scale = 1.8
 
 [node name="PauseScreen" parent="." instance=ExtResource( 4 )]
 
+<<<<<<< Updated upstream
 [node name="KillBlock" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.50423, 0 )
 script = ExtResource( 6 )
 
 [node name="Area" parent="KillBlock" index="1"]
+=======
+[node name="RestartButton" parent="PauseScreen/Control/EscPopup/Buttons_Row" index="0"]
+>>>>>>> Stashed changes
 script = null
 
 [node name="Checkpoint" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5204, 3.93001, -0.0189018 )
 
+<<<<<<< Updated upstream
 [connection signal="body_entered" from="KillBlock/Area" to="KillBlock" method="_on_Area_body_entered"]
 
 [editable path="Robot"]
 [editable path="Robot/Graphics/RBGODO"]
 [editable path="KillBlock"]
 [editable path="Checkpoint"]
+=======
+[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="Robot" method="_on_RestartButton_pressed"]
+
+[editable path="Robot"]
+[editable path="Robot/Graphics/RBGODO"]
+[editable path="PauseScreen"]
+>>>>>>> Stashed changes
