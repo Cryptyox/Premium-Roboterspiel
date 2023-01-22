@@ -20,4 +20,4 @@ func _process(delta):
 
 func _on_Resume_pressed():
 	hide()
-	
+	pass # Replace with function body.

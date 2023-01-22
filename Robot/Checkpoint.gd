@@ -23,4 +23,3 @@ func _on_Area_body_entered(player):
 		if !is_current_checkpoint:
 			player.set_checkpoint(respawn_pos, self)
 			print("Checkpoint set")
-			print(respawn_pos)
