@@ -40,6 +40,9 @@ parameters/TimeScale/scale = 1.8
 [node name="Checkpoint" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5204, 3.93001, -0.0189018 )
 
+[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="Robot" method="_on_RestartButton_pressed"]
+
 [editable path="KillBlock"]
 [editable path="Robot"]
 [editable path="Robot/Graphics/RBGODO"]
+[editable path="PauseScreen"]
