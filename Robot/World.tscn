@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Robot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://KillingTestCube.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PauseScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Check_Respawnpoint.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Spatial"]
 
@@ -35,6 +36,9 @@ transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.533638, 0 )
 parameters/TimeScale/scale = 1.8
 
 [node name="PauseScreen" parent="." instance=ExtResource( 4 )]
+
+[node name="Checkpoint" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5204, 3.93001, -0.0189018 )
 
 [editable path="KillBlock"]
 [editable path="Robot"]

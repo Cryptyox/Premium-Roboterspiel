@@ -53,6 +53,13 @@ var cooldown = ABILITY_COOLDOWN
 var lean = 0
 var leanchange = 0.2
 
+# variables to determine which respawnpoint is currently active and where it is
+var respawn_point = Vector3(0,0,0)
+var last_checkpoint = null
+
+# variable for tries needed and the time played
+var tries = 0
+
 # instance to play eanimations
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
 
@@ -293,10 +300,20 @@ func flip():
 
 # if called, the player will die, respawn and the try-counter goes up by 1
 func die():
-	pass
+	global_transform.origin = respawn_point
+	tries += 1
 	#return to spwan point()
 	#tries +1
 	#time continues
+
+
+# function sets checkpoint to new Checkpoint location
+func set_checkpoint(pos, object):
+	respawn_point = pos
+	if last_checkpoint:
+		last_checkpoint.is_current_checkpoint = false
+	last_checkpoint = object
+	object.is_current_checkpoint = true
 "
 
 [sub_resource type="CylinderShape" id=3]
@@ -354,7 +371,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
+node_connections = [ "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "output", 0, "Blend_doublejump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
