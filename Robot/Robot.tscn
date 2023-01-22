@@ -197,9 +197,6 @@ func get_v_x(delta, dir):
 	
 	var temp_dir = dir
 	
-
-	
-	
 	# when moving and the keys are no longer held down, this will provide a smooth force in opposite
 	# directrion of the current velocity, so it seems as the player is breaking
 	if dir == 0:
@@ -220,7 +217,6 @@ func get_v_x(delta, dir):
 	if velocity.x != 0:
 		temp_dir = velocity.x / abs(velocity.x)
 	
-	
 	# max Speed will be determined so dependent of the ability speedboost
 	var maxS = MAX_MOVE_SPEED
 	if duration < ABILITY_DURATION:
@@ -229,8 +225,6 @@ func get_v_x(delta, dir):
 	# if the velocity is bigger then the max, it wil be cut down to max Velocity	
 	if velocity.x > maxS || velocity.x < -maxS:
 		velocity.x = temp_dir * maxS
-	
-	
 	
 
 
@@ -377,11 +371,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-<<<<<<< HEAD
 node_connections = [ "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "output", 0, "Blend_doublejump" ]
-=======
-node_connections = [ "output", 0, "Blend_doublejump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "TimeScale", 0, "Doppelsprung", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive" ]
->>>>>>> e9a92800a47b99225c67b38de656b07f3ce85462
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
