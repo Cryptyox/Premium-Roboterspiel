@@ -125,6 +125,11 @@ func _physics_process(delta):
 	else:
 		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
 		jumping = true 
+	
+	
+	
+	
+	
 
 
 
@@ -298,6 +303,7 @@ func flip():
 		yield(get_tree().create_timer(0.001), \"timeout\")
 
 
+
 # if called, the player will die, respawn and the try-counter goes up by 1
 func die():
 	$Robot.translate(Vector3(respawn_point))
@@ -318,6 +324,27 @@ func set_checkpoint(pos, object):
 
 func _on_RestartButton_pressed():
 	die()
+
+
+func _on_CollisionArea_area_entered(area):
+	print(\"Test collision area\")
+	print(area.name)
+	pass # Replace with function body.
+
+func _on_CollisionArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	print(\"Test collision area_shape\")
+	#print(area.name)
+	pass # Replace with function body.
+	
+func _on_CollisionArea_body_entered(body):
+	print(\"Test collision body\")
+	print(body.name)
+	pass # Replace with function body.
+
+func _on_CollisionArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	print(\"Test collision body_shape\")
+	#print(body.name)
+	pass # Replace with function body.
 "
 
 [sub_resource type="CylinderShape" id=3]
@@ -375,7 +402,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "output", 0, "Blend_doublejump", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "TimeScale", 0, "Doppelsprung", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale" ]
+node_connections = [ "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -383,12 +410,20 @@ axis_lock_motion_z = true
 move_lock_z = true
 script = SubResource( 2 )
 
+[node name="CollisionArea" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.0211, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="CollisionArea"]
+transform = Transform( 1.016, 0, 0, 0, -1.015, -1.52959e-07, 0, 1.53261e-07, -1.013, 0, -3.99351e-05, -8.92709e-08 )
+shape = SubResource( 3 )
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.0211, 0 )
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 10.8776 )
+visible = false
 
 [node name="Graphics" type="Spatial" parent="."]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
@@ -404,5 +439,10 @@ parameters/Blend_Shoot_Ani/active = false
 parameters/Blend_doublejump/active = false
 parameters/Blend_jump/active = false
 parameters/TimeScale/scale = 1.0
+
+[connection signal="area_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_entered"]
+[connection signal="area_shape_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_shape_entered"]
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_CollisionArea_body_entered"]
+[connection signal="body_shape_entered" from="CollisionArea" to="." method="_on_CollisionArea_body_shape_entered"]
 
 [editable path="Graphics/RBGODO"]
