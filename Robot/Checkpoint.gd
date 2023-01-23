@@ -14,9 +14,10 @@ func get_pos():
 	return respawn_pos
 
 func activate_checkpoint():
-	print("Checkpoint set")
+	print(name + " active")
 	is_current_checkpoint = true
 	return respawn_pos
 
 func deactivate_checkpoint():
-	pass
+	print(name + " disabled")
+	is_current_checkpoint = true

@@ -55,7 +55,7 @@ var leanchange = 0.2
 
 # variables to determine which respawnpoint is currently active and where it is
 var respawn_point = Vector3(0,0,0)
-var last_checkpoint = null
+var current_checkpoint = null
 
 # variable for tries needed and the time played
 var tries = 0
@@ -307,7 +307,17 @@ func flip():
 
 # if called, the player will die, respawn and the try-counter goes up by 1
 func die():
-	translate(Vector3(respawn_point))
+	var pos
+	if current_checkpoint == null:
+		pos = get_node(\"../Spawn\")
+		print(pos)
+		# set player to position Spawn
+	#else:
+		#pos = current_checkpoint.get_pos()
+		# set position to checkpoint
+	
+	
+	#translate(Vector3(respawn_point))
 	print(\"respawn\")
 	tries += 1
 	#return to spwan point()
@@ -315,8 +325,7 @@ func die():
 	#time continues
 
 func set_checkpoint(area):
-	#var checkpoint = get_current_checkpoint()
-	# deactivate last checkpoint
+	
 	
 	var checkpoint = area.get_parent()
 	
@@ -324,14 +333,18 @@ func set_checkpoint(area):
 	
 	if !checkpoint.is_active():
 		if checkpoint.has_method(\"activate_checkpoint\"):
-			pos = checkpoint.activate_checkpoint()
+			
+			if !current_checkpoint == null:
+				var last_checkpoint = current_checkpoint
+				last_checkpoint.deactivate_checkpoint()
+			
+			checkpoint.activate_checkpoint()
+			current_checkpoint = checkpoint
 		else:
 			print(\"Method activate_checkpoint not found\")
 	else:
-		print(\"checkpoint already active\")
+		print(current_checkpoint.name + \" already active\")
 
-func get_current_checkpoint():
-	return #area
 
 
 
@@ -361,6 +374,8 @@ func _on_CollisionArea_body_entered(body):
 	#print(\"Test collision body_shape\")
 	#print(body.name)
 	#pass # Replace with function body.
+
+
 "
 
 [sub_resource type="CylinderShape" id=3]
