@@ -59,6 +59,8 @@ var last_checkpoint = null
 
 # variable for tries needed and the time played
 var tries = 0
+# 
+var game_timer = 0
 
 # instance to play eanimations
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
@@ -77,7 +79,6 @@ func _ready():
 func _physics_process(delta): 
 	# will get the direction of movement in a vector (x and y can be 1 or -1)
 	var input = get_input(delta)
-	
 	
 	#all animations are beeing handled here
 	if !IsMovingRounded():
@@ -126,7 +127,7 @@ func _physics_process(delta):
 		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
 		jumping = true 
 	
-	
+	game_timer += delta
 	
 	
 	
@@ -313,17 +314,24 @@ func die():
 	#tries +1
 	#time continues
 
-func set_spawnpoint(area):
-	if area.has_method(\"activate_checkpoint\"):
-		print(\"sent\")
+func set_checkpoint(area):
+	#var checkpoint = get_current_checkpoint()
+	# deactivate last checkpoint
+	
+	var checkpoint = area.get_parent()
+	
+	var pos
+	
+	if !checkpoint.is_active():
+		if checkpoint.has_method(\"activate_checkpoint\"):
+			pos = checkpoint.activate_checkpoint()
+		else:
+			print(\"Method activate_checkpoint not found\")
+	else:
+		print(\"checkpoint already active\")
 
-# function sets checkpoint to new Checkpoint location
-func set_checkpoint(pos, object):
-	respawn_point = pos
-	if last_checkpoint:
-		last_checkpoint.is_current_checkpoint = false
-	last_checkpoint = object
-	object.is_current_checkpoint = true
+func get_current_checkpoint():
+	return #area
 
 
 
@@ -332,13 +340,12 @@ func _on_RestartButton_pressed():
 
 
 func _on_CollisionArea_area_entered(area):
-	print(\"Test collision area\")
-	print(area.name)
+	print(\"Robot collided with area \"+ area.name + \": \")
 	print(area.get_groups())
 	if area.is_in_group(\"killing\"):
 		die()
 	if area.is_in_group(\"spawnpoint\"):
-		set_spawnpoint(area)
+		set_checkpoint(area)
 	pass # Replace with function body.
 
 #func _on_CollisionArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
@@ -347,8 +354,7 @@ func _on_CollisionArea_area_entered(area):
 	#pass # Replace with function body.
 	
 func _on_CollisionArea_body_entered(body):
-	print(\"Test collision body\")
-	print(body.name)
+	print(\"Robot collided with body \" + body.name)
 	pass # Replace with function body.
 
 #func _on_CollisionArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):

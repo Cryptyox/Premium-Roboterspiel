@@ -60,7 +60,7 @@ script = ExtResource( 1 )
 [node name="Respawnpoint" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41522, 0 )
 
-[node name="Area" type="Area" parent="."]
+[node name="Area" type="Area" parent="." groups=["spawnpoint"]]
 transform = Transform( 1, 0, 0, 0, 54.7803, 0, 0, 0, 42.0046, 0, 1.44022, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
