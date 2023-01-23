@@ -37,10 +37,19 @@ parameters/TimeScale/scale = 1.8
 [node name="KillBlock" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.50423, 0 )
 
+[node name="Area" parent="KillBlock" index="1"]
+transform = Transform( 0.999955, -0.009477, 0, 0.009477, 0.999955, 0, 0, 0, 1, 0, 0, 0 )
+
 [node name="Checkpoint" parent="." instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5204, 3.93001, -0.0189018 )
 
+[node name="Area" parent="Checkpoint" index="1" groups=["spawnpoint"]]
+
+[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="Robot" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="PauseScreen/Control/EscPopup" method="_on_RestartButton_pressed"]
+
 [editable path="Robot"]
 [editable path="Robot/Graphics/RBGODO"]
+[editable path="PauseScreen"]
 [editable path="KillBlock"]
 [editable path="Checkpoint"]
