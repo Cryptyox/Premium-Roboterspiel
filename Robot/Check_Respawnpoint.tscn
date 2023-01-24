@@ -58,7 +58,7 @@ shader = SubResource( 5 )
 script = ExtResource( 1 )
 
 [node name="Respawnpoint" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41522, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503, 0 )
 
 [node name="Area" type="Area" parent="." groups=["spawnpoint"]]
 transform = Transform( 1, 0, 0, 0, 54.7803, 0, 0, 0, 42.0046, 0, 1.44022, 0 )
@@ -68,7 +68,7 @@ transform = Transform( 0.135279, 0, 0, 0, 0.9653, 0, 0, 0, 1.0525, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.300214, 0, 0, 0, 1.57807, 0, 0, 0, 0.298946, 0.00541204, 1.58206, 0.00434089 )
+transform = Transform( 0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0.005, 1, 0.004 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../Area")
 material/0 = SubResource( 6 )

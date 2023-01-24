@@ -35,7 +35,8 @@ func _on_SelectResButton_item_selected(index):
 func _on_SettingsButton_pressed():
 	if visible == true:
 		hide()
+		get_node("../Buttons/QuitButton").show()
 		pass
 	else:
 		show()
-	
+		get_node("../Buttons/QuitButton").hide()
