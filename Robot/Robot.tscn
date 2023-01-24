@@ -54,7 +54,7 @@ var lean = 0
 var leanchange = 0.2
 
 # variables to determine which respawnpoint is currently active and where it is
-var respawn_point = Vector3(0,0,0)
+var respawn_point = Vector3(0,0.99,0)
 var current_checkpoint = null
 
 # variable for tries needed and the time played
@@ -73,6 +73,8 @@ func _ready():
 	
 	$Graphics/RBGODO/AnimationTree.active = true
 	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",0)
+	
+	
 
 
 # Hauptfunktion der Physikalischen Prozesse
@@ -307,17 +309,18 @@ func flip():
 
 # if called, the player will die, respawn and the try-counter goes up by 1
 func die():
-	var pos
-	if current_checkpoint == null:
-		pos = get_node(\"../Spawn\")
-		print(pos)
-		# set player to position Spawn
-	#else:
-		#pos = current_checkpoint.get_pos()
-		# set position to checkpoint
-	
-	
+	var cur_pos = $CurrentLocation.get_global_translation().origin
+	#while true:
+	#	translate(-cur_pos)
+		
+		#if cur_pos.x == respawn_point.x:
+			#break
+			
+		#cur_pos = $CurrentLocation.get_global_transform().origin
+	translate(-cur_pos)
+	#translate(Vector3(-10,0,0))
 	#translate(Vector3(respawn_point))
+	
 	print(\"respawn\")
 	tries += 1
 	#return to spwan point()
@@ -334,11 +337,11 @@ func set_checkpoint(area):
 	if !checkpoint.is_active():
 		if checkpoint.has_method(\"activate_checkpoint\"):
 			
-			if !current_checkpoint == null:
+			if current_checkpoint != null:
 				var last_checkpoint = current_checkpoint
 				last_checkpoint.deactivate_checkpoint()
 			
-			checkpoint.activate_checkpoint()
+			respawn_point = checkpoint.activate_checkpoint()
 			current_checkpoint = checkpoint
 		else:
 			print(\"Method activate_checkpoint not found\")
@@ -433,7 +436,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "TimeScale", 0, "Doppelsprung", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "output", 0, "Blend_doublejump" ]
+node_connections = [ "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -470,6 +473,8 @@ parameters/Blend_Shoot_Ani/active = false
 parameters/Blend_doublejump/active = false
 parameters/Blend_jump/active = false
 parameters/TimeScale/scale = 1.0
+
+[node name="CurrentLocation" type="Position3D" parent="."]
 
 [connection signal="area_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_entered"]
 [connection signal="area_shape_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_shape_entered"]
