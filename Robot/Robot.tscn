@@ -6,14 +6,14 @@
 script/source = "extends KinematicBody
 
 # positive y-speed when jumping (pixels per second)
-const JUMP_FORCE = 10     
+const JUMP_FORCE = 8     
 # negative y-acceleration to display gravity
 const GRAVITY = 16 
 # maximum y-speed the player can have downwards
-const MAX_FALL_SPEED = 30       
+const MAX_FALL_SPEED = 20       
 # maximum y-speed the player can have without using any abilities
 # when using an ability, player can wlek twice as fast (15)
-const MAX_MOVE_SPEED = 7.5 
+const MAX_MOVE_SPEED = 5.5 
 
 # holds the information of the current velocioty of the player
 var velocity = Vector3.ZERO
@@ -28,7 +28,7 @@ var jumping = false
 var able = true
 
 # is true when the level allows to jump mid air once
-var doublejump = true
+var doublejump = false # true
 
 # is true when the player is able to make the second jump
 var able2 = false
@@ -37,7 +37,7 @@ var jumping2 = false
 
 
 # is true when the level allows to activate the ability speedboost
-var speedboost = true  
+var speedboost = false # true  
 
 # the ability will move the player double the speed for 5 seconds
 const ABILITY_DURATION = 5  
@@ -96,7 +96,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed(\"jump\") && able:
 		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_jump/active\",true)
 		
-	elif Input.is_action_pressed(\"jump\") && able2:
+	elif Input.is_action_pressed(\"jump\") && able2 && doublejump:
 		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_doublejump/active\",true)
 		
 	if Input.is_action_pressed(\"shoot\"):
@@ -113,13 +113,19 @@ func _physics_process(delta):
 		flip()
 	if input.x > 0 and !facing_right:
 		flip()
-	
-	#var snap = Vector3.DOWN if not jumping else Vector3.ZERO
-	#move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60))
-	
-	move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
-	
+		
 	# if on floor the variables concerning the jumps have to be reset
+	
+	#if !is_on_floor():
+		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
+		#jumping = true
+	
+	
+	var snap = Vector3.ZERO #Vector3.DOWN if not jumping else Vector3.ZERO
+	move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60))
+	
+	#move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
+	
 	if is_on_floor():
 		able = true
 		able2 = false
@@ -127,9 +133,14 @@ func _physics_process(delta):
 		jumping2 = false
 	else:
 		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
-		jumping = true 
+		jumping = true
 	
 	game_timer += delta
+	
+	var cur_pos = Vector3.ZERO
+	cur_pos = transform.origin
+	if cur_pos.y < -10:
+		die()
 	
 	
 	
@@ -313,6 +324,12 @@ func die():
 	transform.origin = respawn_point
 	
 	tries += 1
+	
+	print()
+	print(\"You died!\")
+	print(\"Attempts: \" + String(tries))
+	print(\"Time:     \" + String(game_timer))
+	print()
 
 func set_checkpoint(area):
 	
@@ -343,7 +360,7 @@ func _on_RestartButton_pressed():
 
 
 func _on_CollisionArea_area_entered(area):
-	print(\"Robot collided with area \"+ area.name + \": \")
+	#print(\"Robot collided with area \"+ area.name + \": \")
 	print(area.get_groups())
 	if area.is_in_group(\"killing\"):
 		die()
@@ -443,7 +460,7 @@ transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.02
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 10.8776 )
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 18.8776 )
 visible = false
 
 [node name="Graphics" type="Spatial" parent="."]
