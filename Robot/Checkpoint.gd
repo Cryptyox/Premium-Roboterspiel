@@ -11,10 +11,11 @@ func is_active():
 	return is_current_checkpoint
 
 func get_pos():
-	return respawn_pos
+	return global_transform.origin
 
 func activate_checkpoint():
 	print(name + " active")
+	print(global_transform.origin, translation, $Respawnpoint.get_global_transform().origin, respawn_pos)
 	is_current_checkpoint = true
 	return respawn_pos
 

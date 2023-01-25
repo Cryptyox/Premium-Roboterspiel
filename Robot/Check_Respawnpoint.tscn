@@ -72,5 +72,3 @@ transform = Transform( 0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0.005, 1, 0.004 )
 mesh = SubResource( 2 )
 skeleton = NodePath("../Area")
 material/0 = SubResource( 6 )
-
-[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
