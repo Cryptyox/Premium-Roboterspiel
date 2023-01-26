@@ -50,7 +50,7 @@ tracks/0/keys = {
 script = ExtResource( 1 )
 
 [node name="KinematicBody" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35078, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35079, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -63,7 +63,7 @@ mesh = SubResource( 2 )
 curve = SubResource( 3 )
 
 [node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35078, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35079, 0, 0 )
 offset = 7.34954
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Path/PathFollow"]
