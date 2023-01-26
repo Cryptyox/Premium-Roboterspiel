@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Robot"
-run/main_scene="res://Startbildschirm.tscn"
+run/main_scene="res://Scenes/Startbildschirm.tscn"
 config/icon="res://icon.png"
+
+[audio]
+
+default_bus_layout="res://Resources/UI/default_bus_layout.tres"
 
 [display]
 
@@ -65,4 +69,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Resources/UI/default_env.tres"
