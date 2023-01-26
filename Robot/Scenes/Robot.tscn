@@ -62,6 +62,10 @@ var tries = 0
 # 
 var game_timer = 0
 
+#caches path for creating instance of Bullet.tscn
+const bulletpath = preload(\"res://Scenes/Bullet.tscn\")
+var bullettimer
+
 # instance to play eanimations
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
 
@@ -74,7 +78,7 @@ func _ready():
 	$Graphics/RBGODO/AnimationTree.active = true
 	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",0)
 	
-	
+	bullettimer = get_tree().create_timer(0.2)
 
 
 # Hauptfunktion der Physikalischen Prozesse
@@ -101,7 +105,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed(\"shoot\"):
 		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Shoot_Ani/active\",true)
-	
+		shoot()
 	
 	# determines x velovity
 	get_v_x(delta, input.x)
@@ -142,9 +146,6 @@ func _physics_process(delta):
 	if cur_pos.y < -10:
 		die()
 	
-	
-	
-
 
 
 
@@ -386,7 +387,19 @@ func _on_CollisionArea_body_entered(body):
 	#print(body.name)
 	#pass # Replace with function body.
 
+func shootBulletInstances():
+	var bullet = bulletpath.instance()
+	
+	get_parent().add_child(bullet)
+	bullet.translation = $BulletOrigin.global_transform.origin
 
+func shoot():
+	shootBulletInstances()
+	yield(bullettimer, \"timeout\")
+	shootBulletInstances()
+
+	
+			
 "
 
 [sub_resource type="CylinderShape" id=3]
@@ -444,7 +457,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
+node_connections = [ "output", 0, "Blend_doublejump", "TimeScale", 0, "Doppelsprung", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -483,6 +496,9 @@ parameters/Blend_jump/active = false
 parameters/TimeScale/scale = 1.0
 
 [node name="CurrentLocation" type="Position3D" parent="."]
+
+[node name="BulletOrigin" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94752, 0.984477, 0 )
 
 [connection signal="area_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_CollisionArea_body_entered"]
