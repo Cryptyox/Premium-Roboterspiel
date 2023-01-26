@@ -61,7 +61,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503, 0 )
 
 [node name="Area" type="Area" parent="." groups=["spawnpoint"]]
-transform = Transform( 1, 0, 0, 0, 54.7803, 0, 0, 0, 42.0046, 0, 1.44022, 0 )
+transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 transform = Transform( 0.135279, 0, 0, 0, 0.9653, 0, 0, 0, 1.0525, 0, 0, 0 )

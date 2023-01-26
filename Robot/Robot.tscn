@@ -341,7 +341,9 @@ func set_checkpoint(area):
 	if !checkpoint.is_active():
 		if checkpoint.has_method(\"activate_checkpoint\"):
 			
-			if current_checkpoint != null:
+			if current_checkpoint == null:
+				pass
+			elif current_checkpoint != checkpoint:
 				var last_checkpoint = current_checkpoint
 				last_checkpoint.deactivate_checkpoint()
 			
@@ -360,7 +362,7 @@ func _on_RestartButton_pressed():
 
 
 func _on_CollisionArea_area_entered(area):
-	#print(\"Robot collided with area \"+ area.name + \": \")
+	print(\"Robot collided with area \"+ area.get_parent().name + \": \")
 	print(area.get_groups())
 	if area.is_in_group(\"killing\"):
 		die()
@@ -374,7 +376,7 @@ func _on_CollisionArea_area_entered(area):
 	#pass # Replace with function body.
 	
 func _on_CollisionArea_body_entered(body):
-	print(\"Robot collided with body \" + body.name)
+	#print(\"Robot collided with body \" + body.name)
 	pass # Replace with function body.
 
 #func _on_CollisionArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
@@ -440,7 +442,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "output", 0, "Blend_doublejump", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "TimeScale", 0, "Doppelsprung", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive" ]
+node_connections = [ "output", 0, "Blend_doublejump", "TimeScale", 0, "Doppelsprung", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )

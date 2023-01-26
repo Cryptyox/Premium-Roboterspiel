@@ -21,4 +21,4 @@ func activate_checkpoint():
 
 func deactivate_checkpoint():
 	print(name + " disabled")
-	is_current_checkpoint = true
+	is_current_checkpoint = false
