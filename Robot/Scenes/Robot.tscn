@@ -126,7 +126,7 @@ func _physics_process(delta):
 	
 	
 	var snap = Vector3.ZERO #Vector3.DOWN if not jumping else Vector3.ZERO
-	move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60))
+	move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60), false)
 	
 	#move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
 	
@@ -457,7 +457,11 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
+<<<<<<< HEAD
 node_connections = [ "output", 0, "Blend_doublejump", "TimeScale", 0, "Doppelsprung", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump" ]
+=======
+node_connections = [ "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "output", 0, "Blend_doublejump" ]
+>>>>>>> 3e09041d5fe2536a0e926c3735112eb249607859
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
