@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/PauseScreen.tscn" type="PackedScene" id=2]
@@ -7,8 +7,7 @@
 [ext_resource path="res://Scenes/KillingTestCube.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Check_Respawnpoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/SquashingBlock.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Scripts/RollingBoulder.gd" type="Script" id=8]
-
+[ext_resource path="res://Scenes/RollingStone.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve3D" id=1]
 _data = {
@@ -49,15 +48,6 @@ tracks/0/keys = {
 
 [sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 1, 0, 0, 1 )
-
-[sub_resource type="SphereShape" id=8]
-
-[sub_resource type="SphereMesh" id=5]
-
-[sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 1, 0, 0, 1 )
-
-[sub_resource type="SphereShape" id=9]
 
 [node name="World" type="Spatial"]
 
@@ -150,28 +140,8 @@ offset = 2.99974
 
 [node name="ContainerRollingBoulder" type="Node" parent="."]
 
-[node name="RollingBoulder" type="Spatial" parent="ContainerRollingBoulder"]
-script = ExtResource( 8 )
-
-[node name="Area" type="Area" parent="ContainerRollingBoulder/RollingBoulder" groups=["killing"]]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -8.562, 3.356, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="ContainerRollingBoulder/RollingBoulder/Area"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-shape = SubResource( 8 )
-
-[node name="RigidBody" type="RigidBody" parent="ContainerRollingBoulder/RollingBoulder"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.562, 3.356, 0 )
-axis_lock_linear_z = true
-
-[node name="MeshInstance" type="MeshInstance" parent="ContainerRollingBoulder/RollingBoulder/RigidBody"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 6 )
-
-[node name="CollisionShape" type="CollisionShape" parent="ContainerRollingBoulder/RollingBoulder/RigidBody"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
-shape = SubResource( 9 )
+[node name="RollingStone" parent="ContainerRollingBoulder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 0 )
 
 [connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="PauseScreen/Control/EscPopup" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="Robot" method="_on_RestartButton_pressed"]
