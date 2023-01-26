@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/PauseScreen.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Check_Respawnpoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/SquashingBlock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Scripts/RollingBoulder.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/PreGameScreen.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve3D" id=1]
 _data = {
@@ -62,8 +63,6 @@ albedo_color = Color( 1, 0, 0, 1 )
 
 [node name="Spawn" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
-
-[node name="PauseScreen" parent="." instance=ExtResource( 2 )]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 3 )
@@ -172,13 +171,18 @@ material/0 = SubResource( 6 )
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 shape = SubResource( 9 )
 
-[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="PauseScreen/Control/EscPopup" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="Robot" method="_on_RestartButton_pressed"]
+[node name="PreGameScreen" parent="." instance=ExtResource( 9 )]
 
-[editable path="PauseScreen"]
+[node name="PauseScreen" parent="." instance=ExtResource( 2 )]
+
+[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="Robot" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="PauseScreen/Control/EscPopup" method="_on_RestartButton_pressed"]
+
 [editable path="Robot"]
 [editable path="Robot/Graphics/RBGODO"]
 [editable path="ContainerMovingPlatform/MovingPlatform"]
 [editable path="ContainerSpawnpoint/Checkpoint1"]
 [editable path="ContainerKllingCubes/SqaushingBlock1"]
 [editable path="ContainerKllingCubes/SqaushingBlock2"]
+[editable path="PreGameScreen"]
+[editable path="PauseScreen"]
