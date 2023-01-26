@@ -64,7 +64,9 @@ var game_timer = 0
 
 #caches path for creating instance of Bullet.tscn
 const bulletpath = preload(\"res://Scenes/Bullet.tscn\")
-var bullettimer
+var allowShoot = true
+var stimer = null
+var bulletdelay = 1
 
 # instance to play eanimations
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
@@ -78,13 +80,18 @@ func _ready():
 	$Graphics/RBGODO/AnimationTree.active = true
 	$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Idle_Drive/blend_amount\",0)
 	
-	bullettimer = get_tree().create_timer(0.2)
-
+	#timer for shoot delay
+	stimer = Timer.new()
+	stimer.set_one_shot(true)
+	stimer.set_wait_time(bulletdelay)
+	stimer.connect(\"timeout\", self, \"on_stime_complete\")
+	add_child(stimer)
 
 # Hauptfunktion der Physikalischen Prozesse
 func _physics_process(delta): 
 	# will get the direction of movement in a vector (x and y can be 1 or -1)
 	var input = get_input(delta)
+	
 	
 	#all animations are beeing handled here
 	if !IsMovingRounded():
@@ -105,7 +112,8 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed(\"shoot\"):
 		$Graphics/RBGODO/AnimationTree.set(\"parameters/Blend_Shoot_Ani/active\",true)
-		shoot()
+		if allowShoot:
+			shoot()
 	
 	# determines x velovity
 	get_v_x(delta, input.x)
@@ -395,11 +403,13 @@ func shootBulletInstances():
 
 func shoot():
 	shootBulletInstances()
-	yield(bullettimer, \"timeout\")
+	#yield(get_tree().create_timer(0.5), \"timeout\")
 	shootBulletInstances()
+	allowShoot = false
+	stimer.start()
 
-	
-			
+func on_stime_complete():
+	allowShoot = true
 "
 
 [sub_resource type="CylinderShape" id=3]
@@ -457,7 +467,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "output", 0, "Blend_doublejump", "TimeScale", 0, "Doppelsprung", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump" ]
+node_connections = [ "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "TimeScale", 0, "Doppelsprung", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "output", 0, "Blend_doublejump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -495,10 +505,10 @@ parameters/Blend_doublejump/active = false
 parameters/Blend_jump/active = false
 parameters/TimeScale/scale = 1.0
 
-[node name="CurrentLocation" type="Position3D" parent="."]
+[node name="BulletOrigin" type="Position3D" parent="Graphics/RBGODO"]
+transform = Transform( 1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 2.4344, 1.2306, 0 )
 
-[node name="BulletOrigin" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.94752, 0.984477, 0 )
+[node name="CurrentLocation" type="Position3D" parent="."]
 
 [connection signal="area_entered" from="CollisionArea" to="." method="_on_CollisionArea_area_entered"]
 [connection signal="body_entered" from="CollisionArea" to="." method="_on_CollisionArea_body_entered"]
