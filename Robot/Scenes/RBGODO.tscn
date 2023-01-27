@@ -3,6 +3,7 @@
 [ext_resource path="res://Resources/Roboter/RBGODO.glb" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scripts/AnimationTree.gd" type="Script" id=2]
 
+
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "Jump"
 
@@ -52,7 +53,7 @@ nodes/Idle-loop/position = Vector2( -40, -160 )
 nodes/ShootAni/node = SubResource( 8 )
 nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/output/position = Vector2( 1000, 140 )
-node_connections = [ "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "Doppelsprung", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Animation", "output", 0, "Blend_doublejump" ]
+node_connections = [ "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "Doppelsprung", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Animation", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "output", 0, "Blend_doublejump" ]
 
 [node name="RBGODO" instance=ExtResource( 1 )]
 

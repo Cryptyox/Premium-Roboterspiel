@@ -8,25 +8,8 @@
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/Cross.png" type="Texture" id=6]
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/Playbutton.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Scripts/HomeButton.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Scripts/EscPopup.gd" type="Script" id=9]
 [ext_resource path="res://Resources/UI/MechanismoRegular-p7ywa.otf" type="DynamicFontData" id=10]
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends Popup
-
-
-func _process(delta):
-	
-	if Input.is_action_pressed(\"ui_cancel\"):
-		show()
-
-
-func _on_Resume_pressed():
-	hide()
-
-
-func _on_RestartButton_pressed():
-	hide()
-"
 
 [sub_resource type="DynamicFont" id=1]
 size = 150
@@ -49,7 +32,7 @@ rect_scale = Vector2( 0.5, 0.5 )
 visible = true
 margin_right = 40.0
 margin_bottom = 40.0
-script = SubResource( 2 )
+script = ExtResource( 9 )
 
 [node name="PauseMenue" type="Sprite" parent="Control/EscPopup"]
 position = Vector2( 1324, 712 )
@@ -63,9 +46,9 @@ margin_bottom = 40.0
 anchor_right = 0.016
 anchor_bottom = 0.028
 margin_left = 1562.0
-margin_top = 1220.0
+margin_top = 1038.0
 margin_right = 2061.36
-margin_bottom = 1718.88
+margin_bottom = 1536.88
 rect_scale = Vector2( 0.6, 0.6 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 1 )
@@ -75,9 +58,9 @@ texture_hover = ExtResource( 1 )
 anchor_right = 0.016
 anchor_bottom = 0.028
 margin_left = 749.0
-margin_top = 1220.0
+margin_top = 1038.0
 margin_right = 1248.36
-margin_bottom = 1718.88
+margin_bottom = 1536.88
 rect_scale = Vector2( 0.6, 0.6 )
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
@@ -87,9 +70,9 @@ script = ExtResource( 8 )
 anchor_right = 0.016
 anchor_bottom = 0.028
 margin_left = 1085.0
-margin_top = 1144.0
+margin_top = 890.0
 margin_right = 1584.36
-margin_bottom = 1642.88
+margin_bottom = 1388.88
 rect_scale = Vector2( 0.9, 0.9 )
 texture_normal = ExtResource( 7 )
 texture_hover = ExtResource( 3 )
