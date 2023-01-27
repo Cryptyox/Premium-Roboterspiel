@@ -1,16 +1,94 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Roboter/Bullet/Bullet.glb" type="PackedScene" id=1]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "rotate_babybl"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ), Vector3( 180, -90, 0 ), Vector3( 360, -90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "rotate_babybl"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -90, 0 ), Vector3( 180, -90, 0 ), Vector3( 360, -90, 0 ) ]
+}
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.102341, 0.202697, 1.19288 )
 
-[node name="BulletOrigin" type="KinematicBody"]
+[node name="BulletOrigin" type="Spatial"]
 
-[node name="Bullet" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0, 0 )
+[node name="Bullets" type="KinematicBody" parent="."]
 
-[node name="Area" type="Area" parent="."]
+[node name="Bullet1" parent="Bullets" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0, 0.25 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Area"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bullets/Bullet1"]
+anims/RESET = SubResource( 2 )
+anims/rotate_babybl = SubResource( 3 )
+
+[node name="Bullet2" parent="Bullets" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, -0.3, -0.003, -0.25 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bullets/Bullet2"]
+anims/RESET = SubResource( 4 )
+anims/rotate_babybl = SubResource( 5 )
+
+[node name="Area" type="Area" parent="Bullets"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Bullets/Area"]
 shape = SubResource( 1 )
+
+[editable path="Bullets/Bullet1"]
+[editable path="Bullets/Bullet2"]

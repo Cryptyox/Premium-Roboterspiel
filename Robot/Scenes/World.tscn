@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/PauseScreen.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Check_Respawnpoint.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/SquashingBlock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Scripts/RollingBoulder.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve3D" id=1]
 _data = {
@@ -171,6 +172,9 @@ material/0 = SubResource( 6 )
 [node name="CollisionShape" type="CollisionShape" parent="ContainerRollingBoulder/RollingBoulder/RigidBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 shape = SubResource( 9 )
+
+[node name="BulletOrigin" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1.5, 1.5, 0 )
 
 [connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="PauseScreen/Control/EscPopup" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="PauseScreen/Control/EscPopup/Buttons_Row/RestartButton" to="Robot" method="_on_RestartButton_pressed"]
