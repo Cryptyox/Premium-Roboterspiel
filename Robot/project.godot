@@ -22,7 +22,6 @@ default_bus_layout="res://Resources/UI/default_bus_layout.tres"
 
 window/size/width=2560
 window/size/height=1440
-window/size/borderless=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
