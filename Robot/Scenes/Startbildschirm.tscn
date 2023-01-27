@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=1]
 [ext_resource path="res://Scenes/Scripts/PlayButton.gd" type="Script" id=2]
@@ -20,6 +20,13 @@
 [ext_resource path="res://Resources/UI/MenuTestMusic_Royalityfree.mp3" type="AudioStream" id=19]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/Cross.png" type="Texture" id=20]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=21]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_cancel"
+pressed = true
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="Ui Interface" type="Control"]
 anchor_right = 1.0
@@ -127,6 +134,7 @@ margin_bottom = 307.88
 rect_scale = Vector2( 0.6, 0.6 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
+shortcut = SubResource( 2 )
 texture_normal = ExtResource( 20 )
 texture_hover = ExtResource( 21 )
 expand = true
@@ -138,10 +146,10 @@ margin_right = 1625.0
 margin_bottom = 547.0
 
 [node name="VolumeSlider" type="HSlider" parent="Settings"]
-margin_left = 500.0
-margin_top = 969.0
-margin_right = 1920.0
-margin_bottom = 1108.0
+margin_left = 516.0
+margin_top = 608.0
+margin_right = 1936.0
+margin_bottom = 747.0
 custom_icons/tick = ExtResource( 17 )
 custom_icons/grabber_disabled = ExtResource( 17 )
 custom_icons/grabber_highlight = ExtResource( 17 )
@@ -152,10 +160,10 @@ rounded = true
 script = ExtResource( 16 )
 
 [node name="EffectSlider" type="HSlider" parent="Settings"]
-margin_left = 500.0
-margin_top = 969.0
-margin_right = 1920.0
-margin_bottom = 1108.0
+margin_left = 513.0
+margin_top = 764.0
+margin_right = 1933.0
+margin_bottom = 903.0
 custom_icons/tick = ExtResource( 17 )
 custom_icons/grabber_disabled = ExtResource( 17 )
 custom_icons/grabber_highlight = ExtResource( 17 )
@@ -165,11 +173,34 @@ max_value = 0.0
 rounded = true
 script = ExtResource( 16 )
 
+[node name="EditName" type="LineEdit" parent="Settings"]
+margin_left = 636.0
+margin_top = 925.0
+margin_right = 1483.0
+margin_bottom = 1027.0
+max_length = 30
+placeholder_text = "Edit Name..."
+
+[node name="ClearSavegame" type="TextureButton" parent="Settings"]
+margin_left = 568.0
+margin_top = 990.0
+margin_right = 1257.0
+margin_bottom = 1057.0
+
+[node name="TextSettingPopup" type="Sprite" parent="Settings/ClearSavegame"]
+position = Vector2( 398, 183 )
+scale = Vector2( 0.818, 0.108965 )
+texture = ExtResource( 18 )
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 19 )
 volume_db = -30.241
 autoplay = true
 attenuation = 1e-05
+
+[node name="EnterNameDialog" type="AcceptDialog" parent="."]
+margin_right = 83.0
+margin_bottom = 58.0
 
 [connection signal="pressed" from="Buttons/SettingsButton" to="Settings" method="_on_SettingsButton_pressed"]
 [connection signal="popup_hide" from="Settings" to="WallpaperVideo" method="_on_Settings_popup_hide"]
