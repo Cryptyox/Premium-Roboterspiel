@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Scripts/WallpaperVideo.gd" type="Script" id=1]
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=2]
+[ext_resource path="res://Scenes/1_TestWorld.tscn" type="PackedScene" id=3]
 
-[node name="Node" type="Node"]
+[node name="root" type="Node"]
 
 [node name="WallpaperVideo" type="VideoPlayer" parent="."]
 anchor_top = -0.014
@@ -18,17 +19,17 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="MarginContainer" type="MarginContainer" parent="HomeScreen"]
+[node name="containsExitButton" type="MarginContainer" parent="HomeScreen"]
 anchor_left = 0.014
 anchor_top = 0.02
 anchor_right = 0.049
 anchor_bottom = 0.08
 
-[node name="Button" type="Button" parent="HomeScreen/MarginContainer"]
+[node name="Button" type="Button" parent="HomeScreen/containsExitButton"]
 margin_right = 89.0
 margin_bottom = 86.0
 
-[node name="MarginContainer2" type="MarginContainer" parent="HomeScreen"]
+[node name="containsNavigationButtons" type="MarginContainer" parent="HomeScreen"]
 anchor_left = 0.3
 anchor_top = 0.56
 anchor_right = 0.7
@@ -38,25 +39,26 @@ margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HomeScreen/MarginContainer2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="HorizontalLayout" type="HBoxContainer" parent="HomeScreen/containsNavigationButtons"]
+margin_right = 1064.0
+margin_bottom = 356.0
 
-[node name="Settings" type="Button" parent="HomeScreen/MarginContainer2/HBoxContainer"]
+[node name="Settings" type="Button" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
 margin_right = 12.0
 margin_bottom = 356.0
 
-[node name="Play" type="Button" parent="HomeScreen/MarginContainer2/HBoxContainer"]
+[node name="Play" type="Button" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
 margin_left = 16.0
 margin_right = 28.0
 margin_bottom = 356.0
 
-[node name="Cheese" type="Button" parent="HomeScreen/MarginContainer2/HBoxContainer"]
+[node name="Cheese" type="Button" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
 margin_left = 32.0
 margin_right = 44.0
 margin_bottom = 356.0
 
 [node name="SettingsPopup" type="Popup" parent="."]
+visible = true
 anchor_left = 0.15
 anchor_top = 0.15
 anchor_right = 0.85
@@ -66,7 +68,7 @@ anchor_bottom = 0.85
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPopup"]
+[node name="VerticalLayout" type="VBoxContainer" parent="SettingsPopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -74,100 +76,102 @@ margin_top = 4.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Header" type="Label" parent="SettingsPopup/VBoxContainer"]
-margin_right = 708.0
+[node name="Header" type="Label" parent="SettingsPopup/VerticalLayout"]
+margin_right = 1784.0
 margin_bottom = 14.0
 text = "Settings"
 
-[node name="Body" type="Control" parent="SettingsPopup/VBoxContainer"]
+[node name="Body" type="Control" parent="SettingsPopup/VerticalLayout"]
 margin_top = 18.0
-margin_right = 708.0
+margin_right = 1784.0
 margin_bottom = 18.0
 
-[node name="MarginContainer" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body"]
+[node name="containsRenamePlayer" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body"]
 margin_top = 4.0
 margin_right = 708.0
 margin_bottom = 24.0
 
-[node name="LineEdit" type="LineEdit" parent="SettingsPopup/VBoxContainer/Body/MarginContainer"]
+[node name="LineEdit" type="LineEdit" parent="SettingsPopup/VerticalLayout/Body/containsRenamePlayer"]
 margin_right = 708.0
 margin_bottom = 24.0
 placeholder_text = "Change Name..."
 
-[node name="GridContainer" type="GridContainer" parent="SettingsPopup/VBoxContainer/Body"]
+[node name="TableLayoutForSettings" type="GridContainer" parent="SettingsPopup/VerticalLayout/Body"]
 margin_top = 28.0
 margin_right = 708.0
 margin_bottom = 96.0
 columns = 2
 
-[node name="MarginContainer1" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
+[node name="Title1" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
 margin_right = 72.0
 margin_bottom = 16.0
 
-[node name="Label" type="Label" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer1"]
+[node name="Label" type="Label" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Title1"]
 margin_top = 1.0
 margin_right = 72.0
 margin_bottom = 15.0
 text = "Music"
 
-[node name="MarginContainer2" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
+[node name="Option1" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
 margin_left = 76.0
 margin_right = 138.0
 margin_bottom = 16.0
 
-[node name="HSlider" type="HSlider" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer2"]
+[node name="VolumeSlider" type="HSlider" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Option1"]
 margin_right = 62.0
 margin_bottom = 16.0
 
-[node name="MarginContainer3" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
+[node name="Title2" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
 margin_top = 20.0
 margin_right = 72.0
 margin_bottom = 36.0
 
-[node name="Label" type="Label" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer3"]
+[node name="Label" type="Label" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Title2"]
 margin_top = 1.0
 margin_right = 72.0
 margin_bottom = 15.0
 text = "SFX"
 
-[node name="MarginContainer4" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
+[node name="Option2" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
 margin_left = 76.0
 margin_top = 20.0
 margin_right = 138.0
 margin_bottom = 36.0
 
-[node name="HSlider2" type="HSlider" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer4"]
+[node name="EffectSlider" type="HSlider" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Option2"]
 margin_right = 62.0
 margin_bottom = 16.0
 
-[node name="MarginContainer5" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
+[node name="Title3" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
 margin_top = 40.0
 margin_right = 72.0
 margin_bottom = 60.0
 
-[node name="Label" type="Label" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer5"]
+[node name="Label" type="Label" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Title3"]
 margin_top = 3.0
 margin_right = 72.0
 margin_bottom = 17.0
 text = "Resolution "
 
-[node name="MarginContainer6" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
+[node name="Option3" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
 margin_left = 76.0
 margin_top = 40.0
 margin_right = 138.0
 margin_bottom = 60.0
 
-[node name="OptionButton" type="OptionButton" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer6"]
+[node name="SelectResButton" type="OptionButton" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Option3"]
 margin_right = 62.0
 margin_bottom = 20.0
 text = "Hallo"
 
-[node name="MarginContainer5" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body"]
+[node name="containsResetSavegame" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body"]
 margin_top = 100.0
 margin_right = 708.0
 margin_bottom = 120.0
 
-[node name="Button5" type="Button" parent="SettingsPopup/VBoxContainer/Body/MarginContainer5"]
+[node name="Button5" type="Button" parent="SettingsPopup/VerticalLayout/Body/containsResetSavegame"]
 margin_right = 708.0
 margin_bottom = 20.0
 text = "Reset SaveGame"
+
+[node name="Game" parent="." instance=ExtResource( 3 )]
