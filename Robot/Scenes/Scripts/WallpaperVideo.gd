@@ -8,7 +8,6 @@ func _process(delta):
 	else:
 		play()
 
-
 func _on_Settings_popup_hide():
 	stop()
 	play()

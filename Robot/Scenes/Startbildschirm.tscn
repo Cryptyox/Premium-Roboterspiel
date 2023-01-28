@@ -56,9 +56,9 @@ rect_pivot_offset = Vector2( 1283, 1147 )
 
 [node name="PlayButton" type="TextureButton" parent="Buttons"]
 anchor_left = 0.5
-anchor_top = 0.7125
+anchor_top = 0.712
 anchor_right = 0.5
-anchor_bottom = 0.7125
+anchor_bottom = 0.712
 margin_left = 1139.0
 margin_top = 870.5
 margin_right = 1389.0
@@ -114,7 +114,6 @@ expand = true
 script = ExtResource( 15 )
 
 [node name="Settings" type="Popup" parent="."]
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 6 )

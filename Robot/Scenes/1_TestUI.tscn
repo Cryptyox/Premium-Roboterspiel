@@ -18,8 +18,45 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="MarginContainer" type="MarginContainer" parent="HomeScreen"]
+anchor_left = 0.014
+anchor_top = 0.02
+anchor_right = 0.049
+anchor_bottom = 0.08
+
+[node name="Button" type="Button" parent="HomeScreen/MarginContainer"]
+margin_right = 89.0
+margin_bottom = 86.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="HomeScreen"]
+anchor_left = 0.3
+anchor_top = 0.56
+anchor_right = 0.7
+anchor_bottom = 0.78
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HomeScreen/MarginContainer2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Settings" type="Button" parent="HomeScreen/MarginContainer2/HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 356.0
+
+[node name="Play" type="Button" parent="HomeScreen/MarginContainer2/HBoxContainer"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 356.0
+
+[node name="Cheese" type="Button" parent="HomeScreen/MarginContainer2/HBoxContainer"]
+margin_left = 32.0
+margin_right = 44.0
+margin_bottom = 356.0
+
 [node name="SettingsPopup" type="Popup" parent="."]
-visible = true
 anchor_left = 0.15
 anchor_top = 0.15
 anchor_right = 0.85
@@ -75,11 +112,11 @@ text = "Music"
 
 [node name="MarginContainer2" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
 margin_left = 76.0
-margin_right = 105.0
+margin_right = 138.0
 margin_bottom = 16.0
 
 [node name="HSlider" type="HSlider" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer2"]
-margin_right = 29.0
+margin_right = 62.0
 margin_bottom = 16.0
 
 [node name="MarginContainer3" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
@@ -96,11 +133,11 @@ text = "SFX"
 [node name="MarginContainer4" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
 margin_left = 76.0
 margin_top = 20.0
-margin_right = 105.0
+margin_right = 138.0
 margin_bottom = 36.0
 
 [node name="HSlider2" type="HSlider" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer4"]
-margin_right = 29.0
+margin_right = 62.0
 margin_bottom = 16.0
 
 [node name="MarginContainer5" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
@@ -117,12 +154,13 @@ text = "Resolution "
 [node name="MarginContainer6" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body/GridContainer"]
 margin_left = 76.0
 margin_top = 40.0
-margin_right = 105.0
+margin_right = 138.0
 margin_bottom = 60.0
 
 [node name="OptionButton" type="OptionButton" parent="SettingsPopup/VBoxContainer/Body/GridContainer/MarginContainer6"]
-margin_right = 29.0
+margin_right = 62.0
 margin_bottom = 20.0
+text = "Hallo"
 
 [node name="MarginContainer5" type="MarginContainer" parent="SettingsPopup/VBoxContainer/Body"]
 margin_top = 100.0
