@@ -1212,22 +1212,140 @@ albedo_color = Color( 1, 0, 0, 1 )
 [node name="Game" type="Node"]
 
 [node name="UI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="PreGameScreen" type="Control" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Popup" type="Popup" parent="UI/PreGameScreen"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.85
+
+[node name="Panel" type="Panel" parent="UI/PreGameScreen/Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="containsLevels" type="VBoxContainer" parent="UI/PreGameScreen/Popup"]
+anchor_left = 0.05
+anchor_top = 0.04
+anchor_right = 0.95
+anchor_bottom = 0.84
+
+[node name="containChapter1" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PreGameScreen/Popup/containsLevels/containChapter1"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="SelectChapter" type="Button" parent="UI/PreGameScreen/Popup/containsLevels/containChapter1/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter1/MarginContainer/SelectChapter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
+
+[node name="containChapter2" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
+margin_top = 24.0
+margin_right = 1036.0
+margin_bottom = 44.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PreGameScreen/Popup/containsLevels/containChapter2"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="SelectChapter" type="Button" parent="UI/PreGameScreen/Popup/containsLevels/containChapter2/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter2/MarginContainer/SelectChapter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
+
+[node name="containChapter3" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
+margin_top = 48.0
+margin_right = 1036.0
+margin_bottom = 68.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PreGameScreen/Popup/containsLevels/containChapter3"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="SelectChapter" type="Button" parent="UI/PreGameScreen/Popup/containsLevels/containChapter3/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter3/MarginContainer/SelectChapter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
+
+[node name="containChapter4" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
+margin_top = 72.0
+margin_right = 1036.0
+margin_bottom = 92.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PreGameScreen/Popup/containsLevels/containChapter4"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="SelectChapter" type="Button" parent="UI/PreGameScreen/Popup/containsLevels/containChapter4/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 20.0
+
+[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter4/MarginContainer/SelectChapter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
+
+[node name="containsNavigation" type="HBoxContainer" parent="UI/PreGameScreen/Popup"]
+anchor_left = 0.2
+anchor_top = 0.85
+anchor_right = 0.8
+anchor_bottom = 1.1
+
+[node name="HomeButton" type="Button" parent="UI/PreGameScreen/Popup/containsNavigation"]
+margin_right = 12.0
+margin_bottom = 288.0
+
+[node name="PlayButton" type="Button" parent="UI/PreGameScreen/Popup/containsNavigation"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 288.0
 
 [node name="PauseScreen" type="Control" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Popup" type="Popup" parent="UI/PauseScreen"]
+visible = true
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 
 [node name="AfterGameScreen" type="Control" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Popup" type="Popup" parent="UI/AfterGameScreen"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.85
+
+[node name="containsNavigation" type="HBoxContainer" parent="UI/AfterGameScreen/Popup"]
+anchor_left = 0.15
+anchor_top = 0.85
+anchor_right = 0.85
+anchor_bottom = 1.1
 
 [node name="ContainsWorld" type="Spatial" parent="."]
+
+[node name="Spawn" type="Position3D" parent="ContainsWorld"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
 
 [node name="GridMap" type="GridMap" parent="ContainsWorld"]
 mesh_library = ExtResource( 7 )
