@@ -1319,7 +1319,36 @@ anchor_top = 0.2
 anchor_right = 0.8
 anchor_bottom = 0.8
 
+[node name="Panel" type="Panel" parent="UI/PauseScreen/Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseScreen/Popup"]
+margin_right = 877.0
+margin_bottom = 509.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PauseScreen/Popup"]
+anchor_left = 0.3
+anchor_top = 0.9
+anchor_right = 0.7
+anchor_bottom = 1.1
+
+[node name="HomeButton" type="Button" parent="UI/PauseScreen/Popup/HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 172.0
+
+[node name="PlayButton" type="Button" parent="UI/PauseScreen/Popup/HBoxContainer"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 172.0
+
+[node name="RestartButton" type="Button" parent="UI/PauseScreen/Popup/HBoxContainer"]
+margin_left = 32.0
+margin_right = 44.0
+margin_bottom = 172.0
+
 [node name="AfterGameScreen" type="Control" parent="UI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 8 )
@@ -1466,6 +1495,9 @@ shape = SubResource( 15 )
 [connection signal="pressed" from="UI/PreGameScreen/Popup/containsLevels/containChapter4/MarginContainer/SelectChapter" to="UI/PreGameScreen" method="_on_SelectChapter_pressed" binds= [ Vector3( 3, 1, 0 ) ]]
 [connection signal="pressed" from="UI/PreGameScreen/Popup/containsNavigation/HomeButton" to="UI/PreGameScreen" method="_on_HomeButton_pressed"]
 [connection signal="pressed" from="UI/PreGameScreen/Popup/containsNavigation/PlayButton" to="UI/PreGameScreen" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="UI/PauseScreen/Popup/HBoxContainer/HomeButton" to="UI/PauseScreen" method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="UI/PauseScreen/Popup/HBoxContainer/PlayButton" to="UI/PauseScreen" method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="UI/PauseScreen/Popup/HBoxContainer/RestartButton" to="UI/PauseScreen" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="UI/AfterGameScreen/Popup/containsNavigation/HomeButton" to="UI/AfterGameScreen" method="_on_HomeButton_pressed"]
 [connection signal="pressed" from="UI/AfterGameScreen/Popup/containsNavigation/LevelSelectButton" to="UI/AfterGameScreen" method="_on_LevelSelectButton_pressed"]
 [connection signal="pressed" from="UI/AfterGameScreen/Popup/containsNavigation/RestartButton" to="UI/AfterGameScreen" method="_on_RestartButton_pressed"]
