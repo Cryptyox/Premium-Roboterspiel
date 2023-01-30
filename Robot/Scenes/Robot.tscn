@@ -54,7 +54,7 @@ var lean = 0
 var leanchange = 0.2
 
 # variables to determine which respawnpoint is currently active and where it is
-var respawn_point = Vector3(0,0.99,0)
+var respawn_point = Vector3(0,1,0)
 var current_checkpoint = null
 
 # variable for tries needed and the time played
@@ -363,8 +363,11 @@ func set_checkpoint(area):
 	else:
 		print(current_checkpoint.name + \" already active\")
 
-
-
+func get_spawn():
+	return respawn_point
+	
+func set_spawn(spawn):
+	respawn_point = spawn
 
 func _on_RestartButton_pressed():
 	die()

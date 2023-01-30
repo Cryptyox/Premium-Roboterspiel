@@ -7,6 +7,7 @@ func _ready():
 func _on_SelectChapter_pressed(spawn):
 	var robot = get_node("../../ContainsWorld/Robot")
 	robot.translation = spawn
+	robot.set_spawn(spawn)
 	
 
 
