@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Scripts/RollingBoulder.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Check_Respawnpoint.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Scenes/KillingTestCube.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/SquashingBlock.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=7]
+[ext_resource path="res://Scenes/Scripts/AfterGameScreen.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Scripts/PreGameScreen.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Scripts/PauseScreen.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -1218,6 +1221,7 @@ anchor_bottom = 1.0
 [node name="PreGameScreen" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 9 )
 
 [node name="Popup" type="Popup" parent="UI/PreGameScreen"]
 visible = true
@@ -1234,7 +1238,7 @@ anchor_bottom = 1.0
 anchor_left = 0.05
 anchor_top = 0.04
 anchor_right = 0.95
-anchor_bottom = 0.84
+anchor_bottom = 0.79
 
 [node name="containChapter1" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
 margin_right = 1036.0
@@ -1247,9 +1251,6 @@ margin_bottom = 20.0
 [node name="SelectChapter" type="Button" parent="UI/PreGameScreen/Popup/containsLevels/containChapter1/MarginContainer"]
 margin_right = 1036.0
 margin_bottom = 20.0
-
-[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter1/MarginContainer/SelectChapter"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
 
 [node name="containChapter2" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
 margin_top = 24.0
@@ -1264,9 +1265,6 @@ margin_bottom = 20.0
 margin_right = 1036.0
 margin_bottom = 20.0
 
-[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter2/MarginContainer/SelectChapter"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
-
 [node name="containChapter3" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
 margin_top = 48.0
 margin_right = 1036.0
@@ -1280,9 +1278,6 @@ margin_bottom = 20.0
 margin_right = 1036.0
 margin_bottom = 20.0
 
-[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter3/MarginContainer/SelectChapter"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
-
 [node name="containChapter4" type="VBoxContainer" parent="UI/PreGameScreen/Popup/containsLevels"]
 margin_top = 72.0
 margin_right = 1036.0
@@ -1295,9 +1290,6 @@ margin_bottom = 20.0
 [node name="SelectChapter" type="Button" parent="UI/PreGameScreen/Popup/containsLevels/containChapter4/MarginContainer"]
 margin_right = 1036.0
 margin_bottom = 20.0
-
-[node name="Spawn" type="Position3D" parent="UI/PreGameScreen/Popup/containsLevels/containChapter4/MarginContainer/SelectChapter"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
 
 [node name="containsNavigation" type="HBoxContainer" parent="UI/PreGameScreen/Popup"]
 anchor_left = 0.2
@@ -1317,6 +1309,7 @@ margin_bottom = 288.0
 [node name="PauseScreen" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 11 )
 
 [node name="Popup" type="Popup" parent="UI/PauseScreen"]
 visible = true
@@ -1328,6 +1321,7 @@ anchor_bottom = 0.8
 [node name="AfterGameScreen" type="Control" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 8 )
 
 [node name="Popup" type="Popup" parent="UI/AfterGameScreen"]
 visible = true
@@ -1446,6 +1440,13 @@ material/0 = SubResource( 14 )
 [node name="CollisionShape" type="CollisionShape" parent="ContainsWorld/ContainerRollingBoulder/RollingBoulder/RigidBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 shape = SubResource( 15 )
+
+[connection signal="pressed" from="UI/PreGameScreen/Popup/containsLevels/containChapter1/MarginContainer/SelectChapter" to="UI/PreGameScreen" method="_on_SelectChapter_pressed" binds= [ Vector3( 0, 1, 0 ) ]]
+[connection signal="pressed" from="UI/PreGameScreen/Popup/containsLevels/containChapter2/MarginContainer/SelectChapter" to="UI/PreGameScreen" method="_on_SelectChapter_pressed" binds= [ Vector3( 1, 1, 0 ) ]]
+[connection signal="pressed" from="UI/PreGameScreen/Popup/containsLevels/containChapter3/MarginContainer/SelectChapter" to="UI/PreGameScreen" method="_on_SelectChapter_pressed" binds= [ Vector3( 2, 1, 0 ) ]]
+[connection signal="pressed" from="UI/PreGameScreen/Popup/containsLevels/containChapter4/MarginContainer/SelectChapter" to="UI/PreGameScreen" method="_on_SelectChapter_pressed" binds= [ Vector3( 3, 1, 0 ) ]]
+[connection signal="pressed" from="UI/PreGameScreen/Popup/containsNavigation/HomeButton" to="UI/PreGameScreen" method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="UI/PreGameScreen/Popup/containsNavigation/PlayButton" to="UI/PreGameScreen" method="_on_PlayButton_pressed"]
 
 [editable path="ContainsWorld/Robot"]
 [editable path="ContainsWorld/Robot/Graphics/RBGODO"]
