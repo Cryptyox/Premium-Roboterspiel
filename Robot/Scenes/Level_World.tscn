@@ -1,14 +1,14 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Scenes/Robot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Level_Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/PauseScreen.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=3]
-[ext_resource path="res://Scenes/MovingPlatform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/KillingTestCube.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Check_Respawnpoint.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/SquashingBlock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Object_MovingPlatform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Object_KillingTestCube.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Level_Respawnpoint.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Object_SquashingBlock.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Scripts/RollingBoulder.gd" type="Script" id=8]
-[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Object_Bullet.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve3D" id=1]
 _data = {

@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Scripts/WallpaperVideo.gd" type="Script" id=1]
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=2]
 [ext_resource path="res://Resources/UI/Cheese-Sound-Effect.wav" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/Scripts/HomeScreen.gd" type="Script" id=4]
+[ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=5]
+[ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/Cross.png" type="Texture" id=6]
+[ext_resource path="res://Resources/UI/ButtonTextures/CheeseButton/CheeseButton.png" type="Texture" id=7]
+[ext_resource path="res://Resources/UI/ButtonTextures/SettingsButton/CoggWheel.png" type="Texture" id=8]
+[ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/PlaybuttonHover.png" type="Texture" id=9]
+[ext_resource path="res://Resources/UI/ButtonTextures/SettingsButton/CoggWheelHover.png" type="Texture" id=10]
+[ext_resource path="res://Resources/UI/ButtonTextures/CheeseButton/CheeseButtonHover.png" type="Texture" id=11]
+[ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/Playbutton.png" type="Texture" id=12]
 
 [node name="root" type="Node"]
 
@@ -25,14 +33,17 @@ script = ExtResource( 1 )
 stream = ExtResource( 3 )
 
 [node name="containsExitButton" type="MarginContainer" parent="HomeScreen"]
-anchor_left = 0.014
-anchor_top = 0.02
-anchor_right = 0.049
-anchor_bottom = 0.08
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 140.0
+margin_bottom = 140.0
 
-[node name="ExitButton" type="Button" parent="HomeScreen/containsExitButton"]
-margin_right = 89.0
-margin_bottom = 86.0
+[node name="ExitButton" type="TextureButton" parent="HomeScreen/containsExitButton"]
+margin_right = 100.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+expand = true
 
 [node name="containsNavigationButtons" type="MarginContainer" parent="HomeScreen"]
 anchor_left = 0.3
@@ -48,22 +59,31 @@ margin_bottom = 20.0
 margin_right = 1064.0
 margin_bottom = 356.0
 
-[node name="SettingsButton" type="Button" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
-margin_right = 12.0
+[node name="SettingsButton" type="TextureButton" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
 margin_bottom = 356.0
+rect_pivot_offset = Vector2( 127, 126 )
+texture_normal = ExtResource( 8 )
+texture_hover = ExtResource( 10 )
+expand = true
 
-[node name="PlayButton" type="Button" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
-margin_left = 16.0
-margin_right = 28.0
+[node name="PlayButton" type="TextureButton" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
+margin_left = 4.0
+margin_right = 4.0
 margin_bottom = 356.0
+rect_pivot_offset = Vector2( 130, 249 )
+texture_normal = ExtResource( 12 )
+texture_hover = ExtResource( 9 )
+expand = true
 
-[node name="CheeseButton" type="Button" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
-margin_left = 32.0
-margin_right = 44.0
+[node name="CheeseButton" type="TextureButton" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
+margin_left = 8.0
+margin_right = 8.0
 margin_bottom = 356.0
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 11 )
+expand = true
 
 [node name="SettingsPopup" type="Popup" parent="."]
-visible = true
 anchor_left = 0.15
 anchor_top = 0.15
 anchor_right = 0.85
