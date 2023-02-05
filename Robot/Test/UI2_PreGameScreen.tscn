@@ -1,13 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=2]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/Cross.png" type="Texture" id=3]
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/Playbutton.png" type="Texture" id=4]
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/PlaybuttonHover.png" type="Texture" id=5]
+[ext_resource path="res://Resources/LevelSelectButtongroup.tres" type="ButtonGroup" id=6]
+[ext_resource path="res://Test/Button.gd" type="Script" id=7]
+[ext_resource path="res://Test/ButtonText.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
-size = 63
+size = 64
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -56,11 +59,16 @@ margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
 margin_bottom = 235.0
+toggle_mode = true
+pressed = true
+group = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1052.0
+margin_bottom = 225.0
 rect_pivot_offset = Vector2( 2282, 62 )
+script = ExtResource( 8 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText"]
 anchor_right = 1.0
@@ -145,8 +153,12 @@ margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
 margin_bottom = 235.0
+hint_tooltip = "elect"
+toggle_mode = true
+group = ExtResource( 6 )
 
 [node name="Buttontext" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 2282, 62 )
@@ -234,8 +246,11 @@ margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
 margin_bottom = 235.0
+toggle_mode = true
+group = ExtResource( 6 )
 
 [node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 2282, 62 )
@@ -251,20 +266,20 @@ custom_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 1033.0
+margin_right = 1032.0
 margin_bottom = 205.0
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer"]
-margin_right = 1013.0
+margin_right = 1012.0
 margin_bottom = 90.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "Sky High Frozen Labopratory"
+text = "Sky High Frozen Laboratory"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer"]
 margin_top = 94.0
-margin_right = 1013.0
+margin_right = 1012.0
 margin_bottom = 185.0
 size_flags_vertical = 3
 custom_constants/separation = 50
@@ -323,8 +338,11 @@ margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
 margin_bottom = 235.0
+toggle_mode = true
+group = ExtResource( 6 )
 
 [node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 2282, 62 )
@@ -439,3 +457,5 @@ margin_bottom = 180.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 2 )
 expand = true
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level1/Button" to="MarginContainer/PanelContainer/VBoxContainer/Level1/Button" method="_on_Button_pressed"]
