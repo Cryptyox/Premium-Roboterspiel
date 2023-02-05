@@ -1,0 +1,91 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Scripts/PreGameScreen.gd" type="Script" id=1]
+
+[node name="PreGameScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Popup" type="Popup" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.85
+
+[node name="Panel" type="Panel" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="containsLevels" type="VBoxContainer" parent="Popup"]
+anchor_left = 0.05
+anchor_top = 0.04
+anchor_right = 0.95
+anchor_bottom = 0.79
+
+[node name="containsChapter1" type="VBoxContainer" parent="Popup/containsLevels"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter1"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter1/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="containsChapter2" type="VBoxContainer" parent="Popup/containsLevels"]
+margin_top = 34.0
+margin_right = 1036.0
+margin_bottom = 64.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter2"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter2/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="containsChapter3" type="VBoxContainer" parent="Popup/containsLevels"]
+margin_top = 68.0
+margin_right = 1036.0
+margin_bottom = 98.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter3"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter3/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="containsChapter4" type="VBoxContainer" parent="Popup/containsLevels"]
+margin_top = 102.0
+margin_right = 1036.0
+margin_bottom = 132.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter4"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter4/MarginContainer"]
+margin_right = 1036.0
+margin_bottom = 30.0
+
+[node name="containsNavigation" type="HBoxContainer" parent="Popup"]
+anchor_left = 0.2
+anchor_top = 0.85
+anchor_right = 0.8
+anchor_bottom = 1.1
+
+[node name="HomeButton" type="Button" parent="Popup/containsNavigation"]
+margin_right = 12.0
+margin_bottom = 288.0
+
+[node name="PlayButton" type="Button" parent="Popup/containsNavigation"]
+margin_left = 16.0
+margin_right = 28.0
+margin_bottom = 288.0

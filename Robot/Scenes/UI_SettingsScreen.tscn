@@ -1,0 +1,173 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
+
+[sub_resource type="Theme" id=6]
+
+[sub_resource type="DynamicFont" id=7]
+size = 100
+outline_color = Color( 1, 0.545098, 0.0156863, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.141176, 0.141176, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.214844, 0.214844, 0.214844, 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 7 )
+OptionButton/fonts/font = SubResource( 7 )
+Panel/styles/panel = SubResource( 8 )
+PanelContainer/styles/panel = SubResource( 9 )
+
+[node name="SettingsScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="SettingsPopup" type="Popup" parent="."]
+visible = true
+anchor_left = 0.15
+anchor_top = 0.15
+anchor_right = 0.85
+anchor_bottom = 0.85
+theme = SubResource( 6 )
+
+[node name="PanelContainer" type="PanelContainer" parent="SettingsPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+
+[node name="VerticalLayout" type="VBoxContainer" parent="SettingsPopup/PanelContainer"]
+margin_right = 1792.0
+margin_bottom = 1012.0
+custom_constants/separation = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout"]
+margin_right = 1792.0
+margin_bottom = 140.0
+
+[node name="HeaderBackground" type="Panel" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer"]
+margin_right = 1792.0
+margin_bottom = 140.0
+
+[node name="containsHeader" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer"]
+margin_right = 1792.0
+margin_bottom = 140.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Header" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer/containsHeader"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1782.0
+margin_bottom = 130.0
+text = "Settings"
+align = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout"]
+margin_top = 170.0
+margin_right = 1792.0
+margin_bottom = 1012.0
+custom_constants/margin_right = 100
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2"]
+margin_left = 100.0
+margin_right = 1692.0
+margin_bottom = 742.0
+custom_constants/separation = 30
+
+[node name="containsRenamePlayer" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer"]
+margin_right = 1592.0
+margin_bottom = 130.0
+
+[node name="LineEdit" type="LineEdit" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/containsRenamePlayer"]
+margin_right = 1592.0
+margin_bottom = 130.0
+placeholder_text = "Change Name..."
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer"]
+margin_top = 160.0
+margin_right = 1592.0
+margin_bottom = 586.0
+
+[node name="TableLayoutForSettings" type="GridContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer"]
+margin_right = 1592.0
+margin_bottom = 426.0
+custom_constants/vseparation = 30
+custom_constants/hseparation = 20
+columns = 2
+
+[node name="Title1" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
+margin_right = 603.0
+margin_bottom = 120.0
+
+[node name="Label" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Title1"]
+margin_right = 603.0
+margin_bottom = 120.0
+text = "Music"
+
+[node name="Option1" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
+margin_left = 623.0
+margin_right = 1226.0
+margin_bottom = 120.0
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Option1"]
+margin_right = 603.0
+margin_bottom = 16.0
+
+[node name="Title2" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
+margin_top = 150.0
+margin_right = 603.0
+margin_bottom = 270.0
+
+[node name="Label" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Title2"]
+margin_right = 603.0
+margin_bottom = 120.0
+text = "SFX"
+
+[node name="Option2" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
+margin_left = 623.0
+margin_top = 150.0
+margin_right = 1226.0
+margin_bottom = 270.0
+
+[node name="EffectSlider" type="HSlider" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Option2"]
+margin_right = 603.0
+margin_bottom = 16.0
+
+[node name="Title3" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
+margin_top = 300.0
+margin_right = 603.0
+margin_bottom = 426.0
+
+[node name="Label" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Title3"]
+margin_top = 3.0
+margin_right = 603.0
+margin_bottom = 123.0
+text = "Resolution "
+
+[node name="Option3" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
+margin_left = 623.0
+margin_top = 300.0
+margin_right = 1226.0
+margin_bottom = 426.0
+
+[node name="SelectResButton" type="OptionButton" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Option3"]
+margin_right = 603.0
+margin_bottom = 126.0
+text = "Fullscreen"
+
+[node name="containsResetSavegame" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer"]
+margin_top = 616.0
+margin_right = 1592.0
+margin_bottom = 742.0
+
+[node name="Button5" type="Button" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/containsResetSavegame"]
+margin_right = 1592.0
+margin_bottom = 126.0
+text = "Reset SaveGame"

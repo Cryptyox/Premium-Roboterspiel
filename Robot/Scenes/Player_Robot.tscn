@@ -63,7 +63,7 @@ var tries = 0
 var game_timer = 0
 
 #caches path for creating instance of Bullet.tscn
-const bulletpath = preload(\"res://Scenes/Bullet.tscn\")
+const bulletpath = preload(\"res://Scenes/Player_Bullet.tscn\")
 var allowShoot = true
 var stimer = null
 var bulletdelay = 1
@@ -478,7 +478,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
+node_connections = [ "output", 0, "Blend_doublejump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )

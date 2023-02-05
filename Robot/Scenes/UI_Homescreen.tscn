@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Scripts/WallpaperVideo.gd" type="Script" id=1]
 [ext_resource path="res://Wallpaperanimation0001-0750.webm" type="VideoStream" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Resources/UI/ButtonTextures/SettingsButton/CoggWheelHover.png" type="Texture" id=10]
 [ext_resource path="res://Resources/UI/ButtonTextures/CheeseButton/CheeseButtonHover.png" type="Texture" id=11]
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/Playbutton.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/UI_SettingsScreen.tscn" type="PackedScene" id=13]
 
 [node name="root" type="Node"]
 
@@ -33,10 +34,14 @@ script = ExtResource( 1 )
 stream = ExtResource( 3 )
 
 [node name="containsExitButton" type="MarginContainer" parent="HomeScreen"]
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 140.0
-margin_bottom = 140.0
+anchor_left = 0.016
+anchor_top = 0.028
+anchor_right = 0.055
+anchor_bottom = 0.097
+margin_left = -0.960003
+margin_top = -0.32
+margin_right = -0.800003
+margin_bottom = 0.319992
 
 [node name="ExitButton" type="TextureButton" parent="HomeScreen/containsExitButton"]
 margin_right = 100.0
@@ -46,159 +51,63 @@ texture_hover = ExtResource( 5 )
 expand = true
 
 [node name="containsNavigationButtons" type="MarginContainer" parent="HomeScreen"]
-anchor_left = 0.3
-anchor_top = 0.56
-anchor_right = 0.7
-anchor_bottom = 0.78
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+anchor_left = 0.292
+anchor_top = 0.546
+anchor_right = 0.708
+anchor_bottom = 0.794
+margin_left = 0.47998
+margin_top = -0.23999
+margin_right = -0.47998
+margin_bottom = 0.640015
 
 [node name="HorizontalLayout" type="HBoxContainer" parent="HomeScreen/containsNavigationButtons"]
-margin_right = 1064.0
-margin_bottom = 356.0
+margin_right = 1520.0
+margin_bottom = 500.0
 
 [node name="SettingsButton" type="TextureButton" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
-margin_bottom = 356.0
-rect_pivot_offset = Vector2( 127, 126 )
+margin_right = 500.0
+margin_bottom = 500.0
 texture_normal = ExtResource( 8 )
 texture_hover = ExtResource( 10 )
-expand = true
+stretch_mode = 5
 
 [node name="PlayButton" type="TextureButton" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
-margin_left = 4.0
-margin_right = 4.0
-margin_bottom = 356.0
-rect_pivot_offset = Vector2( 130, 249 )
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 500.0
 texture_normal = ExtResource( 12 )
 texture_hover = ExtResource( 9 )
-expand = true
+stretch_mode = 5
 
 [node name="CheeseButton" type="TextureButton" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
-margin_left = 8.0
-margin_right = 8.0
-margin_bottom = 356.0
+margin_left = 1008.0
+margin_right = 1508.0
+margin_bottom = 500.0
 texture_normal = ExtResource( 7 )
 texture_hover = ExtResource( 11 )
-expand = true
+stretch_mode = 5
 
-[node name="SettingsPopup" type="Popup" parent="."]
-anchor_left = 0.15
-anchor_top = 0.15
-anchor_right = 0.85
-anchor_bottom = 0.85
+[node name="MarginContainer" type="MarginContainer" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
+margin_left = 1512.0
+margin_right = 1512.0
+margin_bottom = 500.0
 
-[node name="Background" type="Panel" parent="SettingsPopup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="MarginContainer2" type="MarginContainer" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
+margin_left = 1516.0
+margin_right = 1516.0
+margin_bottom = 500.0
 
-[node name="VerticalLayout" type="VBoxContainer" parent="SettingsPopup"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="MarginContainer3" type="MarginContainer" parent="HomeScreen/containsNavigationButtons/HorizontalLayout"]
+margin_left = 1520.0
+margin_right = 1520.0
+margin_bottom = 500.0
 
-[node name="containsHeader" type="MarginContainer" parent="SettingsPopup/VerticalLayout"]
-margin_right = 1792.0
-margin_bottom = 14.0
-
-[node name="Header" type="Label" parent="SettingsPopup/VerticalLayout/containsHeader"]
-margin_right = 1792.0
-margin_bottom = 14.0
-text = "Settings"
-
-[node name="Body" type="Control" parent="SettingsPopup/VerticalLayout"]
-margin_top = 18.0
-margin_right = 1792.0
-margin_bottom = 18.0
-
-[node name="containsRenamePlayer" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body"]
-anchor_right = 1.0
-anchor_bottom = 0.2
-
-[node name="LineEdit" type="LineEdit" parent="SettingsPopup/VerticalLayout/Body/containsRenamePlayer"]
-margin_right = 1792.0
-margin_bottom = 24.0
-placeholder_text = "Change Name..."
-
-[node name="TableLayoutForSettings" type="GridContainer" parent="SettingsPopup/VerticalLayout/Body"]
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 0.8
-columns = 2
-
-[node name="Title1" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
-margin_right = 72.0
-margin_bottom = 16.0
-
-[node name="Label" type="Label" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Title1"]
-margin_top = 1.0
-margin_right = 72.0
-margin_bottom = 15.0
-text = "Music"
-
-[node name="Option1" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
-margin_left = 76.0
-margin_right = 138.0
-margin_bottom = 16.0
-
-[node name="VolumeSlider" type="HSlider" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Option1"]
-margin_right = 62.0
-margin_bottom = 16.0
-
-[node name="Title2" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
-margin_top = 20.0
-margin_right = 72.0
-margin_bottom = 36.0
-
-[node name="Label" type="Label" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Title2"]
-margin_top = 1.0
-margin_right = 72.0
-margin_bottom = 15.0
-text = "SFX"
-
-[node name="Option2" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
-margin_left = 76.0
-margin_top = 20.0
-margin_right = 138.0
-margin_bottom = 36.0
-
-[node name="EffectSlider" type="HSlider" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Option2"]
-margin_right = 62.0
-margin_bottom = 16.0
-
-[node name="Title3" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
-margin_top = 40.0
-margin_right = 72.0
-margin_bottom = 60.0
-
-[node name="Label" type="Label" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Title3"]
-margin_top = 3.0
-margin_right = 72.0
-margin_bottom = 17.0
-text = "Resolution "
-
-[node name="Option3" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings"]
-margin_left = 76.0
-margin_top = 40.0
-margin_right = 138.0
-margin_bottom = 60.0
-
-[node name="SelectResButton" type="OptionButton" parent="SettingsPopup/VerticalLayout/Body/TableLayoutForSettings/Option3"]
-margin_right = 62.0
-margin_bottom = 20.0
-text = "Hallo"
-
-[node name="containsResetSavegame" type="MarginContainer" parent="SettingsPopup/VerticalLayout/Body"]
-anchor_top = 0.8
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Button5" type="Button" parent="SettingsPopup/VerticalLayout/Body/containsResetSavegame"]
-margin_right = 1792.0
-margin_bottom = 20.0
-text = "Reset SaveGame"
+[node name="SettingsScreen" parent="." instance=ExtResource( 13 )]
+visible = false
 
 [connection signal="pressed" from="HomeScreen/containsExitButton/ExitButton" to="HomeScreen" method="_on_ExitButton_pressed"]
 [connection signal="pressed" from="HomeScreen/containsNavigationButtons/HorizontalLayout/SettingsButton" to="HomeScreen" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="HomeScreen/containsNavigationButtons/HorizontalLayout/PlayButton" to="HomeScreen" method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="HomeScreen/containsNavigationButtons/HorizontalLayout/CheeseButton" to="HomeScreen" method="_on_CheeseButton_pressed"]
+
+[editable path="SettingsScreen"]
