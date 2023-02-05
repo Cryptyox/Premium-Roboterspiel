@@ -26,54 +26,54 @@ anchor_bottom = 0.79
 
 [node name="containsChapter1" type="VBoxContainer" parent="Popup/containsLevels"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter1"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter1/MarginContainer"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="containsChapter2" type="VBoxContainer" parent="Popup/containsLevels"]
-margin_top = 34.0
+margin_top = 106.0
 margin_right = 1036.0
-margin_bottom = 64.0
+margin_bottom = 208.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter2"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter2/MarginContainer"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="containsChapter3" type="VBoxContainer" parent="Popup/containsLevels"]
-margin_top = 68.0
+margin_top = 212.0
 margin_right = 1036.0
-margin_bottom = 98.0
+margin_bottom = 314.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter3"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter3/MarginContainer"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="containsChapter4" type="VBoxContainer" parent="Popup/containsLevels"]
-margin_top = 102.0
+margin_top = 318.0
 margin_right = 1036.0
-margin_bottom = 132.0
+margin_bottom = 420.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Popup/containsLevels/containsChapter4"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="SelectChapter" type="Button" parent="Popup/containsLevels/containsChapter4/MarginContainer"]
 margin_right = 1036.0
-margin_bottom = 30.0
+margin_bottom = 102.0
 
 [node name="containsNavigation" type="HBoxContainer" parent="Popup"]
 anchor_left = 0.2

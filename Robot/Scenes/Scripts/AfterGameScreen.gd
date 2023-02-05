@@ -1,4 +1,3 @@
-extends Control
 
 func _on_HomeButton_pressed():
 	get_tree().change_scene("res://Scenes/1_TestUI.tscn")
