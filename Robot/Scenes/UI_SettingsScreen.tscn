@@ -1,153 +1,185 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
-[sub_resource type="Theme" id=6]
+[ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 1 )
 
 [node name="SettingsScreen" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="SettingsPopup" type="Popup" parent="."]
-visible = true
 anchor_left = 0.15
 anchor_top = 0.15
 anchor_right = 0.85
 anchor_bottom = 0.85
-theme = SubResource( 6 )
 
-[node name="PanelContainer" type="PanelContainer" parent="SettingsPopup"]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VerticalLayout" type="VBoxContainer" parent="SettingsPopup/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 margin_right = 1792.0
 margin_bottom = 1008.0
-custom_constants/separation = 30
 
-[node name="MarginContainer" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout"]
+[node name="Header" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 margin_right = 1792.0
-margin_bottom = 156.0
+margin_bottom = 244.0
 
-[node name="HeaderBackground" type="Panel" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer"]
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/Header"]
 margin_right = 1792.0
-margin_bottom = 156.0
+margin_bottom = 244.0
 
-[node name="containsHeader" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Header"]
 margin_right = 1792.0
-margin_bottom = 156.0
+margin_bottom = 244.0
 custom_constants/margin_right = 30
-custom_constants/margin_top = 30
+custom_constants/margin_top = 50
 custom_constants/margin_left = 30
-custom_constants/margin_bottom = 30
+custom_constants/margin_bottom = 50
 
-[node name="Header" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer/containsHeader"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Header/MarginContainer"]
 margin_left = 30.0
-margin_top = 30.0
+margin_top = 50.0
 margin_right = 1762.0
-margin_bottom = 126.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 2 )
 text = "Settings"
 align = 1
+valign = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout"]
-margin_top = 186.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 248.0
 margin_right = 1792.0
-margin_bottom = 908.0
-custom_constants/margin_right = 100
-custom_constants/margin_left = 100
-custom_constants/margin_bottom = 100
+margin_bottom = 248.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2"]
+[node name="Body" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+margin_top = 252.0
+margin_right = 1792.0
+margin_bottom = 948.0
+rect_pivot_offset = Vector2( 2863, -33 )
+custom_constants/margin_right = 100
+custom_constants/margin_top = 30
+custom_constants/margin_left = 100
+custom_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Body"]
 margin_left = 100.0
+margin_top = 30.0
 margin_right = 1692.0
-margin_bottom = 622.0
+margin_bottom = 646.0
 custom_constants/separation = 30
 
-[node name="containsRenamePlayer" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer"]
+[node name="containsRenamePlayer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer"]
 margin_right = 1592.0
 margin_bottom = 106.0
 
-[node name="LineEdit" type="LineEdit" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/containsRenamePlayer"]
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/containsRenamePlayer"]
 margin_right = 1592.0
 margin_bottom = 106.0
 placeholder_text = "Change Name..."
 
-[node name="MarginContainer" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer"]
 margin_top = 136.0
 margin_right = 1592.0
-margin_bottom = 490.0
+margin_bottom = 232.0
 
-[node name="TableLayoutForSettings" type="GridContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer"]
-margin_right = 1592.0
-margin_bottom = 354.0
-custom_constants/vseparation = 30
-custom_constants/hseparation = 20
-columns = 2
-
-[node name="Title1" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
-margin_right = 482.0
+[node name="Title3" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer3"]
+margin_right = 529.0
 margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+custom_constants/margin_left = 20
 
-[node name="Label" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Title1"]
-margin_right = 482.0
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer3/Title3"]
+margin_left = 20.0
+margin_right = 529.0
+margin_bottom = 96.0
+text = "Resolution "
+
+[node name="Option3" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer3"]
+margin_left = 533.0
+margin_right = 1592.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+
+[node name="SelectResButton" type="OptionButton" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer3/Option3"]
+margin_right = 1059.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 1 )
+text = "Fullscreen"
+__meta__ = {
+"_editor_description_": "HGallo"
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer"]
+margin_top = 262.0
+margin_right = 1592.0
+margin_bottom = 358.0
+
+[node name="Title1" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer"]
+margin_right = 529.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+custom_constants/margin_left = 20
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer/Title1"]
+margin_left = 20.0
+margin_right = 529.0
 margin_bottom = 96.0
 text = "Music"
 
-[node name="Option1" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
-margin_left = 502.0
-margin_right = 990.0
+[node name="Option1" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer"]
+margin_left = 533.0
+margin_right = 1592.0
 margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_constants/margin_top = 40
 
-[node name="VolumeSlider" type="HSlider" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Option1"]
-margin_right = 488.0
-margin_bottom = 16.0
+[node name="VolumeSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer/Option1"]
+margin_top = 40.0
+margin_right = 1059.0
+margin_bottom = 56.0
 
-[node name="Title2" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
-margin_top = 126.0
-margin_right = 482.0
-margin_bottom = 222.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer"]
+margin_top = 388.0
+margin_right = 1592.0
+margin_bottom = 484.0
 
-[node name="Label" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Title2"]
-margin_right = 482.0
+[node name="Title2" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer2"]
+margin_right = 529.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+custom_constants/margin_left = 20
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer2/Title2"]
+margin_left = 20.0
+margin_right = 529.0
 margin_bottom = 96.0
 text = "SFX"
 
-[node name="Option2" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
-margin_left = 502.0
-margin_top = 126.0
-margin_right = 990.0
-margin_bottom = 222.0
-
-[node name="EffectSlider" type="HSlider" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Option2"]
-margin_right = 488.0
-margin_bottom = 16.0
-
-[node name="Title3" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
-margin_top = 252.0
-margin_right = 482.0
-margin_bottom = 354.0
-
-[node name="Label" type="Label" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Title3"]
-margin_top = 3.0
-margin_right = 482.0
-margin_bottom = 99.0
-text = "Resolution "
-
-[node name="Option3" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings"]
-margin_left = 502.0
-margin_top = 252.0
-margin_right = 990.0
-margin_bottom = 354.0
-
-[node name="SelectResButton" type="OptionButton" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/MarginContainer/TableLayoutForSettings/Option3"]
-margin_right = 488.0
-margin_bottom = 102.0
-text = "Fullscreen"
-
-[node name="containsResetSavegame" type="MarginContainer" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer"]
-margin_top = 520.0
+[node name="Option2" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer2"]
+margin_left = 533.0
 margin_right = 1592.0
-margin_bottom = 622.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_constants/margin_top = 40
 
-[node name="Button5" type="Button" parent="SettingsPopup/PanelContainer/VerticalLayout/MarginContainer2/VBoxContainer/containsResetSavegame"]
+[node name="EffectSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer2/Option2"]
+margin_top = 40.0
+margin_right = 1059.0
+margin_bottom = 56.0
+
+[node name="containsResetSavegame" type="MarginContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer"]
+margin_top = 514.0
+margin_right = 1592.0
+margin_bottom = 616.0
+
+[node name="Button5" type="Button" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/containsResetSavegame"]
 margin_right = 1592.0
 margin_bottom = 102.0
 text = "Reset SaveGame"

@@ -4,6 +4,9 @@ onready var anim_player = $AnimationPlayer
 
 var player = false
 
+#func _ready():
+#	anim_player.play("move_block")
+
 func do_animation():
 	player = true
 

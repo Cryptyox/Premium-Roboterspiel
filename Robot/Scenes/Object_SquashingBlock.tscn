@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/Scripts/SquashingBlock.gd" type="Script" id=1]
-
 
 [sub_resource type="BoxShape" id=1]
 
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 3, 3, 3 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="BoxShape" id=7]
 
@@ -55,7 +57,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
 script = ExtResource( 1 )
 
 [node name="Body" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5024, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Body"]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0 )
@@ -63,6 +65,7 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Body"]
 mesh = SubResource( 2 )
+material/0 = SubResource( 8 )
 
 [node name="Area" type="Area" parent="Body" groups=["killing"]]
 transform = Transform( 1, 6.33008e-10, 0, 6.33008e-10, 1, 5.82077e-11, 0, 0, 1, 0, 0, 0 )
@@ -75,8 +78,8 @@ shape = SubResource( 7 )
 curve = SubResource( 3 )
 
 [node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5024, 0 )
-offset = 1.00219
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+offset = 2.99974
 
 [node name="RemoteTransform" type="RemoteTransform" parent="Path/PathFollow"]
 remote_path = NodePath("../../../Body")
