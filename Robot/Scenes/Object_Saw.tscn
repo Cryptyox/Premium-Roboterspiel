@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [sub_resource type="CylinderMesh" id=4]
 
@@ -11,13 +11,43 @@ albedo_color = Color( 1, 0, 0, 1 )
 
 [sub_resource type="Curve3D" id=3]
 _data = {
-"points": PoolVector3Array(  ),
-"tilts": PoolRealArray(  )
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.5, -0.0999999, 0, 0, 0, 0, 0, 0, 0, 0.5, -2.1, 0, 0, 0, 0, 0, 0, 0, -1.5, -2.1, 0, 0, 0, 0, 0, 0, 0, -1.5, -0.0999999, 0, 0, 0, 0, 0, 0, 0, 0.5, -0.0999999, 0 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "move"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path/PathFollow:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.25, 0.5, 0.75, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Center:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
 }
 
 [node name="Saw" type="Spatial"]
 
 [node name="Center" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.9, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Center"]
 transform = Transform( 0.5, 0, 0, 0, -4.37114e-10, -0.5, 0, 0.01, -2.18557e-08, 0, 0, 0 )
@@ -35,10 +65,14 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 transform = Transform( 1.01, 0, 0, 0, 1.01, 0, 0, 0, 1.01, 0, 0, 0 )
 shape = SubResource( 7 )
 
-[node name="Path" type="Path" parent="Center"]
+[node name="Path" type="Path" parent="."]
 curve = SubResource( 3 )
 
-[node name="PathFollow" type="PathFollow" parent="Center/Path"]
+[node name="PathFollow" type="PathFollow" parent="Path"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.9, 0 )
 
-[node name="RemoteTransform" type="RemoteTransform" parent="Center/Path/PathFollow"]
-remote_path = NodePath("../../..")
+[node name="RemoteTransform" type="RemoteTransform" parent="Path/PathFollow"]
+remote_path = NodePath("../../../Center")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/move = SubResource( 8 )

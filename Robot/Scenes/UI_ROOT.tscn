@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Scripts/MainScript.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/UI_Homescreen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/UI_PauseScreen.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/UI_SettingsScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI_AfterGameScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/UI_PreGameScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Level_World.tscn" type="PackedScene" id=7]
+
+[node name="Game" type="Node"]
+script = ExtResource( 1 )
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AfterGameScreen" parent="UI" instance=ExtResource( 5 )]
+visible = false
+
+[node name="HomeScreen" parent="UI" instance=ExtResource( 2 )]
+visible = false
+
+[node name="PauseScreen" parent="UI" instance=ExtResource( 3 )]
+visible = false
+
+[node name="PreGameScreen" parent="UI" instance=ExtResource( 6 )]
+visible = false
+
+[node name="SettingsScreen" parent="UI" instance=ExtResource( 4 )]
+visible = false
+
+[node name="World" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[connection signal="closePost" from="UI/AfterGameScreen" to="." method="_on_closePost"]
+[connection signal="closeWorld" from="UI/AfterGameScreen" to="." method="_on_closeWorld"]
+[connection signal="draw" from="UI/AfterGameScreen" to="UI/AfterGameScreen" method="_draw"]
+[connection signal="closeHome" from="UI/HomeScreen" to="." method="_on_closeHome"]
+[connection signal="openPre" from="UI/HomeScreen" to="." method="_on_openPre"]
+[connection signal="openSets" from="UI/HomeScreen" to="." method="_on_openSets"]
+[connection signal="openWorld" from="UI/HomeScreen" to="." method="_on_openWorld"]
+[connection signal="closePause" from="UI/PauseScreen" to="." method="_on_closePause"]
+[connection signal="closeWorld" from="UI/PauseScreen" to="." method="_on_closeWorld"]
+[connection signal="openHome" from="UI/PauseScreen" to="." method="_on_openHome"]
+[connection signal="openPause" from="UI/PauseScreen" to="." method="_on_openPause"]
+[connection signal="closePre" from="UI/PreGameScreen" to="." method="_on_closePre"]
+[connection signal="closeWorld" from="UI/PreGameScreen" to="." method="_on_closeWorld"]
+[connection signal="draw" from="UI/PreGameScreen" to="UI/PreGameScreen" method="_draw"]
+[connection signal="openHome" from="UI/PreGameScreen" to="." method="_on_openHome"]

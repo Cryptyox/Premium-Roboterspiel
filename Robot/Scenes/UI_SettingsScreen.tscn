@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/Scripts/Settings.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=2]
 size = 120
@@ -15,6 +16,7 @@ anchor_left = 0.15
 anchor_top = 0.15
 anchor_right = 0.85
 anchor_bottom = 0.85
+script = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
@@ -50,15 +52,10 @@ text = "Settings"
 align = 1
 valign = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="Body" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 margin_top = 248.0
 margin_right = 1792.0
-margin_bottom = 248.0
-
-[node name="Body" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
-margin_top = 252.0
-margin_right = 1792.0
-margin_bottom = 948.0
+margin_bottom = 944.0
 rect_pivot_offset = Vector2( 2863, -33 )
 custom_constants/margin_right = 100
 custom_constants/margin_top = 30
@@ -111,7 +108,7 @@ margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
 text = "Fullscreen"
 __meta__ = {
-"_editor_description_": "HGallo"
+"_editor_description_": ""
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Body/VBoxContainer"]
@@ -183,3 +180,5 @@ margin_bottom = 616.0
 margin_right = 1592.0
 margin_bottom = 102.0
 text = "Reset SaveGame"
+
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer3/Option3/SelectResButton" to="." method="_on_SelectResButton_item_selected"]

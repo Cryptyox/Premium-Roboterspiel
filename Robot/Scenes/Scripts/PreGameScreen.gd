@@ -1,19 +1,27 @@
 extends Control
 
-func _ready():
-	$Popup.show()
+signal closePre
+signal closeWorld
 
+signal openHome
 
+func _draw():
+	pass # move cam
+	
 func _on_SelectChapter_pressed(spawn):
 	var robot = get_node("../../ContainsWorld/Robot")
 	robot.translation = spawn
 	robot.set_spawn(spawn)
-	
 
 
 func _on_HomeButton_pressed():
-	get_tree().change_scene("res://Scenes/1_TestUI.tscn")
+	emit_signal("closePre")
+	emit_signal("closeWorld")
+	emit_signal("openHome")
 
 
 func _on_PlayButton_pressed():
-	$Popup.hide()
+	emit_signal("closePre")
+
+
+

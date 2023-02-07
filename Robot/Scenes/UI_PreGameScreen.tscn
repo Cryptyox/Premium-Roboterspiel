@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/Playbutton.png" type="Texture" id=4]
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/PlaybuttonHover.png" type="Texture" id=5]
 [ext_resource path="res://Resources/LevelSelectButtongroup.tres" type="ButtonGroup" id=6]
+[ext_resource path="res://Scenes/Scripts/PreGameScreen.gd" type="Script" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -15,11 +16,19 @@ font_data = ExtResource( 1 )
 size = 40
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.141176, 0.141176, 0.141176, 0.392157 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
+font_data = ExtResource( 1 )
+
 [node name="PreGameScreen" type="Control"]
 anchor_left = 0.5
 anchor_top = 0.05
 anchor_right = 0.95
 anchor_bottom = 0.85
+script = ExtResource( 7 )
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -471,7 +480,7 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 30
 custom_constants/margin_bottom = 20
 
-[node name="ExitButton" type="TextureButton" parent="Navigation/MarginContainer2"]
+[node name="HomeButton" type="TextureButton" parent="Navigation/MarginContainer2"]
 margin_left = 30.0
 margin_top = 20.0
 margin_right = 190.0
@@ -479,3 +488,36 @@ margin_bottom = 180.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 2 )
 expand = true
+
+[node name="Control" type="Control" parent="."]
+anchor_left = -1.0
+anchor_right = -0.1
+anchor_bottom = 0.35
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+margin_right = 1036.8
+margin_bottom = 403.2
+custom_constants/margin_right = 30
+custom_constants/margin_top = 30
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer"]
+margin_left = 30.0
+margin_top = 43.0
+margin_right = 1006.0
+margin_bottom = 360.0
+custom_fonts/font = SubResource( 4 )
+text = "The boss has done this and that...
+this level has to offer this and that
+quest...
+
+get there before him or ..."
+
+[connection signal="pressed" from="Navigation/MarginContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="Navigation/MarginContainer2/HomeButton" to="." method="_on_HomeButton_pressed"]
