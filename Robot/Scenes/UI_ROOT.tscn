@@ -48,3 +48,4 @@ visible = false
 [connection signal="closeWorld" from="UI/PreGameScreen" to="." method="_on_closeWorld"]
 [connection signal="draw" from="UI/PreGameScreen" to="UI/PreGameScreen" method="_draw"]
 [connection signal="openHome" from="UI/PreGameScreen" to="." method="_on_openHome"]
+[connection signal="closeSets" from="UI/SettingsScreen" to="." method="_on_closeSets"]

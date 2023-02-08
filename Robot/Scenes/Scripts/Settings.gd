@@ -1,5 +1,6 @@
 extends Control
 
+signal closeSets
 
 # Called when the node enters the scene tree for the first time.
 onready var res_menu = $PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer3/Option3/SelectResButton
@@ -38,3 +39,7 @@ func _on_SelectResButton_item_selected(index):
 #	else:
 #		show()
 #		get_node("../Buttons/QuitButton").hide()
+
+
+func _on_HomeButton_pressed():
+	emit_signal("closeSets")

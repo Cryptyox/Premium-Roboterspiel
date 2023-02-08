@@ -143,7 +143,7 @@ custom_constants/margin_bottom = 40
 margin_left = 40.0
 margin_top = 40.0
 margin_right = 728.0
-margin_bottom = 391.0
+margin_bottom = 392.0
 custom_constants/separation = 30
 
 [node name="MarginContainer2" type="MarginContainer" parent="ExitDialog/PanelContainer/MarginContainer/VBoxContainer"]

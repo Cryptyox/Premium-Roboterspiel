@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Scripts/Settings.gd" type="Script" id=2]
+[ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=3]
+[ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/Cross.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 120
@@ -16,6 +18,7 @@ anchor_left = 0.15
 anchor_top = 0.15
 anchor_right = 0.85
 anchor_bottom = 0.85
+rect_pivot_offset = Vector2( 3233, -331 )
 script = ExtResource( 2 )
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -181,4 +184,18 @@ margin_right = 1592.0
 margin_bottom = 102.0
 text = "Reset SaveGame"
 
+[node name="containsExitButton" type="MarginContainer" parent="."]
+margin_left = -344.0
+margin_top = -176.0
+margin_right = -244.0
+margin_bottom = -76.0
+
+[node name="HomeButton" type="TextureButton" parent="containsExitButton"]
+margin_right = 100.0
+margin_bottom = 100.0
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 3 )
+expand = true
+
 [connection signal="item_selected" from="PanelContainer/VBoxContainer/Body/VBoxContainer/HBoxContainer3/Option3/SelectResButton" to="." method="_on_SelectResButton_item_selected"]
+[connection signal="pressed" from="containsExitButton/HomeButton" to="." method="_on_HomeButton_pressed"]
