@@ -490,8 +490,8 @@ texture_hover = ExtResource( 2 )
 expand = true
 
 [node name="Control" type="Control" parent="."]
-anchor_left = -1.0
-anchor_right = -0.1
+anchor_left = -1.05
+anchor_right = -0.05
 anchor_bottom = 0.35
 
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
@@ -500,24 +500,21 @@ anchor_bottom = 1.0
 custom_styles/panel = SubResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
-margin_right = 1036.8
+margin_right = 1152.0
 margin_bottom = 403.2
-custom_constants/margin_right = 30
-custom_constants/margin_top = 30
-custom_constants/margin_left = 30
-custom_constants/margin_bottom = 30
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
 
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer"]
-margin_left = 30.0
-margin_top = 43.0
-margin_right = 1006.0
-margin_bottom = 360.0
+margin_left = 50.0
+margin_top = 171.0
+margin_right = 1102.0
+margin_bottom = 232.0
+custom_constants/line_spacing = 10
 custom_fonts/font = SubResource( 4 )
-text = "The boss has done this and that...
-this level has to offer this and that
-quest...
-
-get there before him or ..."
+autowrap = true
 
 [connection signal="pressed" from="Navigation/MarginContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="Navigation/MarginContainer2/HomeButton" to="." method="_on_HomeButton_pressed"]

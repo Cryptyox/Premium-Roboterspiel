@@ -14,61 +14,66 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 0.2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Top"]
+[node name="MarginContainer" type="MarginContainer" parent="Top"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="MarginContainer" type="MarginContainer" parent="Top/HBoxContainer"]
-margin_right = 616.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/MarginContainer"]
+margin_right = 2560.0
+margin_bottom = 288.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Top/MarginContainer/HBoxContainer"]
+margin_right = 154.0
 margin_bottom = 288.0
 custom_constants/margin_right = 50
 custom_constants/margin_top = 85
 custom_constants/margin_left = 100
 custom_constants/margin_bottom = 0
 
-[node name="ProgressBar" type="ProgressBar" parent="Top/HBoxContainer/MarginContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Top/MarginContainer/HBoxContainer/MarginContainer"]
 margin_left = 100.0
 margin_top = 85.0
-margin_right = 566.0
+margin_right = 104.0
 margin_bottom = 87.0
 percent_visible = false
 
-[node name="Label" type="Label" parent="Top/HBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="Top/MarginContainer/HBoxContainer/MarginContainer"]
+visible = false
 margin_left = 100.0
 margin_top = 138.0
 margin_right = 566.0
 margin_bottom = 234.0
 text = "Health Bar"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Top/HBoxContainer"]
-margin_left = 620.0
-margin_right = 793.0
+[node name="MarginContainer2" type="MarginContainer" parent="Top/MarginContainer/HBoxContainer"]
+margin_left = 158.0
+margin_right = 331.0
 margin_bottom = 288.0
 custom_constants/margin_top = 50
 
-[node name="TextureRect" type="TextureRect" parent="Top/HBoxContainer/MarginContainer2"]
+[node name="TextureRect" type="TextureRect" parent="Top/MarginContainer/HBoxContainer/MarginContainer2"]
 margin_top = 50.0
 margin_right = 173.0
 margin_bottom = 288.0
 
-[node name="Label" type="Label" parent="Top/HBoxContainer/MarginContainer2"]
+[node name="Label" type="Label" parent="Top/MarginContainer/HBoxContainer/MarginContainer2"]
 margin_top = 121.0
 margin_right = 173.0
 margin_bottom = 217.0
 text = "Icon"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Top"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="HBoxContainer3" type="HBoxContainer" parent="Top/MarginContainer"]
+margin_right = 2560.0
+margin_bottom = 288.0
 alignment = 2
 
-[node name="MarginContainer4" type="MarginContainer" parent="Top/HBoxContainer3"]
+[node name="MarginContainer4" type="MarginContainer" parent="Top/MarginContainer/HBoxContainer3"]
 margin_left = 2132.0
 margin_right = 2560.0
 margin_bottom = 288.0
 custom_constants/margin_right = 100
 
-[node name="Label" type="Label" parent="Top/HBoxContainer3/MarginContainer4"]
+[node name="Label" type="Label" parent="Top/MarginContainer/HBoxContainer3/MarginContainer4"]
 margin_top = 72.0
 margin_right = 328.0
 margin_bottom = 216.0
