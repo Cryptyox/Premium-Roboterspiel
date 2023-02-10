@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://Resources/Textures/health_bar.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/empty_bar.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
@@ -23,19 +25,22 @@ margin_right = 2560.0
 margin_bottom = 288.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Top/MarginContainer/HBoxContainer"]
-margin_right = 154.0
+margin_right = 248.0
 margin_bottom = 288.0
 custom_constants/margin_right = 50
 custom_constants/margin_top = 85
 custom_constants/margin_left = 100
 custom_constants/margin_bottom = 0
 
-[node name="ProgressBar" type="ProgressBar" parent="Top/MarginContainer/HBoxContainer/MarginContainer"]
+[node name="TextureProgress" type="TextureProgress" parent="Top/MarginContainer/HBoxContainer/MarginContainer"]
 margin_left = 100.0
 margin_top = 85.0
-margin_right = 104.0
-margin_bottom = 87.0
-percent_visible = false
+margin_right = 198.0
+margin_bottom = 288.0
+max_value = 6.0
+value = 4.0
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="Top/MarginContainer/HBoxContainer/MarginContainer"]
 visible = false
@@ -46,8 +51,8 @@ margin_bottom = 234.0
 text = "Health Bar"
 
 [node name="MarginContainer2" type="MarginContainer" parent="Top/MarginContainer/HBoxContainer"]
-margin_left = 158.0
-margin_right = 331.0
+margin_left = 252.0
+margin_right = 425.0
 margin_bottom = 288.0
 custom_constants/margin_top = 50
 

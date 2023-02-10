@@ -69,7 +69,9 @@ extents = Vector3( 0.102341, 0.202697, 1.19288 )
 
 [node name="BulletOrigin" type="Spatial"]
 
-[node name="Bullets" type="KinematicBody" parent="."]
+[node name="Bullets" type="KinematicBody" parent="." groups=["bullet"]]
+collision_layer = 8
+collision_mask = 3
 
 [node name="Bullet1" parent="Bullets" instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-09, 0, -0.1, 0, 0.1, 0, 0.1, 0, -4.37114e-09, 0, 0, 0.25 )
