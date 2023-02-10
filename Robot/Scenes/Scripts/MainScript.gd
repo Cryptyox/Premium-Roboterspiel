@@ -1,5 +1,6 @@
 extends Node
 
+var level_id
 # this script functions as the "main function" of the game and will be able to show all major
 # game elements like the ui and the game itsself
 
@@ -43,7 +44,8 @@ func _on_closeWorld():
 	$World.hide()
 
 
-func _on_openPre():
+func _on_openPre(id):
+	level_id = id
 	$UI/PreGameScreen.show()
 
 func _on_closePre():

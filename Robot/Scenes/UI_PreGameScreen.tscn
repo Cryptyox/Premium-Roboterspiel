@@ -61,7 +61,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level1"]
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level1"]
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
@@ -70,13 +70,13 @@ toggle_mode = true
 pressed = true
 group = ExtResource( 6 )
 
-[node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button"]
+[node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton"]
 margin_right = 1052.0
 margin_bottom = 225.0
 rect_pivot_offset = Vector2( 2282, 62 )
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -85,13 +85,13 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1032.0
 margin_bottom = 205.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer"]
 margin_right = 1012.0
 margin_bottom = 90.0
 mouse_filter = 1
@@ -100,18 +100,18 @@ size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Cloudbreak Islands"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer"]
 margin_top = 94.0
 margin_right = 1012.0
 margin_bottom = 185.0
 size_flags_vertical = 3
 custom_constants/separation = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 275.0
 margin_bottom = 91.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_top = 21.0
 margin_right = 231.0
 margin_bottom = 69.0
@@ -119,7 +119,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Attempts: "
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_left = 235.0
 margin_top = 21.0
 margin_right = 275.0
@@ -128,12 +128,12 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "17"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 325.0
 margin_right = 538.0
 margin_bottom = 91.0
 
-[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_top = 21.0
 margin_right = 126.0
 margin_bottom = 69.0
@@ -141,7 +141,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Time: "
 
-[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_left = 130.0
 margin_top = 21.0
 margin_right = 213.0
@@ -160,23 +160,22 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level2"]
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level2"]
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
 margin_bottom = 235.0
-hint_tooltip = "elect"
 toggle_mode = true
 group = ExtResource( 6 )
 align = 0
 
-[node name="Buttontext" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button"]
+[node name="Buttontext" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 2282, 62 )
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -185,13 +184,13 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1032.0
 margin_bottom = 205.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer"]
 margin_right = 1012.0
 margin_bottom = 90.0
 mouse_filter = 1
@@ -200,18 +199,18 @@ size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Fiery Caverns of Hell"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer"]
 margin_top = 94.0
 margin_right = 1012.0
 margin_bottom = 185.0
 size_flags_vertical = 3
 custom_constants/separation = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 275.0
 margin_bottom = 91.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_top = 21.0
 margin_right = 231.0
 margin_bottom = 69.0
@@ -219,7 +218,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Attempts: "
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_left = 235.0
 margin_top = 21.0
 margin_right = 275.0
@@ -228,12 +227,12 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "17"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 325.0
 margin_right = 538.0
 margin_bottom = 91.0
 
-[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_top = 21.0
 margin_right = 126.0
 margin_bottom = 69.0
@@ -241,7 +240,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Time: "
 
-[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/Button/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_left = 130.0
 margin_top = 21.0
 margin_right = 213.0
@@ -260,7 +259,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level3"]
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level3"]
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
@@ -268,13 +267,13 @@ margin_bottom = 235.0
 toggle_mode = true
 group = ExtResource( 6 )
 
-[node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button"]
+[node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 2282, 62 )
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -283,13 +282,13 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1032.0
 margin_bottom = 205.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer"]
 margin_right = 1012.0
 margin_bottom = 90.0
 mouse_filter = 1
@@ -298,18 +297,18 @@ size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Sky High Frozen Laboratory"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer"]
 margin_top = 94.0
 margin_right = 1012.0
 margin_bottom = 185.0
 size_flags_vertical = 3
 custom_constants/separation = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 275.0
 margin_bottom = 91.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_top = 21.0
 margin_right = 231.0
 margin_bottom = 69.0
@@ -317,7 +316,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Attempts: "
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_left = 235.0
 margin_top = 21.0
 margin_right = 275.0
@@ -326,12 +325,12 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "17"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 325.0
 margin_right = 538.0
 margin_bottom = 91.0
 
-[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_top = 21.0
 margin_right = 126.0
 margin_bottom = 69.0
@@ -339,7 +338,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Time: "
 
-[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_left = 130.0
 margin_top = 21.0
 margin_right = 213.0
@@ -358,7 +357,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level4"]
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/PanelContainer/VBoxContainer/Level4"]
 margin_left = 20.0
 margin_top = 10.0
 margin_right = 1072.0
@@ -366,13 +365,13 @@ margin_bottom = 235.0
 toggle_mode = true
 group = ExtResource( 6 )
 
-[node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button"]
+[node name="ButtonText" type="Control" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 2282, 62 )
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -381,13 +380,13 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1032.0
 margin_bottom = 205.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer"]
 margin_right = 1012.0
 margin_bottom = 90.0
 mouse_filter = 1
@@ -396,18 +395,18 @@ size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 text = "Stormy Stronghold of John"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer"]
 margin_top = 94.0
 margin_right = 1012.0
 margin_bottom = 185.0
 size_flags_vertical = 3
 custom_constants/separation = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 275.0
 margin_bottom = 91.0
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_top = 21.0
 margin_right = 231.0
 margin_bottom = 69.0
@@ -415,7 +414,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Attempts: "
 
-[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
 margin_left = 235.0
 margin_top = 21.0
 margin_right = 275.0
@@ -424,12 +423,12 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "17"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 325.0
 margin_right = 538.0
 margin_bottom = 91.0
 
-[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label3" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_top = 21.0
 margin_right = 126.0
 margin_bottom = 69.0
@@ -437,7 +436,7 @@ mouse_filter = 1
 custom_fonts/font = SubResource( 2 )
 text = "Time: "
 
-[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/Button/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
+[node name="Label4" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2"]
 margin_left = 130.0
 margin_top = 21.0
 margin_right = 213.0
@@ -501,7 +500,7 @@ custom_styles/panel = SubResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
 margin_right = 1152.0
-margin_bottom = 403.2
+margin_bottom = 445.0
 custom_constants/margin_right = 50
 custom_constants/margin_top = 50
 custom_constants/margin_left = 50
@@ -509,12 +508,17 @@ custom_constants/margin_bottom = 50
 
 [node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer"]
 margin_left = 50.0
-margin_top = 171.0
+margin_top = 50.0
 margin_right = 1102.0
-margin_bottom = 232.0
+margin_bottom = 395.0
 custom_constants/line_spacing = 10
 custom_fonts/font = SubResource( 4 )
+text = "Disturbance in the Force you felt? It is not Megatron training backflips. Something terrible must have happened. Find out what it is you must!"
 autowrap = true
 
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed" binds= [ 0 ]]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="Navigation/MarginContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="Navigation/MarginContainer2/HomeButton" to="." method="_on_HomeButton_pressed"]
