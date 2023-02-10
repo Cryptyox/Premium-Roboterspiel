@@ -44,15 +44,16 @@ func _on_closeWorld():
 	$World.hide()
 
 
-func _on_openPre(id):
-	level_id = id
+func _on_openPre():
 	$UI/PreGameScreen.show()
 
 func _on_closePre():
+	level_id = $UI/PreGameScreen.level_id
 	$UI/PreGameScreen.hide()
 
 
 func _on_openPause():
+	$UI/PauseScreen.set_level(level_id)
 	$UI/PauseScreen.show()
 	
 func _on_closePause():

@@ -44,7 +44,7 @@ visible = false
 [connection signal="closeWorld" from="UI/PauseScreen" to="." method="_on_closeWorld"]
 [connection signal="openHome" from="UI/PauseScreen" to="." method="_on_openHome"]
 [connection signal="openPause" from="UI/PauseScreen" to="." method="_on_openPause"]
-[connection signal="closePre" from="UI/PreGameScreen" to="." method="_on_closePre"]
+[connection signal="closePre" from="UI/PreGameScreen" to="." method="_on_closePre" binds= [ 0 ]]
 [connection signal="closeWorld" from="UI/PreGameScreen" to="." method="_on_closeWorld"]
 [connection signal="draw" from="UI/PreGameScreen" to="UI/PreGameScreen" method="_draw"]
 [connection signal="openHome" from="UI/PreGameScreen" to="." method="_on_openHome"]
