@@ -53,7 +53,7 @@ func _on_closePre():
 
 
 func _on_openPause():
-	$UI/PauseScreen.set_level(level_id)
+	$UI/PauseScreen.level_id = level_id
 	$UI/PauseScreen.show()
 	
 func _on_closePause():
@@ -61,6 +61,7 @@ func _on_closePause():
 
 
 func _on_openPost():
+	$UI/AfterGameScreen.level_id = level_id
 	$UI/AfterGameScreen.show()
 
 func _on_closePost():

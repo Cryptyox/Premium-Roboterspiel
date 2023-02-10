@@ -22,7 +22,7 @@ func _on_HomeButton_pressed():
 
 
 func _on_PlayButton_pressed():
-	emit_signal("closePre", level_id)
+	emit_signal("closePre")
 
 
 func _on_LevelSelectButton_pressed(id):
