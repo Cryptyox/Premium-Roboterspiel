@@ -9,7 +9,7 @@
 [ext_resource path="res://Scenes/Object_KillingTestCube.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Respawnpoint.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Scripts/Object_Saw.gd" type="Script" id=9]
-[ext_resource path="res://Scenes/Level_World.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Scripts/Level_World.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
