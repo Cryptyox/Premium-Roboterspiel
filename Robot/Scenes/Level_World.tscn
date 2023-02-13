@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Scenes/Object_Saw.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Object_KillingTestCube.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Level_Respawnpoint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Scripts/Object_Saw.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Level_World.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -1279,6 +1281,7 @@ tracks/0/keys = {
 }
 
 [node name="World" type="Spatial"]
+script = ExtResource( 10 )
 
 [node name="Spawn" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 0 )
@@ -1383,6 +1386,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, 0 )
 
 [node name="Saw" parent="ConainerSaw" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 4.1, 0 )
+script = ExtResource( 9 )
 
 [node name="Center" parent="ConainerSaw/Saw" index="0"]
 transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
