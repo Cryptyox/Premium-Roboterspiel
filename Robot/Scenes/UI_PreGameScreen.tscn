@@ -6,7 +6,8 @@
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/Playbutton.png" type="Texture" id=4]
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/PlaybuttonHover.png" type="Texture" id=5]
 [ext_resource path="res://Resources/LevelSelectButtongroup.tres" type="ButtonGroup" id=6]
-[ext_resource path="res://Scenes/Scripts/PreGameScreen.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Scripts/UI_PreGameScreen.gd" type="Script" id=7]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 64

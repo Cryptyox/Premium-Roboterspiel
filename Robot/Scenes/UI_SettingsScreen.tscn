@@ -1,9 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
-[ext_resource path="res://Scenes/Scripts/Settings.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Scripts/UI_Settings.gd" type="Script" id=2]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=3]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/Cross.png" type="Texture" id=4]
+
 
 [sub_resource type="DynamicFont" id=2]
 size = 120
