@@ -1,16 +1,19 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Scripts/Checkpoint.gd" type="Script" id=1]
+
 
 [sub_resource type="BoxShape" id=1]
 
 [sub_resource type="CubeMesh" id=2]
 
-[sub_resource type="VisualShaderNodeColorConstant" id=7]
+[sub_resource type="VisualShaderNodeColorConstant" id=3]
 constant = Color( 0.359757, 0.359757, 0.359757, 1 )
 
-[sub_resource type="VisualShaderNodeColorConstant" id=8]
-constant = Color( 1, 0.375, 0, 1 )
+[sub_resource type="VisualShaderNodeColorConstant" id=4]
+constant = Color( 0.144221, 1, 0, 1 )
 
-[sub_resource type="VisualShader" id=9]
+[sub_resource type="VisualShader" id=5]
 code = "shader_type spatial;
 render_mode specular_schlick_ggx, async_visible;
 
@@ -24,7 +27,7 @@ void vertex() {
 
 void fragment() {
 // Color:3
-	vec3 n_out3p0 = vec3(1.000000, 0.375000, 0.000000);
+	vec3 n_out3p0 = vec3(0.144221, 1.000000, 0.000000);
 	float n_out3p1 = 1.000000;
 
 // Color:2
@@ -42,16 +45,18 @@ void light() {
 
 }
 "
-nodes/fragment/2/node = SubResource( 7 )
+graph_offset = Vector2( -210.932, 110.059 )
+nodes/fragment/2/node = SubResource( 3 )
 nodes/fragment/2/position = Vector2( 200, 220 )
-nodes/fragment/3/node = SubResource( 8 )
+nodes/fragment/3/node = SubResource( 4 )
 nodes/fragment/3/position = Vector2( 200, 120 )
 nodes/fragment/connections = PoolIntArray( 3, 0, 0, 0, 2, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 9 )
+shader = SubResource( 5 )
 
 [node name="Checkpoint" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="Respawnpoint" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503, 0 )
