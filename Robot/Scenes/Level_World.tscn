@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://Scenes/Object_RollingStone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Object_Saw.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Object_KillingTestCube.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Object_PressurePlate.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Level_Endpoint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Level_Spawnpoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Scripts/Level_World.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/Scripts/Object_Saw.gd" type="Script" id=11]
 
@@ -1234,37 +1235,6 @@ tracks/0/keys = {
 "values": [ 1.0, 1.0, 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=14]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path/PathFollow:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
-}
-
-[sub_resource type="Animation" id=15]
-resource_name = "move_block"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Path/PathFollow:unit_offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.5, 3 ),
-"transitions": PoolRealArray( 1, 0.210224, 1, 1 ),
-"update": 0,
-"values": [ 1.0, 1.0, 0.0, 1.0 ]
-}
-
 [sub_resource type="Animation" id=16]
 length = 0.001
 tracks/0/type = "value"
@@ -1327,6 +1297,12 @@ transform = Transform( 0.944502, -0.0920007, 0.31536, 0.0196638, 0.974095, 0.225
 
 [node name="containsPoints" type="Spatial" parent="containsLevel1"]
 
+[node name="Spawnpoint" parent="containsLevel1/containsPoints" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 0 )
+
+[node name="Endpoint" parent="containsLevel1/containsPoints" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0 )
+
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel1"]
 
 [node name="MovingPlatform" parent="containsLevel1/containsMovingPlatforms" instance=ExtResource( 3 )]
@@ -1358,24 +1334,17 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 18, 0 )
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
+[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="2"]
 anims/RESET = SubResource( 12 )
 anims/move_block = SubResource( 13 )
 
-[node name="SqaushingBlock2" parent="containsLevel1/containsFallingCubes" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2, 0 )
-
-[node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="2"]
-anims/RESET = SubResource( 14 )
-anims/move_block = SubResource( 15 )
-
 [node name="containsRollingStones" type="Spatial" parent="containsLevel1"]
 
 [node name="RollingStone" parent="containsLevel1/containsRollingStones" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2.5, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.5, 2.5, 0 )
 
 [node name="containsSaws" type="Spatial" parent="containsLevel1"]
 
@@ -1397,9 +1366,6 @@ anims/RESET = SubResource( 16 )
 
 [node name="containsPressurePlates" type="Spatial" parent="containsLevel1"]
 
-[node name="PressurePlate" parent="containsLevel1/containsPressurePlates" instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0 )
-
 [node name="containsDoors" type="Spatial" parent="containsLevel1"]
 
 [node name="containsButtons" type="Spatial" parent="containsLevel1"]
@@ -1417,9 +1383,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, 0 )
 [node name="Graphics" type="Spatial" parent="containsLevel1"]
 
 [node name="containsLevel2" type="Spatial" parent="."]
-visible = false
 
 [node name="containsPoints" type="Spatial" parent="containsLevel2"]
+
+[node name="Spawnpoint" parent="containsLevel2/containsPoints" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 3, 0 )
+
+[node name="Endpoint" parent="containsLevel2/containsPoints" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel2"]
 
@@ -1450,9 +1421,14 @@ visible = false
 [node name="Graphics" type="Spatial" parent="containsLevel2"]
 
 [node name="containsLevel3" type="Spatial" parent="."]
-visible = false
 
 [node name="containsPoints" type="Spatial" parent="containsLevel3"]
+
+[node name="Spawnpoint" parent="containsLevel3/containsPoints" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 3, 0 )
+
+[node name="Endpoint" parent="containsLevel3/containsPoints" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel3"]
 
@@ -1483,9 +1459,14 @@ visible = false
 [node name="Graphics" type="Spatial" parent="containsLevel3"]
 
 [node name="containsLevel4" type="Spatial" parent="."]
-visible = false
 
 [node name="containsPoints" type="Spatial" parent="containsLevel4"]
+
+[node name="Spawnpoint" parent="containsLevel4/containsPoints" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, 11, -16 )
+
+[node name="Endpoint" parent="containsLevel4/containsPoints" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel4"]
 
@@ -1519,6 +1500,4 @@ visible = false
 [editable path="Robot/Graphics/RBGODO"]
 [editable path="containsLevel1/containsMovingPlatforms/MovingPlatform"]
 [editable path="containsLevel1/containsFallingCubes/SqaushingBlock1"]
-[editable path="containsLevel1/containsFallingCubes/SqaushingBlock2"]
 [editable path="containsLevel1/containsSaws/Saw"]
-[editable path="containsLevel1/containsPressurePlates/PressurePlate"]

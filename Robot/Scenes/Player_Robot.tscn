@@ -62,6 +62,7 @@ node_connections = [ "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani"
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+visible = false
 axis_lock_motion_z = true
 move_lock_z = true
 script = ExtResource( 2 )

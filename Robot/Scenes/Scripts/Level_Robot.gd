@@ -335,63 +335,39 @@ func die():
 	print("Time:     " + String(game_timer))
 	print()
 
-func set_checkpoint(area):
-	
-	
-	var checkpoint = area.get_parent()
-	
-	var pos
-	
-	if !checkpoint.is_active():
-		if checkpoint.has_method("activate_checkpoint"):
-			
-			if current_checkpoint == null:
-				pass
-			elif current_checkpoint != checkpoint:
-				var last_checkpoint = current_checkpoint
-				last_checkpoint.deactivate_checkpoint()
-			
-			respawn_point = checkpoint.activate_checkpoint()
-			current_checkpoint = checkpoint
-		else:
-			print("Method activate_checkpoint not found")
-	else:
-		print(current_checkpoint.name + " already active")
-
-func get_spawn():
-	return respawn_point
-	
-func set_spawn(spawn):
-	respawn_point = spawn
+func spawn():
+	self.show()
+	transform.origin = respawn_point
 
 func _on_RestartButton_pressed():
 	die()
 
-
+# function handles collision with areas depending on their group
+# if killblock's area has group killing, player will die
 func _on_CollisionArea_area_entered(area):
 	print("Robot collided with area "+ area.get_parent().name + ": ")
 	print(area.get_groups())
+	
+	#fallunterscheidung:
+	
+	# killing areas
 	if area.is_in_group("killing"):
 		die()
-	if area.is_in_group("spawnpoint"):
-		set_checkpoint(area)
+		
+	# druckplatte (sendet signal an tür) + timer
+	
+	# detection zone für fallingBlock / squashing block
 	if area.is_in_group("detectionZone"):
 		area.get_parent().do_animation()
-	pass # Replace with function body.
-
-#func _on_CollisionArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	#print("Test collision area_shape")
-	#print(area.name)
-	#pass # Replace with function body.
+		
+	# handle end of Level point
 	
-func _on_CollisionArea_body_entered(body):
-	#print("Robot collided with body " + body.name)
-	pass # Replace with function body.
-
-#func _on_CollisionArea_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	#print("Test collision body_shape")
-	#print(body.name)
-	#pass # Replace with function body.
+	# collectable
+	
+	
+	
+	
+	
 
 #func shootBulletInstances():
 	#var bullet = bulletpath.instance()
@@ -410,9 +386,3 @@ func _on_CollisionArea_body_entered(body):
 
 #func on_stime_complete():
 	#allowShoot = true
-
-
-func spawn():
-	pass
-
-

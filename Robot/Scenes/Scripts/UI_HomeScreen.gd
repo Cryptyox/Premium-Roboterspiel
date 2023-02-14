@@ -31,7 +31,8 @@ func _on_PlayButton_pressed():
 
 
 func _on_CheeseButton_pressed():
-	$CheeseSoundEffect.play()
+	#$CheeseSoundEffect.play()
+	pass
 
 func _on_Cancel_pressed():
 	$ExitDialog.hide()

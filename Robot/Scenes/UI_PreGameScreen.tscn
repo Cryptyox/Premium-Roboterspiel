@@ -8,7 +8,6 @@
 [ext_resource path="res://Resources/LevelSelectButtongroup.tres" type="ButtonGroup" id=6]
 [ext_resource path="res://Scenes/Scripts/UI_PreGameScreen.gd" type="Script" id=7]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 1 )

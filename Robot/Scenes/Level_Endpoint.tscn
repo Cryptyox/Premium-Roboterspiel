@@ -53,13 +53,13 @@ nodes/fragment/connections = PoolIntArray( 3, 0, 0, 0, 2, 0, 0, 1 )
 [sub_resource type="ShaderMaterial" id=6]
 shader = SubResource( 9 )
 
-[node name="Checkpoint" type="Spatial"]
+[node name="Endpoint" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Respawnpoint" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503, 0 )
 
-[node name="Area" type="Area" parent="." groups=["spawnpoint"]]
+[node name="Area" type="Area" parent="." groups=["endpoint"]]
 transform = Transform( 1, 0, 0, 0, 5, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]

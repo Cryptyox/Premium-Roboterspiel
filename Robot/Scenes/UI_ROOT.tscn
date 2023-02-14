@@ -8,7 +8,6 @@
 [ext_resource path="res://Scenes/UI_PreGameScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_World.tscn" type="PackedScene" id=7]
 
-
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
 
@@ -46,8 +45,11 @@ visible = false
 [connection signal="closeWorld" from="UI/PauseScreen" to="." method="_on_closeWorld"]
 [connection signal="openHome" from="UI/PauseScreen" to="." method="_on_openHome"]
 [connection signal="openPause" from="UI/PauseScreen" to="." method="_on_openPause"]
+[connection signal="chooseLevel" from="UI/PreGameScreen" to="World" method="_on_PreGameScreen_chooseLevel"]
 [connection signal="closePre" from="UI/PreGameScreen" to="." method="_on_closePre"]
 [connection signal="closeWorld" from="UI/PreGameScreen" to="." method="_on_closeWorld"]
 [connection signal="draw" from="UI/PreGameScreen" to="UI/PreGameScreen" method="_draw"]
 [connection signal="openHome" from="UI/PreGameScreen" to="." method="_on_openHome"]
 [connection signal="closeSets" from="UI/SettingsScreen" to="." method="_on_closeSets"]
+
+[editable path="UI/HomeScreen"]
