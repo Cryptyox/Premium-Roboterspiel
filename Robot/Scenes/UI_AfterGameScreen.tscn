@@ -7,7 +7,8 @@
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=5]
 [ext_resource path="res://Resources/UI/ButtonTextures/PlayButton/Playbutton.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=7]
-[ext_resource path="res://Scenes/Scripts/AfterGameScreen.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Scripts/UI_AfterGameScreen.gd" type="Script" id=9]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
