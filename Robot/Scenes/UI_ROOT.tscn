@@ -22,7 +22,6 @@ visible = false
 visible = false
 
 [node name="PauseScreen" parent="UI" instance=ExtResource( 3 )]
-visible = false
 
 [node name="PreGameScreen" parent="UI" instance=ExtResource( 6 )]
 visible = false
