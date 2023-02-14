@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Object_PressurePlate.gd" type="Script" id=1]
 
@@ -14,7 +14,7 @@ _data = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "PressurePlate_Animation"
+resource_name = "Pressure_Plate_down"
 tracks/0/type = "transform"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
@@ -23,8 +23,18 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = PoolRealArray( 0, 1, 0, 0.05, 0, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, 0, -0.95, 0, 0, 0, 0, 1, 1, 1, 1 )
 
+[sub_resource type="Animation" id=5]
+resource_name = "Pressure_Plate_up"
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray( 0, 1, 0, 0.05, 0, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, 0, 0.05, 0, 0, 0, 0, 1, 1, 1, 1 )
+
 [node name="PressurePlate" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.95, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
 script = ExtResource( 1 )
 
 [node name="PressurePlate" type="MeshInstance" parent="."]
@@ -47,4 +57,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05, 0 )
 remote_path = NodePath("../../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/PressurePlate_Animation = SubResource( 4 )
+anims/Pressure_Plate_down = SubResource( 4 )
+anims/Pressure_Plate_up = SubResource( 5 )
