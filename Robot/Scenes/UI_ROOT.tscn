@@ -34,6 +34,12 @@ visible = false
 pause_mode = 1
 visible = false
 
+[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
+
 [connection signal="closePost" from="UI/AfterGameScreen" to="." method="_on_closePost"]
 [connection signal="closeWorld" from="UI/AfterGameScreen" to="." method="_on_closeWorld"]
 [connection signal="draw" from="UI/AfterGameScreen" to="UI/AfterGameScreen" method="_draw"]
@@ -51,5 +57,15 @@ visible = false
 [connection signal="draw" from="UI/PreGameScreen" to="UI/PreGameScreen" method="_draw"]
 [connection signal="openHome" from="UI/PreGameScreen" to="." method="_on_openHome"]
 [connection signal="closeSets" from="UI/SettingsScreen" to="." method="_on_closeSets"]
+[connection signal="openPost" from="World/containsLevel1/containsPoints/Endpoint" to="." method="_on_openPost"]
+[connection signal="openPost" from="World/containsLevel2/containsPoints/Endpoint" to="." method="_on_openPost"]
+[connection signal="openPost" from="World/containsLevel3/containsPoints/Endpoint" to="." method="_on_openPost"]
+[connection signal="openPost" from="World/containsLevel4/containsPoints/Endpoint" to="." method="_on_openPost"]
 
 [editable path="UI/HomeScreen"]
+[editable path="World"]
+[editable path="World/Robot"]
+[editable path="World/Robot/Graphics/RBGODO"]
+[editable path="World/containsLevel1/containsMovingPlatforms/MovingPlatform"]
+[editable path="World/containsLevel1/containsFallingCubes/SqaushingBlock1"]
+[editable path="World/containsLevel1/containsSaws/Saw"]
