@@ -303,7 +303,7 @@ func jump(dir):
 	able = false
 	#plays jumpsound
 	self.add_child(player)
-	player.stream = load("res://Jumpsound.wav")
+	player.stream = load("res://Jumpsound2.wav")
 	player.play()
 
 # this will apply a part of jump force to the y-velocity of the player as second jump
