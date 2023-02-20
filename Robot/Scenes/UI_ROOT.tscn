@@ -12,6 +12,7 @@
 script = ExtResource( 1 )
 
 [node name="UI" type="Control" parent="."]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -33,6 +34,9 @@ visible = false
 [node name="World" parent="." instance=ExtResource( 7 )]
 pause_mode = 1
 visible = false
+
+[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [connection signal="closePost" from="UI/AfterGameScreen" to="." method="_on_closePost"]
 [connection signal="closeWorld" from="UI/AfterGameScreen" to="." method="_on_closeWorld"]
