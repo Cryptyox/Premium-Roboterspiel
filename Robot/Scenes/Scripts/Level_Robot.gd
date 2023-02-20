@@ -63,6 +63,8 @@ var allowShoot = true
 var stimer = null
 var bulletdelay = 1
 
+var player = AudioStreamPlayer.new()
+
 # instance to play eanimations
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
 
@@ -299,6 +301,10 @@ func jump(dir):
 	jumping = true
 	# player is not anymore able to use first jump
 	able = false
+	#plays jumpsound
+	self.add_child(player)
+	player.stream = load("res://Jumpsound2.wav")
+	player.play()
 
 # this will apply a part of jump force to the y-velocity of the player as second jump
 func jump2(dir):

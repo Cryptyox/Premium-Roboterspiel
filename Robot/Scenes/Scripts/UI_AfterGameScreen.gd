@@ -3,7 +3,8 @@ extends Control
 signal closePost
 signal closeWorld
 
-signal open
+signal openPre
+signal openHome
 
 var level_id = 0
 var text1a = "You have found yourself some pretty useful gear. Now you will be able to jump twice."
@@ -17,29 +18,33 @@ var text3b = "But you still have to save Princess Banana"
 var text4b = ""
 var textb = [text1b, text2b, text3b, text4b]
 
+onready var world = get_node("../../World")
+
 func set_level(id):
 	level_id = id
 
 
 func _draw():
-	pass # move cam
+	world.set_is_paused(true)
 	
 func _on_HomeButton_pressed():
-	get_tree().change_scene("res://Scenes/1_TestUI.tscn")
+	emit_signal("closePost")
+	emit_signal("closeWorld")
+	emit_signal("openHome")
+	world.set_is_paused(false)
 
 
 	
 	
 func _on_RestartButton_pressed():
-	var robot = get_node("../../ContainsWorld/Robot")
-	var spawn = robot.get_spawn()
-	robot.translation = spawn
-	$Popup.hide()
+	emit_signal("closePost")
+	world.set_is_paused(false)
 
 
 func _on_LevelSelectButton_pressed():
-	$Popup.hide()
-	get_node("../PreGameScreen/Popup").show()
+	emit_signal("closePost")
+	emit_signal("openPre")
+	world.set_is_paused(false)
 	
 
 
