@@ -7,5 +7,6 @@ func end_game():
 	# save time in file
 	# save attempts in file
 	emit_signal("openPost")
+	print("coision2")
 	# öffne postGameScreen
 	# 

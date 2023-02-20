@@ -363,6 +363,7 @@ func _on_CollisionArea_area_entered(area):
 	# handle end of Level point
 	if area.is_in_group("endPoint"):
 		area.get_paret().end_game()
+		print("colision")
 	# collectable
 	
 	

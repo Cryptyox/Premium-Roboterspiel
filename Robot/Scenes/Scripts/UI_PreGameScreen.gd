@@ -14,10 +14,22 @@ var text3 = "The monsters name was leaked. JOHN has not been careful enough when
 var text4 = "This is JOHNs lair. Now he can't go back to his own world anymore so he will have to bring harm to this one. He has built himself a fortress. Not the Flying Fortress of course."
 var texts = [text1, text2, text3, text4]
 
+var fall_timer = 0
+var changed = false
+
 onready var world = get_node("../../World")
 
 func _draw():
 	world.set_is_paused(true)
+	
+func _process(delta):
+	if changed:
+		if fall_timer > 0:
+			fall_timer -= delta
+		if fall_timer <= 0:
+			changed = false
+			world.set_is_paused(true)
+	
 
 func _on_HomeButton_pressed():
 	emit_signal("closePre")
@@ -35,4 +47,7 @@ func _on_LevelSelectButton_pressed(id):
 	$Control/PanelContainer/MarginContainer/Label.set_text(texts[id])
 	level_id = id
 	emit_signal("chooseLevel", id)
+	changed = true
+	fall_timer = 1
 	world.set_is_paused(false)
+	

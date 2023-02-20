@@ -58,7 +58,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
+node_connections = [ "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
