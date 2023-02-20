@@ -14,7 +14,7 @@ var texts = [text1, text2, text3, text4]
 
 var level_id
 
-var is_paused = false setget set_is_paused
+#var is_paused = false setget set_is_paused
 
 func set_level(id):
 	level_id = id
@@ -24,12 +24,14 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		emit_signal("openPause")
 		$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/LevelText.set_text(texts[level_id])
-		self.is_paused = !is_paused
+		get_node("../../World").set_is_paused(true)
+		#self.is_paused = !is_paused
 		#pause gameplay
 
 
 
 func _on_HomeButton_pressed():
+	print("clicked")
 	emit_signal("closePause")
 	emit_signal("closeWorld")
 	emit_signal("openHome")
@@ -48,7 +50,7 @@ func _on_RestartButton_pressed():
 	emit_signal("closePause")
 	#resume gameplay
 
-func set_is_paused(value):
-	is_paused = value
-	get_tree().paused = is_paused
-	visible = is_paused
+#func set_is_paused(value):
+#	is_paused = value
+#	get_tree().paused = is_paused
+#	visible = is_paused
