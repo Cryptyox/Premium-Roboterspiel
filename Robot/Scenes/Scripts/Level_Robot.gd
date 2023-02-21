@@ -367,8 +367,8 @@ func _on_CollisionArea_area_entered(area):
 		area.get_parent().do_animation()
 		
 	# handle end of Level point
-	if area.is_in_group("endPoint"):
-		area.get_paret().end_game()
+	if area.is_in_group("endpoint"):
+		area.get_parent().end_game()
 		print("colision")
 	# collectable
 	

@@ -18,6 +18,7 @@ var fall_timer = 0
 var changed = false
 
 onready var world = get_node("../../World")
+onready var cam = get_node("../../World/Robot/Camera")
 
 func _draw():
 	world.set_is_paused(true)

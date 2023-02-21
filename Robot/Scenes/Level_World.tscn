@@ -1334,9 +1334,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 18, 0 )
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
-[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="2"]
 anims/RESET = SubResource( 12 )
 anims/move_block = SubResource( 13 )
