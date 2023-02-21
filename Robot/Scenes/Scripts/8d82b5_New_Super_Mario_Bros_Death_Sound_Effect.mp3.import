@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/8d82b5_New_Super_Mario_Bros_Death_Sound_Effect.mp3-e8d6b23c4fc59ce80f4dd67b765727f4.mp3str"
+
+[deps]
+
+source_file="res://Scenes/Scripts/8d82b5_New_Super_Mario_Bros_Death_Sound_Effect.mp3"
+dest_files=[ "res://.import/8d82b5_New_Super_Mario_Bros_Death_Sound_Effect.mp3-e8d6b23c4fc59ce80f4dd67b765727f4.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

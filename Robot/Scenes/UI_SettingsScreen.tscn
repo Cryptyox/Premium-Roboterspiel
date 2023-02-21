@@ -5,7 +5,6 @@
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/CrossHover.png" type="Texture" id=3]
 [ext_resource path="res://Resources/UI/ButtonTextures/ExitButton/Cross.png" type="Texture" id=4]
 
-
 [sub_resource type="DynamicFont" id=2]
 size = 120
 font_data = ExtResource( 1 )

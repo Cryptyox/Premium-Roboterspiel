@@ -32,7 +32,11 @@ func _on_PlayButton_pressed():
 
 func _on_CheeseButton_pressed():
 	#$CheeseSoundEffect.play()
-	pass
+	#pass
+	var player = AudioStreamPlayer.new()
+	self.add_child(player)
+	player.stream = load("res://CheeseSoundEffect.wav")
+	player.play()
 
 func _on_Cancel_pressed():
 	$ExitDialog.hide()
