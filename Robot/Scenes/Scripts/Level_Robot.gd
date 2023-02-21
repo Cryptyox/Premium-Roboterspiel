@@ -333,6 +333,11 @@ func die():
 	
 	transform.origin = respawn_point
 	
+	#plays deathsound
+	self.add_child(player)
+	player.stream = load("res://Death_Sound.wav")
+	player.play()
+	
 	tries += 1
 	
 	print()
