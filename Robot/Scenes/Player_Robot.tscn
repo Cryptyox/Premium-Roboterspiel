@@ -81,8 +81,7 @@ transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.02
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -0.0625904, 2.02273, 18.8776 )
-visible = false
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 19 )
 
 [node name="Graphics" type="Spatial" parent="."]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )

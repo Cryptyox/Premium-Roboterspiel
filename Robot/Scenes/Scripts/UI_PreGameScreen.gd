@@ -19,10 +19,17 @@ var changed = false
 
 onready var world = get_node("../../World")
 onready var cam = get_node("../../World/Robot/Camera")
+var camMovement = Vector3(6,2,19)
 
 func _draw():
-	world.set_is_paused(true)
+	var vectorTemp = cam.transform.origin
+	print(cam.transform.origin)
+	cam.transform.origin = camMovement
+	print(cam.transform.origin)
+	camMovement = vectorTemp
 	
+	world.set_is_paused(true)
+
 func _process(delta):
 	if changed:
 		if fall_timer > 0:
@@ -36,12 +43,20 @@ func _on_HomeButton_pressed():
 	emit_signal("closePre")
 	emit_signal("closeWorld")
 	emit_signal("openHome")
+	
 	world.set_is_paused(false)
+	var vectorTemp = cam.transform.origin
+	cam.transform.origin = camMovement
+	camMovement = vectorTemp
 
 
 func _on_PlayButton_pressed():
 	emit_signal("closePre")
+	
 	world.set_is_paused(false)
+	var vectorTemp = cam.transform.origin
+	cam.transform.origin = camMovement
+	camMovement = vectorTemp
 
 
 func _on_LevelSelectButton_pressed(id):
@@ -50,5 +65,6 @@ func _on_LevelSelectButton_pressed(id):
 	emit_signal("chooseLevel", id)
 	changed = true
 	fall_timer = 1
+	
 	world.set_is_paused(false)
 	
