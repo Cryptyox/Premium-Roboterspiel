@@ -67,7 +67,7 @@ var player = AudioStreamPlayer.new()
 
 # instance to play eanimations
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
-
+onready var cam_player = $AnimationPlayer
 
 # when starting the scene, this will set conditions
 func _ready():
@@ -399,3 +399,9 @@ func _on_CollisionArea_area_entered(area):
 
 #func on_stime_complete():
 	#allowShoot = true
+
+func do_cam(move_back):
+	if move_back:
+		cam_player.play("moveCamL")
+	else:
+		cam_player.play("moveCamR")

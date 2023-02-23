@@ -1,10 +1,46 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Resources/Roboter/RBGODO.glb" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Scripts/Level_Robot.gd" type="Script" id=2]
 
 [sub_resource type="CylinderShape" id=3]
 radius = 0.781103
+
+[sub_resource type="Curve3D" id=14]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 5, 0, 0.5 ),
+"tilts": PoolRealArray( 0, 0 )
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "moveCamL"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CameraPath/PathFollow:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.435275, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "moveCamR"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CameraPath/PathFollow:unit_offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.435275, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
 
 [sub_resource type="AnimationNodeBlend2" id=11]
 filters = [ "Armature/Skeleton:Heightcontroll", "Armature/Skeleton:LowArm_L", "Armature/Skeleton:LowArm_R", "Armature/Skeleton:Main", "Armature/Skeleton:R_Fix", "Armature/Skeleton:R_Fix.001", "Armature/Skeleton:R_SpringBack", "Armature/Skeleton:R_SpringBack.001", "Armature/Skeleton:R_SpringFront", "Armature/Skeleton:R_SpringFront.001", "Armature/Skeleton:R_legUP", "Armature/Skeleton:R_legUP.001", "Armature/Skeleton:R_legUP.002", "Armature/Skeleton:R_legUP.003", "Armature/Skeleton:R_legUPSta", "Armature/Skeleton:R_legUPSta.001", "Armature/Skeleton:UpArm_L", "Armature/Skeleton:UpArm_R" ]
@@ -58,7 +94,7 @@ nodes/ShootAni/position = Vector2( -20, 100 )
 nodes/TimeScale/node = SubResource( 13 )
 nodes/TimeScale/position = Vector2( 460, 180 )
 nodes/output/position = Vector2( 1040, 40 )
-node_connections = [ "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "TimeScale", 0, "Doppelsprung", "output", 0, "Blend_doublejump" ]
+node_connections = [ "TimeScale", 0, "Doppelsprung", "Blend_Shoot_Ani", 0, "Blend_Idle_Drive", "Blend_Shoot_Ani", 1, "ShootAni", "Blend_Idle_Drive", 0, "Idle-loop", "Blend_Idle_Drive", 1, "Drive", "Blend_doublejump", 0, "Blend_jump", "Blend_doublejump", 1, "TimeScale", "Blend_jump", 0, "Blend_Shoot_Ani", "Blend_jump", 1, "Jump", "output", 0, "Blend_doublejump" ]
 
 [node name="Robot" type="KinematicBody"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
@@ -81,9 +117,27 @@ transform = Transform( 1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.02
 shape = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
+pause_mode = 2
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 20 )
+
+[node name="CameraPath" type="Path" parent="."]
+pause_mode = 2
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 19 )
+curve = SubResource( 14 )
+
+[node name="PathFollow" type="PathFollow" parent="CameraPath"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5 )
+
+[node name="RemoteTransform" type="RemoteTransform" parent="CameraPath/PathFollow"]
+remote_path = NodePath("../../../Camera")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+pause_mode = 2
+anims/moveCamL = SubResource( 16 )
+anims/moveCamR = SubResource( 17 )
 
 [node name="Graphics" type="Spatial" parent="."]
+pause_mode = 2
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
 
 [node name="RBGODO" parent="Graphics" instance=ExtResource( 1 )]

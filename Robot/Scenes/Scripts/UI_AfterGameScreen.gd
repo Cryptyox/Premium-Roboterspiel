@@ -19,18 +19,23 @@ var text4b = ""
 var textb = [text1b, text2b, text3b, text4b]
 
 onready var world = get_node("../../World")
+onready var robot = world.get_node("Robot")
 
 func set_level(id):
 	level_id = id
 
 
 func _draw():
+	$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/LevelText.set_text(texta[level_id])
+	$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/LevelText.set_text(textb[level_id])
+	robot.do_cam(false)
 	world.set_is_paused(true)
 	
 func _on_HomeButton_pressed():
 	emit_signal("closePost")
 	emit_signal("closeWorld")
 	emit_signal("openHome")
+	robot.do_cam(true)
 	world.set_is_paused(false)
 
 
@@ -38,12 +43,15 @@ func _on_HomeButton_pressed():
 	
 func _on_RestartButton_pressed():
 	emit_signal("closePost")
+	robot.spawn()
+	robot.do_cam(true)
 	world.set_is_paused(false)
 
 
 func _on_LevelSelectButton_pressed():
 	emit_signal("closePost")
 	emit_signal("openPre")
+	robot.do_cam(true)
 	world.set_is_paused(false)
 	
 

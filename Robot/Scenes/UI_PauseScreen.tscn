@@ -9,7 +9,6 @@
 [ext_resource path="res://Resources/UI/ButtonTextures/RestartButton/RestartHover.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/Scripts/UI_PauseScreen.gd" type="Script" id=8]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 120
 font_data = ExtResource( 1 )
