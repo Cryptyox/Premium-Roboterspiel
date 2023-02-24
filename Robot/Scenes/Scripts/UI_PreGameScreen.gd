@@ -21,6 +21,7 @@ onready var world = get_node("../../World")
 onready var robot = world.get_node("Robot")
 
 func _draw():
+	world.get_node("containsLevel1").show()
 	robot.do_cam(false)
 	#world.set_is_paused(true)
 	emit_signal("chooseLevel", 0)
@@ -41,6 +42,10 @@ func _on_HomeButton_pressed():
 	emit_signal("closeWorld")
 	emit_signal("openHome")
 	robot.do_cam(true)
+	
+	for i in range(3):
+		world.get_node("containsLevel" + str(i+1)).hide()
+	
 	world.set_is_paused(false)
 
 
@@ -53,6 +58,10 @@ func _on_PlayButton_pressed():
 
 func _on_LevelSelectButton_pressed(id):
 	$Control/PanelContainer/MarginContainer/Label.set_text(texts[id])
+	
+	world.get_node("containsLevel" + str(level_id+1)).hide()
+	world.get_node("containsLevel" + str(id+1)).show()
+	
 	level_id = id
 	emit_signal("chooseLevel", id)
 	changed = true

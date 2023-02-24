@@ -35,8 +35,29 @@ visible = false
 pause_mode = 1
 visible = false
 
+[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
 [node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw2" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw3" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999985, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw4" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1, 0 )
 
 [connection signal="closePost" from="UI/AfterGameScreen" to="." method="_on_closePost"]
 [connection signal="closeWorld" from="UI/AfterGameScreen" to="." method="_on_closeWorld"]
@@ -68,5 +89,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 [editable path="World/Robot"]
 [editable path="World/Robot/Graphics/RBGODO"]
 [editable path="World/containsLevel1/containsMovingPlatforms/MovingPlatform"]
+[editable path="World/containsLevel1/containsMovingPlatforms/MovingPlatform2"]
 [editable path="World/containsLevel1/containsFallingCubes/SqaushingBlock1"]
+[editable path="World/containsLevel1/containsFallingCubes/SqaushingBlock2"]
 [editable path="World/containsLevel1/containsSaws/Saw"]
+[editable path="World/containsLevel1/containsSaws/Saw2"]
+[editable path="World/containsLevel1/containsSaws/Saw3"]
+[editable path="World/containsLevel1/containsSaws/Saw4"]
