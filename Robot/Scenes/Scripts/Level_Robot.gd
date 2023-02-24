@@ -335,7 +335,7 @@ func die():
 	
 	#plays deathsound
 	self.add_child(player)
-	player.stream = load("res://Death_Sound.wav")
+	player.stream = load("res://Death_Sound2.wav")
 	player.play()
 	
 	tries += 1
