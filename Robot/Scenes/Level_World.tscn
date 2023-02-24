@@ -1597,6 +1597,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 18, 0 )
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
+[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="2"]
 anims/RESET = SubResource( 12 )
 anims/move_block = SubResource( 13 )
@@ -1605,6 +1608,9 @@ anims/move_block = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 14, 0 )
 
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="2"]
@@ -1723,10 +1729,11 @@ mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 196592, 0, 0 )
+"cells": PoolIntArray( 65520, 0, 0, 65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 131056, 0, 0, 196589, 0, 0, 196590, 0, 0, 196591, 0, 0, 196592, 0, 0 )
 }
 __meta__ = {
-"_editor_clip_": 0
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
 }
 
 [node name="DirectionalLight" type="DirectionalLight" parent="containsLevel2/GridMap"]

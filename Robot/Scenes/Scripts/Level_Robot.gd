@@ -405,3 +405,18 @@ func do_cam(move_back):
 		cam_player.play("moveCamL")
 	else:
 		cam_player.play("moveCamR")
+
+
+func _on_PreGameScreen_chooseLevel(id):
+	if id == 0:
+		doublejump = false
+		speedboost = false
+	elif id == 1:
+		doublejump = true
+		speedboost = false
+	elif id == 2:
+		doublejump = false
+		speedboost = true
+	elif id == 3:
+		doublejump = true
+		speedboost = true

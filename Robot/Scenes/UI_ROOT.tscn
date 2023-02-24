@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Scripts/UI_MainScript.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/UI_Homescreen.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Scenes/UI_AfterGameScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/UI_PreGameScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_World.tscn" type="PackedScene" id=7]
+
+[sub_resource type="ButtonGroup" id=1]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -27,6 +29,18 @@ visible = false
 [node name="PreGameScreen" parent="UI" instance=ExtResource( 6 )]
 visible = false
 
+[node name="LevelSelectButton" parent="UI/PreGameScreen/MarginContainer/PanelContainer/VBoxContainer/Level1" index="0"]
+group = SubResource( 1 )
+
+[node name="LevelSelectButton" parent="UI/PreGameScreen/MarginContainer/PanelContainer/VBoxContainer/Level2" index="0"]
+group = SubResource( 1 )
+
+[node name="LevelSelectButton" parent="UI/PreGameScreen/MarginContainer/PanelContainer/VBoxContainer/Level3" index="0"]
+group = SubResource( 1 )
+
+[node name="LevelSelectButton" parent="UI/PreGameScreen/MarginContainer/PanelContainer/VBoxContainer/Level4" index="0"]
+group = SubResource( 1 )
+
 [node name="SettingsScreen" parent="UI" instance=ExtResource( 4 )]
 pause_mode = 1
 visible = false
@@ -34,30 +48,6 @@ visible = false
 [node name="World" parent="." instance=ExtResource( 7 )]
 pause_mode = 1
 visible = false
-
-[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw2" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw3" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999985, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw4" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1, 0 )
 
 [connection signal="closePost" from="UI/AfterGameScreen" to="." method="_on_closePost"]
 [connection signal="closeWorld" from="UI/AfterGameScreen" to="." method="_on_closeWorld"]
@@ -73,6 +63,7 @@ transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1,
 [connection signal="openHome" from="UI/PauseScreen" to="." method="_on_openHome"]
 [connection signal="openPause" from="UI/PauseScreen" to="." method="_on_openPause"]
 [connection signal="chooseLevel" from="UI/PreGameScreen" to="World" method="_on_PreGameScreen_chooseLevel"]
+[connection signal="chooseLevel" from="UI/PreGameScreen" to="World/Robot" method="_on_PreGameScreen_chooseLevel"]
 [connection signal="closePre" from="UI/PreGameScreen" to="." method="_on_closePre"]
 [connection signal="closeWorld" from="UI/PreGameScreen" to="." method="_on_closeWorld"]
 [connection signal="draw" from="UI/PreGameScreen" to="UI/PreGameScreen" method="_draw"]
@@ -85,6 +76,7 @@ transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1,
 
 [editable path="UI/HomeScreen"]
 [editable path="UI/PauseScreen"]
+[editable path="UI/PreGameScreen"]
 [editable path="World"]
 [editable path="World/Robot"]
 [editable path="World/Robot/Graphics/RBGODO"]
