@@ -4,12 +4,52 @@ extends Node
 # game elements like the ui and the game itsself
 
 var level_id
-onready var data = load_from_json("res://savegame.json")
+
+var autosaveTimer = 50
+
+onready var game_data = load_from_json("res://savegame.json")
 
 func _ready():
 	$UI/HomeScreen.show()
 	
+	# Access the player's name
+	var player_name = game_data["player_name"]
+	
+	# Access the settings
+	var music_volume = game_data["settings"]["music_volume"]
+	var sfx_volume = game_data["settings"]["sfx_volume"]
+	var resolution = game_data["settings"]["resolution"]
+	
+	# Access the progress for a specific level
+	var level_1_data = game_data["progress"]["level_1"]
+	var level_1_attempts = level_1_data["attempts"]
+	var level_1_time = level_1_data["time"]
+	var level_1_item_collected = level_1_data["item_collected"]
+	var level_1_finished = level_1_data["finished"]
+	
+	var level_2_data = game_data["progress"]["level_1"]
+	var level_2_attempts = level_1_data["attempts"]
+	var level_2_time = level_1_data["time"]
+	var level_2_item_collected = level_1_data["item_collected"]
+	var level_2_finished = level_1_data["finished"]
+	
+	var level_3_data = game_data["progress"]["level_1"]
+	var level_3_attempts = level_1_data["attempts"]
+	var level_3_time = level_1_data["time"]
+	var level_3_item_collected = level_1_data["item_collected"]
+	var level_3_finished = level_1_data["finished"]
+	
+	var level_4_data = game_data["progress"]["level_1"]
+	var level_4_attempts = level_1_data["attempts"]
+	var level_4_time = level_1_data["time"]
+	var level_4_item_collected = level_1_data["item_collected"]
+	var level_4_finished = level_1_data["finished"]
 
+func _process(delta):
+	autosaveTimer -= delta
+	if autosaveTimer <= 0:
+		autosaveTimer = 50
+		save_to_json("res://savegame.json", game_data)
 # create event handler with events such as
 # open settings
 # open world

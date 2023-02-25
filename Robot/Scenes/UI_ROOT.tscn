@@ -48,12 +48,6 @@ visible = false
 [node name="World" parent="." instance=ExtResource( 7 )]
 pause_mode = 1
 
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
 [connection signal="closePost" from="UI/AfterGameScreen" to="." method="_on_closePost"]
 [connection signal="closeWorld" from="UI/AfterGameScreen" to="." method="_on_closeWorld"]
 [connection signal="draw" from="UI/AfterGameScreen" to="UI/AfterGameScreen" method="_draw"]
@@ -82,6 +76,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 [editable path="UI/HomeScreen"]
 [editable path="UI/PauseScreen"]
 [editable path="UI/PreGameScreen"]
+[editable path="UI/SettingsScreen"]
 [editable path="World"]
 [editable path="World/Robot"]
 [editable path="World/Robot/Graphics/RBGODO"]

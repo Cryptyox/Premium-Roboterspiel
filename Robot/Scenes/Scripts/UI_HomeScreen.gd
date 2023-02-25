@@ -5,7 +5,6 @@ signal closeHome
 signal openWorld
 signal openPre
 signal openSets
-
 #func _process(delta):
 	
 	#if Input.is_action_pressed("ui_cancel"):
@@ -43,4 +42,5 @@ func _on_Cancel_pressed():
 
 
 func _on_Confirm_pressed():
+	
 	get_tree().quit()

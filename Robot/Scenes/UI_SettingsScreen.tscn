@@ -182,7 +182,7 @@ margin_bottom = 616.0
 [node name="Button5" type="Button" parent="PanelContainer/VBoxContainer/Body/VBoxContainer/containsResetSavegame"]
 margin_right = 1592.0
 margin_bottom = 102.0
-text = "Reset SaveGame"
+text = "Clear Game Data"
 
 [node name="containsExitButton" type="MarginContainer" parent="."]
 margin_left = -344.0

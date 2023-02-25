@@ -28,10 +28,14 @@ func _process(delta):
 
 
 func _on_HomeButton_pressed():
+	var robot = world.get_node("robot")
+	get_parent().game_data["progress"]["level_" + str(level_id)]["attempts"] = robot.tries
 	emit_signal("closePause")
 	emit_signal("closeWorld")
 	emit_signal("openHome")
 	world.set_is_paused(false)
+	
+	
 
 
 func _on_PlayButton_pressed():

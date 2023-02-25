@@ -69,6 +69,8 @@ var player = AudioStreamPlayer.new()
 onready var anim_player = $Graphics/RBGODO/AnimationPlayer
 onready var cam_player = $AnimationPlayer
 
+onready var root = get_parent().get_parent()
+onready var level_id = root.level_id
 # when starting the scene, this will set conditions
 func _ready():
 	# target fps, should be so the wheel does not appear to spin in the wrong direction when moving
@@ -347,6 +349,8 @@ func die():
 	print()
 
 func spawn():
+	level_id = root.level_id
+	tries = root.game_data["progress"]["level_" + str(level_id)]["attempts"]
 	self.show()
 	transform.origin = respawn_point
 
@@ -374,7 +378,11 @@ func _on_CollisionArea_area_entered(area):
 	# handle end of Level point
 	if area.is_in_group("endpoint"):
 		area.get_parent().end_game()
-		print("colision")
+		root.game_data["progress"]["level_" + str(level_id)]["attempts"] = tries
+		root.game_data["progress"]["level_" + str(level_id)]["time"] = game_timer
+		root.game_data["progress"]["level_" + str(level_id)]["finished"] = true
+		#wenn item eingesammelt
+			#root.game_data["progress"]["level_" + str(level_id)]["item_collected"] = true
 	# collectable
 	
 	
