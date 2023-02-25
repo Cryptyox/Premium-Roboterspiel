@@ -25,10 +25,7 @@ func _draw():
 	
 	$MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton.pressed = true
 	_on_LevelSelectButton_pressed(0)
-	#world.get_node("containsLevel1").show()
-	#emit_signal("chooseLevel", 0)
-	#fall_timer = .5
-	#changed = true
+
 
 func _process(delta):
 	if changed:
@@ -37,15 +34,13 @@ func _process(delta):
 		if fall_timer <= 0:
 			changed = false
 			world.set_is_paused(true)
-	
+
 
 func _on_HomeButton_pressed():
 	emit_signal("closePre")
 	emit_signal("closeWorld")
 	emit_signal("openHome")
 	robot.do_cam(true)
-	
-	world.get_node("containsLevel" + str(level_id+1)).hide()
 	
 	world.set_is_paused(false)
 
@@ -61,10 +56,12 @@ func _on_LevelSelectButton_pressed(id):
 	$Control/PanelContainer/MarginContainer/Label.set_text(texts[id])
 	
 	var old_level = world.get_node("containsLevel" + str(level_id+1))
-	#old_level.hide()
-	old_level.translation.origin = Vector3(0,0,-5)
+	old_level.hide()
+	old_level.transform.origin = Vector3(0,0,-5)
 	
-	world.get_node("containsLevel" + str(id+1)).show()
+	var new_level = world.get_node("containsLevel" + str(id+1))
+	new_level.show()
+	new_level.transform.origin = Vector3(0,0,5)
 	
 	level_id = id
 	emit_signal("chooseLevel", id)

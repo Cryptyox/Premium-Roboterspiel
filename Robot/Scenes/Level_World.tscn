@@ -1527,7 +1527,7 @@ transform = Transform( 0.944502, -0.0920007, 0.31536, 0.0196638, 0.974095, 0.225
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 0 )
 
 [node name="Endpoint" parent="containsLevel1/containsPoints" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 84.4081, 19, -0.0737271 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5919, 4, -0.0737271 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel1"]
 
@@ -1745,7 +1745,7 @@ transform = Transform( 0.944502, -0.0920007, 0.31536, 0.0196638, 0.974095, 0.225
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 0 )
 
 [node name="Endpoint" parent="containsLevel2/containsPoints" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, -1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel2"]
 
@@ -1798,7 +1798,7 @@ transform = Transform( 0.944502, -0.0920007, 0.31536, 0.0196638, 0.974095, 0.225
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 0 )
 
 [node name="Endpoint" parent="containsLevel3/containsPoints" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, -1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel3"]
 
@@ -1851,7 +1851,7 @@ transform = Transform( 0.944502, -0.0920007, 0.31536, 0.0196638, 0.974095, 0.225
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 0 )
 
 [node name="Endpoint" parent="containsLevel4/containsPoints" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, -1 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel4"]
 

@@ -1,8 +1,10 @@
 extends Node
 
-var level_id
 # this script functions as the "main function" of the game and will be able to show all major
 # game elements like the ui and the game itsself
+
+var level_id
+onready var data = load_from_json("res://savegame.json")
 
 func _ready():
 	$UI/HomeScreen.show()
@@ -21,7 +23,6 @@ func _ready():
 # opens every other scene that it can open
 
 # eg  home can close itsself and open wolrd+preGame and settings
-# world will be integratet
 
 func _on_openHome():
 	$UI/HomeScreen.show()
@@ -48,6 +49,7 @@ func _on_openPre():
 	$UI/PreGameScreen.show()
 
 func _on_closePre():
+	# this signal gets the level id of chosen level
 	level_id = $UI/PreGameScreen.level_id
 	$UI/PreGameScreen.hide()
 
@@ -66,3 +68,20 @@ func _on_openPost():
 
 func _on_closePost():
 	$UI/AfterGameScreen.hide()
+
+
+func save_to_json(filename: String, data: Dictionary) -> void:
+	var file = File.new()
+	file.open(filename, File.WRITE)
+	file.store_line(JSON.print(data))
+	file.close()
+
+func load_from_json(filename: String) -> Dictionary:
+	var file = File.new()
+	var data = {}
+	if file.file_exists(filename):
+		print("JSON loaded")
+		file.open(filename, File.READ)
+		data = JSON.parse(file.get_as_text())
+		file.close()
+	return data
