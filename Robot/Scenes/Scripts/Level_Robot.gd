@@ -53,7 +53,7 @@ var respawn_point = Vector3(0,1,0)
 var current_checkpoint = null
 
 # variable for tries needed and the time played
-var tries = 0
+var tries = 1
 # 
 var game_timer = 0
 
@@ -350,7 +350,7 @@ func die():
 
 func spawn():
 	level_id = root.level_id
-	tries = root.game_data["progress"]["level_" + str(level_id)]["attempts"]
+	#tries = root.game_data["progress"]["level_" + str(level_id)]["attempts"]
 	self.show()
 	transform.origin = respawn_point
 
@@ -377,10 +377,14 @@ func _on_CollisionArea_area_entered(area):
 		
 	# handle end of Level point
 	if area.is_in_group("endpoint"):
-		area.get_parent().end_game()
-		root.game_data["progress"]["level_" + str(level_id)]["attempts"] = tries
-		root.game_data["progress"]["level_" + str(level_id)]["time"] = game_timer
-		root.game_data["progress"]["level_" + str(level_id)]["finished"] = true
+		print("robot: " + str(tries) + ", " + "%.2f" % game_timer)
+		area.get_parent().end_game(str(tries), "%.2f" % game_timer, false)
+		#root.game_data["progress"]["level_" + str(level_id + 1)]["attempts"] = tries
+		tries = 1
+		#root.game_data["progress"]["level_" + str(level_id + 1)]["time"] = game_timer
+		game_timer = 0
+		#root.game_data["progress"]["level_" + str(level_id + 1)]["finished"] = true
+		
 		#wenn item eingesammelt
 			#root.game_data["progress"]["level_" + str(level_id)]["item_collected"] = true
 	# collectable

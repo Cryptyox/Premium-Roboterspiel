@@ -18,6 +18,9 @@ var text3b = "But you still have to save Princess Banana"
 var text4b = ""
 var textb = [text1b, text2b, text3b, text4b]
 
+var time = 0
+var attempts = 0
+
 onready var world = get_node("../../World")
 onready var robot = world.get_node("Robot")
 

@@ -20,7 +20,51 @@ var changed = false
 onready var world = get_node("../../World")
 onready var robot = world.get_node("Robot")
 
+onready var level1Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
+onready var level1Time = $MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+
+onready var button2 = $MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton
+onready var level2Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
+onready var level2Time = $MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+
+onready var button3 = $MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton
+onready var level3Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
+onready var level3Time = $MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+
+onready var button4 = $MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton
+onready var level4Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
+onready var level4Time = $MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+
+var game_data = null
+
+func _on_Root_game_data_ready(game_data):
+	self.game_data = game_data
+	prepare_values()
+
+func prepare_values():
+	print(JSON.print(game_data.get_result()))
+	
+	level1Attempts.text = str(game_data.result["progress"]["level_1"]["attempts"])
+	level1Time.text = str(game_data.result["progress"]["level_1"]["time"])
+	
+	level2Attempts.text = str(game_data.result["progress"]["level_2"]["attempts"])
+	level2Time.text = str(game_data.result["progress"]["level_2"]["time"])
+	if !game_data.result["progress"]["level_1"]["finished"]:
+		button2.hide()
+	
+	level3Attempts.text = str(game_data.result["progress"]["level_3"]["attempts"])
+	level3Time.text = str(game_data.result["progress"]["level_3"]["time"])
+	if !game_data.result["progress"]["level_2"]["finished"]:
+		button3.hide()
+	
+	level4Attempts.text = str(game_data.result["progress"]["level_4"]["attempts"])
+	level4Time.text = str(game_data.result["progress"]["level_4"]["time"])
+	if !game_data.result["progress"]["level_3"]["finished"]:
+		button4.hide()
+	
+
 func _draw():
+	
 	robot.do_cam(false)
 	
 	$MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton.pressed = true
@@ -71,3 +115,6 @@ func _on_LevelSelectButton_pressed(id):
 	
 	world.set_is_paused(false)
 	
+
+
+

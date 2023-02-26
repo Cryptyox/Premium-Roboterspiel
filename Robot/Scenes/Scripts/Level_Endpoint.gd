@@ -1,12 +1,12 @@
 extends Spatial
 
-signal openPost
+signal openPost(attempts, time, object)
 
-func end_game():
-	pass
+func end_game(attempts, time, object):
 	# save time in file
 	# save attempts in file
-	emit_signal("openPost")
+	print("endpoint: " + attempts + ", " + time)
+	emit_signal("openPost", attempts, time, object)
 	print("coision2")
 	# öffne postGameScreen
 	# 

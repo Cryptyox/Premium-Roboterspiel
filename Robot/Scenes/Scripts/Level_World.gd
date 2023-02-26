@@ -27,3 +27,7 @@ func get_Spawnpoint(id):
 
 
 
+
+
+func _on_openPost(attempts, time, object):
+	pass # Replace with function body.

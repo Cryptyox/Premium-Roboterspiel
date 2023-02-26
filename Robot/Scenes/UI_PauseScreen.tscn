@@ -93,25 +93,6 @@ another Tip: A 4-0-0 Alchemist's top crosspath can buff 2 monkeys constantly whi
 align = 1
 autowrap = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-margin_top = 280.0
-margin_right = 1476.0
-margin_bottom = 352.0
-alignment = 1
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 642.0
-margin_right = 830.0
-margin_bottom = 72.0
-custom_fonts/font = SubResource( 3 )
-text = "Time: "
-
-[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 834.0
-margin_right = 834.0
-margin_bottom = 72.0
-custom_fonts/font = SubResource( 3 )
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 382.0
 margin_right = 1476.0
@@ -128,6 +109,25 @@ text = "Attempts: "
 [node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 912.0
 margin_right = 912.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 280.0
+margin_right = 1476.0
+margin_bottom = 352.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 642.0
+margin_right = 830.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 3 )
+text = "Time: "
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 834.0
+margin_right = 834.0
 margin_bottom = 72.0
 custom_fonts/font = SubResource( 3 )
 

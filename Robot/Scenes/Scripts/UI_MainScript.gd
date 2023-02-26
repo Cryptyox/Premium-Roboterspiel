@@ -7,49 +7,77 @@ var level_id
 
 var autosaveTimer = 50
 
-onready var game_data = load_from_json("res://savegame.json")
+
+onready var game_data = load_json_file("res://savegame.json")
+signal game_data_ready(game_data)
 
 func _ready():
 	$UI/HomeScreen.show()
 	
-	# Access the player's name
-	var player_name = game_data["player_name"]
+	print(JSON.print(game_data.get_result()))
+	print()
 	
-	# Access the settings
-	var music_volume = game_data["settings"]["music_volume"]
-	var sfx_volume = game_data["settings"]["sfx_volume"]
-	var resolution = game_data["settings"]["resolution"]
+	if game_data.result == null:
+		# print open popup to tell them their problem
+		resetGameData()
+
+	if game_data.result != null:
+		emit_signal("game_data_ready", game_data)
 	
-	# Access the progress for a specific level
-	var level_1_data = game_data["progress"]["level_1"]
-	var level_1_attempts = level_1_data["attempts"]
-	var level_1_time = level_1_data["time"]
-	var level_1_item_collected = level_1_data["item_collected"]
-	var level_1_finished = level_1_data["finished"]
+	#save to json
+	game_data.result["player_name"] = "Jack"
 	
-	var level_2_data = game_data["progress"]["level_1"]
-	var level_2_attempts = level_1_data["attempts"]
-	var level_2_time = level_1_data["time"]
-	var level_2_item_collected = level_1_data["item_collected"]
-	var level_2_finished = level_1_data["finished"]
+	#load from json
+	var player_name = game_data.result["player_name"]
 	
-	var level_3_data = game_data["progress"]["level_1"]
-	var level_3_attempts = level_1_data["attempts"]
-	var level_3_time = level_1_data["time"]
-	var level_3_item_collected = level_1_data["item_collected"]
-	var level_3_finished = level_1_data["finished"]
+	print(game_data.result["player_name"])
 	
-	var level_4_data = game_data["progress"]["level_1"]
-	var level_4_attempts = level_1_data["attempts"]
-	var level_4_time = level_1_data["time"]
-	var level_4_item_collected = level_1_data["item_collected"]
-	var level_4_finished = level_1_data["finished"]
+	save_json_file("res://savegame.json", game_data)
 
 func _process(delta):
 	autosaveTimer -= delta
 	if autosaveTimer <= 0:
-		autosaveTimer = 50
-		save_to_json("res://savegame.json", game_data)
+		autosaveTimer = 50 #sek
+		save_json_file("res://savegame.json", game_data)
+
+func resetGameData():
+	game_data.result = {
+			"player_name": "John",
+			"settings": {
+				"music_volume": 100,
+				"sfx_volume": 100,
+				"screen_resolution": 0
+			},
+			"progress": {
+				"level_1": {
+					"attempts": 0,
+					"time": 0.0,"item_collected": false,
+					"finished": false
+				},
+				"level_2": {
+						"attempts": 0,
+						"time": 0.0,
+						"item_collected": false,
+						"finished": false
+				},
+				"level_3": {
+					"attempts": 0,
+					"time": 0.0,
+					"item_collected": false,
+					"finished": false
+				},
+				"level_4": {
+					"attempts": 0,
+					"time": 0.0,
+					"item_collected": false,
+					"finished": false
+				}
+			}
+		}
+	save_json_file("res://savegame.json", self.game_data)
+	emit_signal("game_data_ready", game_data)
+
+
 # create event handler with events such as
 # open settings
 # open world
@@ -72,13 +100,17 @@ func _on_closeHome():
 
 
 func _on_openSets():
+	emit_signal("game_data_ready", game_data)
 	$UI/SettingsScreen.show()
 	
-func _on_closeSets():
+func _on_closeSets(game_data):
+	self.game_data = game_data
+	save_json_file("res://savegame.json", self.game_data)
 	$UI/SettingsScreen.hide()
 
 
 func _on_openWorld():
+	game_data = load_json_file("res://savegame.json")
 	$World.show()
 	
 func _on_closeWorld():
@@ -102,7 +134,12 @@ func _on_closePause():
 	$UI/PauseScreen.hide()
 
 
-func _on_openPost():
+func _on_openPost(attempts, time, object):
+	print("main: " + attempts + ", " + time)
+	game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"] += attempts
+	game_data.result["progress"]["level_" + str(level_id + 1)]["time"] = time
+	game_data.result["progress"]["level_" + str(level_id + 1)]["item_collected"] = object
+	save_json_file("res://savegame.json", self.game_data)
 	$UI/AfterGameScreen.level_id = level_id
 	$UI/AfterGameScreen.show()
 
@@ -110,18 +147,22 @@ func _on_closePost():
 	$UI/AfterGameScreen.hide()
 
 
-func save_to_json(filename: String, data: Dictionary) -> void:
+func load_json_file(path: String) -> JSONParseResult:
 	var file = File.new()
-	file.open(filename, File.WRITE)
-	file.store_line(JSON.print(data))
+	if not file.file_exists(path):
+		print("File does not exist:", path)
+		return null
+	
+	file.open(path, File.READ)
+	var data_str = file.get_as_text()
 	file.close()
+	
+	return JSON.parse(data_str)
 
-func load_from_json(filename: String) -> Dictionary:
+func save_json_file(path: String, data: JSONParseResult) -> bool:
 	var file = File.new()
-	var data = {}
-	if file.file_exists(filename):
-		print("JSON loaded")
-		file.open(filename, File.READ)
-		data = JSON.parse(file.get_as_text())
-		file.close()
-	return data
+	file.open(path, File.WRITE)
+	var json_string = JSON.print(game_data.get_result())
+	file.store_string(json_string)
+	file.close()
+	return file.get_error() == OK

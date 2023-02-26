@@ -24,12 +24,15 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		emit_signal("openPause")
 		$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/LevelText.set_text(texts[level_id])
+		$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label2.set_text(str(get_node("../../World/Robot").tries))
+		$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Label2.set_text("%.2f" % get_node("../../World/Robot").game_timer)
 		world.set_is_paused(true)
 
 
 func _on_HomeButton_pressed():
 	var robot = world.get_node("robot")
-	get_parent().game_data["progress"]["level_" + str(level_id)]["attempts"] = robot.tries
+	# "%.2f" % get_node("../../World/Robot").game_timer
+	
 	emit_signal("closePause")
 	emit_signal("closeWorld")
 	emit_signal("openHome")
