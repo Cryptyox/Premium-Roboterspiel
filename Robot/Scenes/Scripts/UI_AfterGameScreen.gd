@@ -18,11 +18,17 @@ var text3b = "But you still have to save Princess Banana"
 var text4b = ""
 var textb = [text1b, text2b, text3b, text4b]
 
-var time = 0
-var attempts = 0
+#var time = 0
+#var attempts = 0
 
 onready var world = get_node("../../World")
 onready var robot = world.get_node("Robot")
+
+
+func _on_Root_game_data_ready(game_data):
+	pass # Replace with function body.
+	
+
 
 func set_level(id):
 	level_id = id
@@ -57,6 +63,9 @@ func _on_LevelSelectButton_pressed():
 	robot.do_cam(true)
 	world.set_is_paused(false)
 	
+
+
+
 
 
 

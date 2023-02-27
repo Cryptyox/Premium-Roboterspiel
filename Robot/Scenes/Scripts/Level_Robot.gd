@@ -378,7 +378,7 @@ func _on_CollisionArea_area_entered(area):
 	# handle end of Level point
 	if area.is_in_group("endpoint"):
 		print("robot: " + str(tries) + ", " + "%.2f" % game_timer)
-		area.get_parent().end_game(str(tries), "%.2f" % game_timer, false)
+		area.get_parent().end_game(str(tries), "%.2f" % game_timer, true)
 		#root.game_data["progress"]["level_" + str(level_id + 1)]["attempts"] = tries
 		tries = 1
 		#root.game_data["progress"]["level_" + str(level_id + 1)]["time"] = game_timer

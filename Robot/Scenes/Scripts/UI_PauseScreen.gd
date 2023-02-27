@@ -16,6 +16,11 @@ var level_id
 
 onready var world = get_node("../../World")
 
+
+func _on_Root_game_data_ready(game_data):
+	pass # Replace with function body.
+	
+	
 func set_level(id):
 	level_id = id
 
@@ -53,3 +58,6 @@ func _on_RestartButton_pressed():
 	#$Popup.hide()
 	emit_signal("closePause")
 	world.set_is_paused(false)
+
+
+
