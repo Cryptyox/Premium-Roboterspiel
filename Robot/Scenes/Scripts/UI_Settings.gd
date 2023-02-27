@@ -11,19 +11,21 @@ onready var reset_button = $PanelContainer/VBoxContainer/Body/VBoxContainer/cont
 
 var game_data = null
 
-func _on_Root_game_data_ready(game_data):
-	self.game_data = game_data
+func _on_Root_game_data_ready(game_data_new):
+	game_data = game_data_new
 	prepare_values()
 
-func prepare_values():
-	name_lineEdit.text = game_data.result["player_name"]
-	
+func _ready():
 	res_menu.add_item("Fullscreen")
 	res_menu.add_item("1280x720")
 	res_menu.add_item("1920x1080")
 	res_menu.add_item("2560x1440")
 	res_menu.add_item("3840x2160")
 	res_menu.add_item("7680x4320")
+
+func prepare_values():
+	name_lineEdit.text = game_data.result["player_name"]
+	
 	res_menu.selected = game_data.result["settings"]["screen_resolution"]
 	
 	music_sider.value = game_data.result["settings"]["music_volume"]

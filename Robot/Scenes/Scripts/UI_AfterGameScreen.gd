@@ -24,11 +24,22 @@ var textb = [text1b, text2b, text3b, text4b]
 onready var world = get_node("../../World")
 onready var robot = world.get_node("Robot")
 
+var game_data = null
+var tries = 0
+var time = ""
 
-func _on_Root_game_data_ready(game_data):
-	pass # Replace with function body.
+func _on_Root_game_data_ready(game_data_new):
+	game_data = game_data_new
+	prepare_values()
+
+func prepare_values():
+	tries = get_node("../../World/Robot").tries
+	time = "%.2f" % get_node("../../World/Robot").game_timer
 	
-
+	$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/Label2.text = str(tries)
+	$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Label2.text = time
+	
+	
 
 func set_level(id):
 	level_id = id
@@ -39,8 +50,17 @@ func _draw():
 	$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/LevelText.set_text(textb[level_id])
 	robot.do_cam(false)
 	world.set_is_paused(true)
+
+func saveValues():
+	game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"] = int(game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"]) + get_node("../../World/Robot").tries
+	if float(game_data.result["progress"]["level_" + str(level_id + 1)]["time"]) == 0 || float(game_data.result["progress"]["level_" + str(level_id + 1)]["time"]) > float(time):
+		game_data.result["progress"]["level_" + str(level_id + 1)]["time"] = time
+	game_data.result["progress"]["level_" + str(level_id + 1)]["finished"] = true
+	emit_signal("return_game_data", game_data)
 	
 func _on_HomeButton_pressed():
+	saveValues()
+	
 	emit_signal("closePost")
 	emit_signal("closeWorld")
 	emit_signal("openHome")
@@ -48,9 +68,9 @@ func _on_HomeButton_pressed():
 	world.set_is_paused(false)
 
 
-	
-	
 func _on_RestartButton_pressed():
+	saveValues()
+	
 	emit_signal("closePost")
 	robot.spawn()
 	robot.do_cam(true)
@@ -58,6 +78,8 @@ func _on_RestartButton_pressed():
 
 
 func _on_LevelSelectButton_pressed():
+	saveValues()
+	
 	emit_signal("closePost")
 	emit_signal("openPre")
 	robot.do_cam(true)

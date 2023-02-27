@@ -184,9 +184,11 @@ func resetGameData():
 			}
 		}
 	save_json_file("res://savegame.json", self.game_data)
-	#emit_signal("game_data_ready", game_data)
+	emit_signal("game_data_ready", game_data)
 
 
-func _on_return_game_data(game_data):
-	self.game_data = game_data
+func _on_return_game_data(game_data_new):
+	game_data = game_data_new
 	save_json_file("res://savegame.json", game_data)
+	game_data = load_json_file("res://savegame.json")
+	emit_signal("game_data_ready", game_data)

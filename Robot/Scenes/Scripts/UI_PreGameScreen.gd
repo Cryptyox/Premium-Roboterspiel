@@ -37,8 +37,8 @@ onready var level4Time = $MarginContainer/PanelContainer/VBoxContainer/Level4/Le
 
 var game_data = null
 
-func _on_Root_game_data_ready(game_data):
-	self.game_data = game_data
+func _on_Root_game_data_ready(game_data_new):
+	game_data = game_data_new
 	prepare_values()
 
 func prepare_values():

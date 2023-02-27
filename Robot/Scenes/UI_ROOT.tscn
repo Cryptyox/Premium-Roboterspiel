@@ -62,13 +62,7 @@ pause_mode = 1
 [node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
 [node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [node name="Center" parent="World/containsLevel1/containsSaws/Saw" index="0"]
@@ -114,6 +108,7 @@ transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1,
 [connection signal="openPost" from="World/containsLevel3/containsPoints/Endpoint" to="." method="_on_openPost"]
 [connection signal="openPost" from="World/containsLevel4/containsPoints/Endpoint" to="." method="_on_openPost"]
 
+[editable path="UI/AfterGameScreen"]
 [editable path="UI/HomeScreen"]
 [editable path="UI/PauseScreen"]
 [editable path="UI/PreGameScreen"]
