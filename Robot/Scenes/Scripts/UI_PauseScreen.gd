@@ -16,9 +16,13 @@ var level_id
 
 onready var world = get_node("../../World")
 
+var game_data = null
+
+signal return_game_data(game_data)
+
 
 func _on_Root_game_data_ready(game_data):
-	pass # Replace with function body.
+	self.game_data = game_data
 	
 	
 func set_level(id):
@@ -36,7 +40,10 @@ func _process(delta):
 
 func _on_HomeButton_pressed():
 	var robot = world.get_node("robot")
-	# "%.2f" % get_node("../../World/Robot").game_timer
+	
+	game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"] =str(int(game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"]) + get_node("../../World/Robot").tries) 
+	
+	emit_signal("return_game_data", game_data)
 	
 	emit_signal("closePause")
 	emit_signal("closeWorld")
@@ -52,10 +59,7 @@ func _on_PlayButton_pressed():
 
 
 func _on_RestartButton_pressed():
-	#var robot = get_node("../../ContainsWorld/Robot")
-	#var spawn = robot.get_spawn()
-	#robot.translation = spawn
-	#$Popup.hide()
+	world.get_node("Robot").die()
 	emit_signal("closePause")
 	world.set_is_paused(false)
 

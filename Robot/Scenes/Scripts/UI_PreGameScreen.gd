@@ -75,9 +75,11 @@ func _process(delta):
 	if changed:
 		if fall_timer > 0:
 			fall_timer -= delta
+			world.get_tree().get_root().set_disable_input(true)
 		if fall_timer <= 0:
 			changed = false
 			world.set_is_paused(true)
+			world.get_tree().get_root().set_disable_input(false)
 
 
 func _on_HomeButton_pressed():

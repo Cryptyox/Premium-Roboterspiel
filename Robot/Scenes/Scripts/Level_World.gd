@@ -25,9 +25,3 @@ func get_Spawnpoint(id):
 	else:
 		return $containsLevel1/containsPoints/Spawnpoint/Respawnpoint
 
-
-
-
-
-func _on_openPost(attempts, time, object):
-	pass # Replace with function body.

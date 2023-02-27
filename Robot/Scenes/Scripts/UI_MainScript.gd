@@ -48,7 +48,7 @@ func _process(delta):
 
 
 
-
+# gedanken zu ui
 
 # create event handler with events such as
 # open settings
@@ -126,8 +126,6 @@ func _on_closePost():
 # -> immer speichern, immer neu senden bei öffnen der menus
 
 
-
-
 func load_json_file(path: String) -> JSONParseResult:
 	var file = File.new()
 	if not file.file_exists(path):
@@ -161,14 +159,15 @@ func resetGameData():
 			"progress": {
 				"level_1": {
 					"attempts": 0,
-					"time": 0.0,"item_collected": false,
+					"time": 0.0,
+					"item_collected": false,
 					"finished": false
 				},
 				"level_2": {
-						"attempts": 0,
-						"time": 0.0,
-						"item_collected": false,
-						"finished": false
+					"attempts": 0,
+					"time": 0.0,
+					"item_collected": false,
+					"finished": false
 				},
 				"level_3": {
 					"attempts": 0,
@@ -186,3 +185,8 @@ func resetGameData():
 		}
 	save_json_file("res://savegame.json", self.game_data)
 	#emit_signal("game_data_ready", game_data)
+
+
+func _on_return_game_data(game_data):
+	self.game_data = game_data
+	save_json_file("res://savegame.json", game_data)
