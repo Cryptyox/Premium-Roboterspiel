@@ -49,18 +49,18 @@ func prepare_values():
 	
 	level2Attempts.text = str(game_data.result["progress"]["level_2"]["attempts"])
 	level2Time.text = str(game_data.result["progress"]["level_2"]["time"])
-	if !game_data.result["progress"]["level_1"]["finished"]:
-		button2.hide()
+	#if !game_data.result["progress"]["level_1"]["finished"]:
+	#	button2.hide()
 	
 	level3Attempts.text = str(game_data.result["progress"]["level_3"]["attempts"])
 	level3Time.text = str(game_data.result["progress"]["level_3"]["time"])
-	if !game_data.result["progress"]["level_2"]["finished"]:
-		button3.hide()
+	#if !game_data.result["progress"]["level_2"]["finished"]:
+	#	button3.hide()
 	
 	level4Attempts.text = str(game_data.result["progress"]["level_4"]["attempts"])
 	level4Time.text = str(game_data.result["progress"]["level_4"]["time"])
-	if !game_data.result["progress"]["level_3"]["finished"]:
-		button4.hide()
+	#if !game_data.result["progress"]["level_3"]["finished"]:
+	#	button4.hide()
 	
 
 func _draw():

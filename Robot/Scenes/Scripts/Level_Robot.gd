@@ -55,6 +55,7 @@ var current_checkpoint = null
 # variable for tries needed and the time played
 var tries = 1
 # 
+var timer_started = false
 var game_timer = 0
 
 #caches path for creating instance of Bullet.tscn
@@ -147,7 +148,8 @@ func _physics_process(delta):
 		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
 		jumping = true
 	
-	game_timer += delta
+	if timer_started:
+		game_timer += delta
 	
 	var cur_pos = Vector3.ZERO
 	cur_pos = transform.origin
@@ -292,7 +294,7 @@ func get_v_y(delta, dir):
 		elif !jumping2 && able2 && doublejump:
 			jump2(dir)
 	
-	# if s is pressed player will quickly drop downm to the floor
+	# if s is pressed player will quickly drop down to the floor
 	elif dir == -1:
 		crouch(dir)
 	
@@ -433,3 +435,16 @@ func _on_PreGameScreen_chooseLevel(id):
 	elif id == 3:
 		doublejump = true
 		speedboost = true
+
+
+
+
+
+func _on_Root_start_timer_robot():
+	timer_started = true
+
+
+
+
+func _on_Root_stop_timer_robot():
+	timer_started = false

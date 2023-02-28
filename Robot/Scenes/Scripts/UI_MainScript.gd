@@ -12,7 +12,8 @@ onready var game_data = load_json_file("res://savegame.json")
 
 signal game_data_ready(game_data)
 
-
+signal start_timer_robot
+signal stop_timer_robot
 
 func _ready():
 	$UI/HomeScreen.show()
@@ -89,21 +90,25 @@ func _on_openPre():
 	$UI/PreGameScreen.show()
 
 func _on_closePre():
+	emit_signal("start_timer_robot")
 	level_id = $UI/PreGameScreen.level_id
 	$UI/PreGameScreen.hide()
 
 
 func _on_openPause():
 	emit_signal("game_data_ready", game_data)
+	emit_signal("stop_timer_robot")
 	$UI/PauseScreen.level_id = level_id
 	$UI/PauseScreen.show()
 	
 func _on_closePause():
+	emit_signal("start_timer_robot")
 	$UI/PauseScreen.hide()
 
 
 func _on_openPost():
 	emit_signal("game_data_ready", game_data)
+	emit_signal("stop_timer_robot")
 	$UI/AfterGameScreen.level_id = level_id
 	$UI/AfterGameScreen.show()
 
