@@ -28,14 +28,10 @@ func _ready():
 		emit_signal("game_data_ready", game_data)
 	
 	#save value to json
-	game_data.result["player_name"] = "Jack"
+	#game_data.result["player_name"] = "Jack"
 	
 	#load value from json
-	var player_name = game_data.result["player_name"]
-	
-	print(game_data.result["player_name"])
-	
-	save_json_file("res://savegame.json", game_data)
+	#var player_name = game_data.result["player_name"]
 
 
 
