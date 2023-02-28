@@ -63,6 +63,7 @@ var allowShoot = true
 var stimer = null
 var bulletdelay = 1
 
+#creates AudioPlayer to play audio
 var player = AudioStreamPlayer.new()
 
 # instance to play eanimations
