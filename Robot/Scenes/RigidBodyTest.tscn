@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="MeshTexture" id=1]
+
+[node name="RigidBodyTest" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 184.434, 0 )
+scale = Vector2( -183.434, 165.74 )
+texture = SubResource( 1 )
