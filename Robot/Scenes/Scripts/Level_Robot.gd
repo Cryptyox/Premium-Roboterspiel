@@ -59,9 +59,9 @@ var timer_started = false
 var game_timer = 0
 
 #caches path for creating instance of Bullet.tscn
-const bulletpath = preload("res://Scenes/Player_Bullet.tscn")
+const BULLET = preload("res://Scenes/Player_Bullet.tscn")
 var allowShoot = true
-var stimer = null
+var shootimer = 0
 var bulletdelay = 1
 
 #creates AudioPlayer to play audio
@@ -73,6 +73,7 @@ onready var cam_player = $AnimationPlayer
 
 onready var root = get_parent().get_parent()
 onready var level_id = root.level_id
+
 # when starting the scene, this will set conditions
 func _ready():
 	# target fps, should be so the wheel does not appear to spin in the wrong direction when moving
@@ -81,12 +82,6 @@ func _ready():
 	$Graphics/RBGODO/AnimationTree.active = true
 	$Graphics/RBGODO/AnimationTree.set("parameters/Blend_Idle_Drive/blend_amount",0)
 	
-	#timer for shoot delay
-	#stimer = Timer.new()
-	#stimer.set_one_shot(true)
-	#stimer.set_wait_time(bulletdelay)
-	#stimer.connect("timeout", self, "on_stime_complete")
-	#add_child(stimer)
 
 # Hauptfunktion der Physikalischen Prozesse
 func _physics_process(delta): 
@@ -113,8 +108,8 @@ func _physics_process(delta):
 		
 	if Input.is_action_pressed("shoot"):
 		$Graphics/RBGODO/AnimationTree.set("parameters/Blend_Shoot_Ani/active",true)
-#		if allowShoot:
-#			shoot()
+		if allowShoot:
+			shoot()
 	
 	# determines x velovity
 	get_v_x(delta, input.x)
@@ -126,18 +121,10 @@ func _physics_process(delta):
 		flip()
 	if input.x > 0 and !facing_right:
 		flip()
-		
-	# if on floor the variables concerning the jumps have to be reset
-	
-	#if !is_on_floor():
-		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
-		#jumping = true
 	
 	
 	var snap = Vector3.ZERO #Vector3.DOWN if not jumping else Vector3.ZERO
 	move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60))
-	
-	#move_and_slide(velocity, Vector3.UP, true, 4, deg2rad(60))
 	
 	if is_on_floor():
 		able = true
@@ -151,6 +138,11 @@ func _physics_process(delta):
 	if timer_started:
 		game_timer += delta
 	
+	if !allowShoot:
+		shootimer += delta
+	elif shootimer >= bulletdelay:
+		allowShoot = true
+	 
 	var cur_pos = Vector3.ZERO
 	cur_pos = transform.origin
 	if cur_pos.y < -10:
@@ -331,7 +323,14 @@ func flip():
 		$Graphics.rotation_degrees.y += 12
 		yield(get_tree().create_timer(0.001), "timeout")
 
-
+func shoot():
+	#var bullet = BULLET.instance()
+	
+	#bullet.start($CurrentLocation.global_transform)
+	
+	#get_parent().add_child(bullet)
+	
+	pass
 
 # if called, the player will die, respawn and the try-counter goes up by 1
 func die():
