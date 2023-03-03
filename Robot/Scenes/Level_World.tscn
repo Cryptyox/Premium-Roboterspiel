@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://Resources/3DObjectsLVL1/Mt2.glb" type="PackedScene" id=15]
 [ext_resource path="res://Resources/3DObjectsLVL1/Mt1.glb" type="PackedScene" id=16]
 [ext_resource path="res://Resources/3DObjectsLVL1/TreeBg.glb" type="PackedScene" id=17]
+[ext_resource path="res://Resources/3DObjectsLVL1/TreeSm.glb" type="PackedScene" id=18]
+[ext_resource path="res://Resources/3DObjectsLVL1/Tower.glb" type="PackedScene" id=19]
+[ext_resource path="res://Resources/3DObjectsLVL1/Castle.glb" type="PackedScene" id=20]
 
 [sub_resource type="PanoramaSky" id=36]
 panorama = ExtResource( 14 )
@@ -1787,14 +1790,52 @@ anims/move = SubResource( 31 )
 
 [node name="Graphics" type="Spatial" parent="containsLevel1"]
 
-[node name="Mt3" parent="containsLevel1" instance=ExtResource( 15 )]
-transform = Transform( 33.8325, 0, 0, 0, 33.8325, 0, 0, 0, 33.8325, 8.89902, -23.5786, -537.357 )
+[node name="3DDeko" type="Node" parent="containsLevel1/Graphics"]
 
-[node name="Mt2" parent="containsLevel1" instance=ExtResource( 15 )]
-transform = Transform( 8.98959, 0, 0, 0, 8.98959, 0, 0, 0, 8.98959, 45.6416, -16.7524, -126.566 )
+[node name="Mt3" parent="containsLevel1/Graphics/3DDeko" instance=ExtResource( 15 )]
+transform = Transform( 33.8325, 0, 0, 0, 33.8325, 0, 0, 0, 33.8325, 8.92664, -23.5786, -537.362 )
 
-[node name="Mt1" parent="containsLevel1" instance=ExtResource( 16 )]
-transform = Transform( 8.98959, 0, 0, 0, 8.98959, 0, 0, 0, 8.98959, -39.2917, -13.7962, -340.786 )
+[node name="Mt2" parent="containsLevel1/Graphics/3DDeko" instance=ExtResource( 15 )]
+transform = Transform( 8.98959, 0, 0, 0, 8.98959, 0, 0, 0, 8.98959, 45.6692, -16.7524, -126.571 )
+
+[node name="Mt1" parent="containsLevel1/Graphics/3DDeko" instance=ExtResource( 16 )]
+transform = Transform( 8.98959, 0, 0, 0, 8.98959, 0, 0, 0, 8.98959, -39.2641, -13.7962, -340.791 )
+
+[node name="TreeBg" parent="containsLevel1/Graphics/3DDeko" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.89575, 1.97437, 4.32438 )
+
+[node name="TreeBg" parent="containsLevel1/Graphics/3DDeko/TreeBg" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.3723, -0.17452, -0.106712 )
+
+[node name="TreeBg" parent="containsLevel1/Graphics/3DDeko/TreeBg/TreeBg" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.6587, 15.0751, -0.106712 )
+
+[node name="TreeBg" parent="containsLevel1/Graphics/3DDeko/TreeBg/TreeBg/TreeBg" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.97132, 11.0451, -0.810385 )
+
+[node name="TreeSm" parent="containsLevel1/Graphics/3DDeko" instance=ExtResource( 18 )]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -15.14, 4.768, 7.999 )
+
+[node name="TreeSm" parent="containsLevel1/Graphics/3DDeko/TreeSm" instance=ExtResource( 18 )]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 13.536, -3.556, 2.521 )
+
+[node name="TreeSm" parent="containsLevel1/Graphics/3DDeko/TreeSm/TreeSm" instance=ExtResource( 18 )]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 29.2747, 0.852082, 0.813423 )
+
+[node name="TreeSm" parent="containsLevel1/Graphics/3DDeko/TreeSm/TreeSm/TreeSm" instance=ExtResource( 18 )]
+transform = Transform( 1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 21.0493, 15.796, 0.41 )
+
+[node name="Tower" parent="containsLevel1/Graphics/3DDeko" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.465, -1.529, 46.864 )
+
+[node name="Tower" parent="containsLevel1/Graphics/3DDeko/Tower" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.759, 0.502, 2.685 )
+
+[node name="Tower2" parent="containsLevel1/Graphics/3DDeko/Tower" instance=ExtResource( 19 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60.03, 15.375, -2.182 )
+
+[node name="Castle" parent="containsLevel1/Graphics/3DDeko" instance=ExtResource( 20 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.9411, 7.12071, -55.8967 )
 
 [node name="containsLevel2" type="Spatial" parent="."]
 visible = false
@@ -1988,18 +2029,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
 [node name="containsDestroyableBlocks" type="Spatial" parent="containsLevel4"]
 
 [node name="Graphics" type="Spatial" parent="containsLevel4"]
-
-[node name="TreeBg" parent="." instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.89575, 1.97437, 4.32438 )
-
-[node name="TreeBg" parent="TreeBg" instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.3723, -0.17452, -0.106712 )
-
-[node name="TreeBg" parent="TreeBg/TreeBg" instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.6587, 15.0751, -0.106712 )
-
-[node name="TreeBg" parent="TreeBg/TreeBg/TreeBg" instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.97132, 11.0451, -0.810385 )
 
 [editable path="Robot"]
 [editable path="Robot/Graphics/RBGODO"]
