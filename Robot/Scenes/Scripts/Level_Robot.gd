@@ -138,6 +138,7 @@ func _physics_process(delta):
 	if timer_started:
 		game_timer += delta
 		get_node("../Interface/PlayerInterface/Top/MarginContainer/Label").text = "%.2f" % game_timer
+		get_node("../Interface/PlayerInterface/Top/MarginContainer2/Label").text = "Attempt " + str(tries)
 	
 	if !allowShoot:
 		shootimer += delta
