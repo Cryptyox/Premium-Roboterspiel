@@ -16,7 +16,10 @@ func _on_Timer_timeout():
 
 
 func _on_PressurePlate_openDoor():
-	down()
+	$Timer.stop()
+	if $StaticBody.scale.y == 1.5:
+		down()
+	
 
 
 func _on_PressurePlate_startTimer():
