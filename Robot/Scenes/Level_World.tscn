@@ -1761,6 +1761,7 @@ environment = SubResource( 37 )
 
 [node name="containsLevel1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0276165, 0, -0.00469685 )
+visible = false
 
 [node name="GridMap" type="GridMap" parent="containsLevel1"]
 mesh_library = ExtResource( 12 )
@@ -2085,7 +2086,7 @@ transform = Transform( 0.899736, 0.0810184, -0.428849, 0.0196638, 0.974095, 0.22
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 0 )
 
 [node name="Endpoint" parent="containsLevel2/containsPoints" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 33, 0 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel2"]
 
@@ -2372,10 +2373,11 @@ mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196608, 0, 0, 262142, 0, 0, 262143, 0, 0, 262144, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 458736, 0, 0, 458737, 0, 0, 458738, 0, 0, 458739, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 124, 65182, 0, 84, 65297, 0, 70, 65337, 0, 57, 65373, 0, 48, 65399, 0, 42, 65418, 0, 38, 65429, 0, 33, 65441, 0, 30, 65451, 0, 27, 65457, 0, 26, 65463, 0, 24, 65467, 0, 22, 65472, 0, 21, 65474, 0, 21, 65477, 0, 20, 65478, 0, 20, 65479, 0, 19, 65480, 0, 19, 65481, 0, 19, 65482, 0, 18, 65484, 0, 17, 65485, 0, 17, 65486, 0, 17, 65487, 0, 16, 65488, 0 )
+"cells": PoolIntArray( 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196608, 0, 0, 262142, 0, 0, 262143, 0, 0, 262144, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 458741, 0, 0, 458742, 0, 0, 524259, 0, 0, 524260, 0, 0, 524261, 0, 0, 524262, 0, 0, 524263, 0, 0, 524264, 0, 0, 524265, 0, 0, 524266, 0, 0, 524267, 0, 0, 589795, 0, 0, 655329, 0, 0, 655330, 0, 0, 655331, 0, 0, 720872, 0, 0, 786407, 0, 0, 786408, 0, 0, 851947, 0, 0, 851948, 0, 0, 983024, 0, 0, 983025, 0, 0, 1114083, 0, 0, 1114084, 0, 0, 1114085, 0, 0, 1114086, 0, 0, 1114087, 0, 0, 1114088, 0, 0, 1114089, 0, 0, 1114090, 0, 0, 1114091, 0, 0, 1114092, 0, 0, 1114101, 0, 0, 1114102, 0, 0, 1245181, 0, 0, 1245182, 0, 0 )
 }
 __meta__ = {
-"_editor_clip_": 0
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
 }
 
 [node name="DirectionalLight" type="DirectionalLight" parent="containsLevel3/GridMap"]
@@ -2387,7 +2389,7 @@ transform = Transform( 0.899736, 0.0810184, -0.428849, 0.0196638, 0.974095, 0.22
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 3, 0 )
 
 [node name="Endpoint" parent="containsLevel3/containsPoints" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, -5 )
 
 [node name="containsMovingPlatforms" type="Spatial" parent="containsLevel3"]
 

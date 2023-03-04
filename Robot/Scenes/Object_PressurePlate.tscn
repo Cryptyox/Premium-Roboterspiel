@@ -1,63 +1,61 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/Scripts/Object_PressurePlate.gd" type="Script" id=1]
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
 
-[sub_resource type="CubeMesh" id=1]
-size = Vector3( 1, 1, 1 )
+signal startTimer
+signal openDoor
+
+
+func _on_Area_area_entered(area):
+	emit_signal(\"openDoor\")
+	$AnimationPlayer.play(\"down\")
+
+
+func _on_Area_area_exited(area):
+	emit_signal(\"startTimer\")
+	$AnimationPlayer.play(\"up\")
+"
 
 [sub_resource type="BoxShape" id=2]
 
-[sub_resource type="Curve3D" id=3]
-_data = {
-"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0, -1.05, 0, 0, 0, 0, 0, 0, 0, 0, -0.05, 0 ),
-"tilts": PoolRealArray( 0, 0 )
-}
+[sub_resource type="BoxShape" id=3]
 
-[sub_resource type="Animation" id=4]
-resource_name = "Pressure_Plate_down"
-length = 0.4
-tracks/0/type = "transform"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = PoolRealArray( 0, 1, 0, 0.05, 0, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, 0, -0.95, 0, 0, 0, 0, 1, 1, 1, 1 )
+[sub_resource type="CubeMesh" id=4]
 
-[sub_resource type="Animation" id=5]
-resource_name = "Pressure_Plate_up"
-length = 0.4
-tracks/0/type = "transform"
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = PoolRealArray( 0, 1, 0, -0.95, 0, 0, 0, 0, 1, 1, 1, 1, 0.4, 1, 0, 0.05, 0, 0, 0, 0, 1, 1, 1, 1 )
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0, 0.458824, 1, 1 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "down"
+length = 0.1
+
+[sub_resource type="Animation" id=7]
+resource_name = "up"
+length = 0.5
 
 [node name="PressurePlate" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0 )
-script = ExtResource( 1 )
+script = SubResource( 1 )
 
-[node name="PressurePlate" type="MeshInstance" parent="."]
-transform = Transform( 0.8, 0, 0, 0, 0.1, 0, 0, 0, 0.8, 0, 1.11759e-08, 0 )
-mesh = SubResource( 1 )
+[node name="Area" type="Area" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
 
-[node name="DetectionZone" type="Area" parent="." groups=["detectionZone"]]
-
-[node name="CollisionShape" type="CollisionShape" parent="DetectionZone"]
-transform = Transform( 0.5, 0, 0, 0, 0.15, 0, 0, 0, 0.5, 0, 1.11759e-08, 0 )
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 2 )
 
-[node name="Path" type="Path" parent="."]
-curve = SubResource( 3 )
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 0.45, 0, 0, 0, 0.04, 0, 0, 0, 0.45, 0, 0.02, 0 )
 
-[node name="PathFollow" type="PathFollow" parent="Path"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.05, 0 )
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 3 )
 
-[node name="RemoteTransform" type="RemoteTransform" parent="Path/PathFollow"]
-remote_path = NodePath("../../..")
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Pressure_Plate_down = SubResource( 4 )
-anims/Pressure_Plate_up = SubResource( 5 )
+anims/down = SubResource( 6 )
+anims/up = SubResource( 7 )
+
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
+[connection signal="area_exited" from="Area" to="." method="_on_Area_area_exited"]

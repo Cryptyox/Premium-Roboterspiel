@@ -1,25 +1,16 @@
-
 extends Spatial
 
-onready var anim_player = $AnimationPlayer
 
-var player = false
-#var timer1 = 2
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
-#func _ready():
-#	anim_player.play("move_block")
 
-func do_animation():
-	player = true
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
 
-func _physics_process(delta):
-	#timer1 = timer1 - delta
-	if player:
-		if !anim_player.is_playing():
-			anim_player.play("Pressure_Plate_down")
-		player = false
-#	if player nicht in area --> hoch
-#	if timer1 <= 0:
-#		if !anim_player.is_playing():
-#			anim_player.play("Pressure_Plate_up")
-#		player = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass

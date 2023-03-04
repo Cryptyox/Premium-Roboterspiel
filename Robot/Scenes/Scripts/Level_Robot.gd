@@ -126,11 +126,15 @@ func _physics_process(delta):
 	var snap = Vector3.ZERO #Vector3.DOWN if not jumping else Vector3.ZERO
 	move_and_slide_with_snap(velocity, snap, Vector3.UP, true, 4, deg2rad(60))
 	
+	if jumping2:
+		get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer/TextureProgress").value = 1
+	
 	if is_on_floor():
 		able = true
 		able2 = false
 		jumping = false
 		jumping2 = false
+		get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer/TextureProgress").value = 0
 	else:
 		# this is so the second jump can be made if driving of a ledge instead of jumping the first time
 		jumping = true
@@ -149,6 +153,9 @@ func _physics_process(delta):
 	cur_pos = transform.origin
 	if cur_pos.y < -10:
 		die()
+	
+	
+	
 	
 
 
@@ -191,15 +198,18 @@ func get_input(delta):
 func do_ability(delta, input):
 	
 	if duration == ABILITY_DURATION && cooldown == ABILITY_COOLDOWN:
+		get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer/TextureProgress").value = 0
 		return input
 		
 	elif cooldown != ABILITY_COOLDOWN:
+		get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer2/TextureProgress").value = cooldown / ABILITY_COOLDOWN * 100
 		cooldown -= delta
 		if cooldown < delta:
 			cooldown = ABILITY_COOLDOWN
 		return input
 		
 	elif duration != ABILITY_DURATION:
+		get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer2/TextureProgress").value = 100 - (duration / ABILITY_DURATION * 100)
 		duration -= delta
 		if duration < delta:
 			duration = ABILITY_DURATION
@@ -347,18 +357,22 @@ func die():
 	#player.play()
 	
 	tries += 1
+	game_timer = 0
 	
-	print()
-	print("You died!")
-	print("Attempts: " + String(tries))
-	print("Time:     " + String(game_timer))
-	print()
+	duration = ABILITY_DURATION
+	cooldown = ABILITY_COOLDOWN
+	
+	get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer2/TextureProgress").value = 0
 
 func spawn():
 	level_id = root.level_id
 	#tries = root.game_data["progress"]["level_" + str(level_id)]["attempts"]
 	self.show()
 	transform.origin = respawn_point
+	tries = 1
+	game_timer = 0
+	
+	get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer2/TextureProgress").value = 0
 
 func _on_RestartButton_pressed():
 	die()
@@ -366,8 +380,6 @@ func _on_RestartButton_pressed():
 # function handles collision with areas depending on their group
 # if killblock's area has group killing, player will die
 func _on_CollisionArea_area_entered(area):
-	print("Robot collided with area "+ area.get_parent().name + ": ")
-	print(area.get_groups())
 	
 	#fallunterscheidung:
 	
@@ -383,13 +395,9 @@ func _on_CollisionArea_area_entered(area):
 		
 	# handle end of Level point
 	if area.is_in_group("endpoint"):
-		print("robot: " + str(tries) + ", " + "%.2f" % game_timer)
 		area.get_parent().end_game(str(tries), "%.2f" % game_timer, true)
-		#root.game_data["progress"]["level_" + str(level_id + 1)]["attempts"] = tries
 		tries = 1
-		#root.game_data["progress"]["level_" + str(level_id + 1)]["time"] = game_timer
 		game_timer = 0
-		#root.game_data["progress"]["level_" + str(level_id + 1)]["finished"] = true
 		
 		#wenn item eingesammelt
 			#root.game_data["progress"]["level_" + str(level_id)]["item_collected"] = true
@@ -426,28 +434,30 @@ func do_cam(move_back):
 
 
 func _on_PreGameScreen_chooseLevel(id):
+	get_node("../Interface/PlayerInterface/Bottom").show()
+	get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer2").show()
+	get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer").show()
+	
 	if id == 0:
 		doublejump = false
 		speedboost = false
+		get_node("../Interface/PlayerInterface/Bottom").hide()
 	elif id == 1:
 		doublejump = true
 		speedboost = false
+		get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer2").hide()
 	elif id == 2:
 		doublejump = false
+		get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer").hide()
 		speedboost = true
 	elif id == 3:
 		doublejump = true
 		speedboost = true
 
 
-
-
-
 func _on_Root_start_timer_robot():
 	timer_started = true
 	get_node("../Interface").show()
-
-
 
 
 func _on_Root_stop_timer_robot():

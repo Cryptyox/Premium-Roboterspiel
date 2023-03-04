@@ -18,9 +18,6 @@ signal stop_timer_robot
 func _ready():
 	$UI/HomeScreen.show()
 	
-	print(JSON.print(game_data.get_result()))
-	print()
-	
 	if game_data.result == null:
 		# print open popup to tell them their problem
 		resetGameData()
