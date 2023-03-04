@@ -1855,6 +1855,9 @@ transform = Transform( 33.8325, 0, 0, 0, 33.8325, 0, 0, 0, 33.8325, 8.92664, -23
 [node name="Castle" parent="containsLevel1/GridMap/Graphics/Background" instance=ExtResource( 20 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.9411, 7.12071, -55.8967 )
 
+[node name="Mt4" parent="containsLevel1/GridMap/Graphics/Background" instance=ExtResource( 16 )]
+transform = Transform( 8.98959, 0, 0, 0, 6.51745, 0, 0, 0, 8.98959, -39.2641, -21.6962, -297.351 )
+
 [node name="Tower" type="Spatial" parent="containsLevel1/GridMap/Graphics"]
 
 [node name="Tower" parent="containsLevel1/GridMap/Graphics/Tower" instance=ExtResource( 19 )]
