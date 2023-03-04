@@ -92,6 +92,42 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999994, 0 )
 [node name="Center" parent="World/containsLevel2/containsSaws/Saw5" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 
+[node name="Camera" parent="World/Robot" index="2"]
+current = false
+
+[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw2" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw3" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999985, 0 )
+
+[node name="Center" parent="World/containsLevel1/containsSaws/Saw4" index="0"]
+transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1, 0 )
+
+[node name="Center" parent="World/containsLevel2/containsSaws/Saw" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
+
+[node name="Center" parent="World/containsLevel2/containsSaws/Saw2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
+
+[node name="Center" parent="World/containsLevel2/containsSaws/Saw3" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
+
+[node name="Center" parent="World/containsLevel2/containsSaws/Saw4" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999994, 0 )
+
+[node name="Center" parent="World/containsLevel2/containsSaws/Saw5" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
+
 [connection signal="game_data_ready" from="." to="UI/AfterGameScreen" method="_on_Root_game_data_ready"]
 [connection signal="game_data_ready" from="." to="UI/PauseScreen" method="_on_Root_game_data_ready"]
 [connection signal="game_data_ready" from="." to="UI/PreGameScreen" method="_on_Root_game_data_ready"]

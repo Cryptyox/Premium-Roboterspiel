@@ -42,7 +42,6 @@ func _on_Root_game_data_ready(game_data_new):
 	prepare_values()
 
 func prepare_values():
-	print(JSON.print(game_data.get_result()))
 	
 	level1Attempts.text = str(game_data.result["progress"]["level_1"]["attempts"])
 	level1Time.text = str(game_data.result["progress"]["level_1"]["time"])
