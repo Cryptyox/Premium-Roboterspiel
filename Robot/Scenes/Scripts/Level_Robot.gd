@@ -298,10 +298,12 @@ func jump(dir):
 	jumping = true
 	# player is not anymore able to use first jump
 	able = false
+	
+	
 	#plays jumpsound
-	self.add_child(player)
-	player.stream = load("res://Jumpsound2.wav")
-	player.play()
+	#self.add_child(player)
+	#player.stream = load("res://Jumpsound2.wav")
+	#player.play()
 
 # this will apply a part of jump force to the y-velocity of the player as second jump
 func jump2(dir):
@@ -338,9 +340,9 @@ func die():
 	transform.origin = respawn_point
 	
 	#plays deathsound
-	self.add_child(player)
-	player.stream = load("res://Death_Sound2.wav")
-	player.play()
+	#self.add_child(player)
+	#player.stream = load("res://Death_Sound2.wav")
+	#player.play()
 	
 	tries += 1
 	

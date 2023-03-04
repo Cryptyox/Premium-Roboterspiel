@@ -1,4 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/Object_Saw.gd" type="Script" id=1]
 
 [sub_resource type="CylinderMesh" id=4]
 
@@ -45,6 +47,7 @@ tracks/1/keys = {
 }
 
 [node name="Saw" type="Spatial"]
+script = ExtResource( 1 )
 
 [node name="Center" type="KinematicBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )

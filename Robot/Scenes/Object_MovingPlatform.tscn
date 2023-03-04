@@ -72,3 +72,7 @@ remote_path = NodePath("../../../KinematicBody")
 playback_process_mode = 0
 anims/RESET = SubResource( 4 )
 anims/move_platform = SubResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
