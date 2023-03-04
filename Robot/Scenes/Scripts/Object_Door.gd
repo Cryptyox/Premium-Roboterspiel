@@ -12,3 +12,12 @@ func timer():
 
 func _on_Timer_timeout():
 	up()
+	$Timer.stop()
+
+
+func _on_PressurePlate_openDoor():
+	down()
+
+
+func _on_PressurePlate_startTimer():
+	timer()

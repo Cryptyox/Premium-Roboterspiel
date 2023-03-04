@@ -60,12 +60,6 @@ custom_icons/grabber = ExtResource( 8 )
 pause_mode = 1
 visible = false
 
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
 [connection signal="game_data_ready" from="." to="UI/AfterGameScreen" method="_on_Root_game_data_ready"]
 [connection signal="game_data_ready" from="." to="UI/PauseScreen" method="_on_Root_game_data_ready"]
 [connection signal="game_data_ready" from="." to="UI/PreGameScreen" method="_on_Root_game_data_ready"]

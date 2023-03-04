@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://Resources/3DObjectsLVL1/Tower.glb" type="PackedScene" id=19]
 [ext_resource path="res://Resources/3DObjectsLVL1/Castle.glb" type="PackedScene" id=20]
 [ext_resource path="res://Resources/Textures/new_arraymesh.tres" type="ArrayMesh" id=21]
+[ext_resource path="res://Scenes/Object_Door.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Scenes/Object_PressurePlate.tscn" type="PackedScene" id=23]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -1944,9 +1946,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 18, 0 )
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
-[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="2"]
 anims/RESET = SubResource( 12 )
 anims/move_block = SubResource( 13 )
@@ -1955,9 +1954,6 @@ anims/move_block = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 14, 0 )
 
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="2"]
@@ -2373,7 +2369,7 @@ mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196608, 0, 0, 262142, 0, 0, 262143, 0, 0, 262144, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 458741, 0, 0, 458742, 0, 0, 524259, 0, 0, 524260, 0, 0, 524261, 0, 0, 524262, 0, 0, 524263, 0, 0, 524264, 0, 0, 524265, 0, 0, 524266, 0, 0, 524267, 0, 0, 589795, 0, 0, 655329, 0, 0, 655330, 0, 0, 655331, 0, 0, 720872, 0, 0, 786407, 0, 0, 786408, 0, 0, 851947, 0, 0, 851948, 0, 0, 983024, 0, 0, 983025, 0, 0, 1114083, 0, 0, 1114084, 0, 0, 1114085, 0, 0, 1114086, 0, 0, 1114087, 0, 0, 1114088, 0, 0, 1114089, 0, 0, 1114090, 0, 0, 1114091, 0, 0, 1114092, 0, 0, 1114101, 0, 0, 1114102, 0, 0, 1245181, 0, 0, 1245182, 0, 0 )
+"cells": PoolIntArray( 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196608, 0, 0, 262142, 0, 0, 262143, 0, 0, 262144, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 458741, 0, 0, 458742, 0, 0, 524259, 0, 0, 524260, 0, 0, 524261, 0, 0, 524262, 0, 0, 524263, 0, 0, 524264, 0, 0, 524265, 0, 0, 524266, 0, 0, 524267, 0, 0, 589795, 0, 0, 655329, 0, 0, 655330, 0, 0, 655331, 0, 0, 786407, 0, 0, 786408, 0, 0, 851947, 0, 0, 851948, 0, 0, 983024, 0, 0, 983025, 0, 0, 1114083, 0, 0, 1114084, 0, 0, 1114085, 0, 0, 1114086, 0, 0, 1114087, 0, 0, 1114088, 0, 0, 1114089, 0, 0, 1114090, 0, 0, 1114091, 0, 0, 1114092, 0, 0, 1114101, 0, 0, 1114102, 0, 0, 1245181, 0, 0, 1245182, 0, 0, 524263, 1, 786432, 786407, 1, 786432, 524263, 65535, 786432, 786407, 65535, 786432 )
 }
 __meta__ = {
 "_editor_clip_": 0,
@@ -2403,7 +2399,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, -5 )
 
 [node name="containsPressurePlates" type="Spatial" parent="containsLevel3"]
 
+[node name="PressurePlate" parent="containsLevel3/containsPressurePlates" instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 8, 0 )
+
+[node name="PressurePlate2" parent="containsLevel3/containsPressurePlates" instance=ExtResource( 23 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 17, 0 )
+
 [node name="containsDoors" type="Spatial" parent="containsLevel3"]
+
+[node name="Door" parent="containsLevel3/containsDoors" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 9.5, 0 )
+
+[node name="Door2" parent="containsLevel3/containsDoors" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 20.5, 0 )
 
 [node name="containsButtons" type="Spatial" parent="containsLevel3"]
 
@@ -2471,6 +2479,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
 [node name="containsDestroyableBlocks" type="Spatial" parent="containsLevel4"]
 
 [node name="Graphics" type="Spatial" parent="containsLevel4"]
+
+[connection signal="openDoor" from="containsLevel3/containsPressurePlates/PressurePlate" to="containsLevel3/containsDoors/Door" method="_on_PressurePlate_openDoor"]
+[connection signal="startTimer" from="containsLevel3/containsPressurePlates/PressurePlate" to="containsLevel3/containsDoors/Door" method="_on_PressurePlate_startTimer"]
+[connection signal="openDoor" from="containsLevel3/containsPressurePlates/PressurePlate2" to="containsLevel3/containsDoors/Door2" method="_on_PressurePlate_openDoor"]
+[connection signal="startTimer" from="containsLevel3/containsPressurePlates/PressurePlate2" to="containsLevel3/containsDoors/Door2" method="_on_PressurePlate_startTimer"]
 
 [editable path="Robot"]
 [editable path="Robot/Graphics/RBGODO"]
