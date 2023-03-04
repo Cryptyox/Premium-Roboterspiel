@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/Level_Endpoint.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Level_Spawnpoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Scripts/Level_World.gd" type="Script" id=10]
-[ext_resource path="res://Scenes/Scripts/Object_Saw.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/UI_PlayerInterface.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Resources/MeshLibs/ne_L1_Cube.tres" type="MeshLibrary" id=12]
 [ext_resource path="res://Resources/MeshLibs/Grass.tres" type="MeshLibrary" id=13]
 [ext_resource path="res://assets/wasteland_clouds_puresky_4k.hdr" type="Texture" id=14]
@@ -1727,6 +1727,11 @@ tracks/1/keys = {
 [node name="World" type="Spatial"]
 script = ExtResource( 10 )
 
+[node name="Interface" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PlayerInterface" parent="Interface" instance=ExtResource( 11 )]
+
 [node name="Robot" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0 )
 collision_layer = 4
@@ -1938,6 +1943,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 18, 0 )
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
+[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="2"]
 anims/RESET = SubResource( 12 )
 anims/move_block = SubResource( 13 )
@@ -1946,6 +1954,9 @@ anims/move_block = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 14, 0 )
 
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
+
+[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="2"]
@@ -1961,7 +1972,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 56.5, 2.5, 0 )
 
 [node name="Saw" parent="containsLevel1/containsSaws" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 4.1, 0 )
-script = ExtResource( 11 )
 
 [node name="Center" parent="containsLevel1/containsSaws/Saw" index="0"]
 transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
@@ -1980,7 +1990,6 @@ anims/RESET = SubResource( 16 )
 
 [node name="Saw2" parent="containsLevel1/containsSaws" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 2.1, 0 )
-script = ExtResource( 11 )
 
 [node name="Center" parent="containsLevel1/containsSaws/Saw2" index="0"]
 transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
@@ -2000,7 +2009,6 @@ anims/move = SubResource( 25 )
 
 [node name="Saw3" parent="containsLevel1/containsSaws" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 32.1, -1 )
-script = ExtResource( 11 )
 
 [node name="Center" parent="containsLevel1/containsSaws/Saw3" index="0"]
 transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999985, 0 )
@@ -2020,7 +2028,6 @@ anims/move = SubResource( 28 )
 
 [node name="Saw4" parent="containsLevel1/containsSaws" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 31.1, 0 )
-script = ExtResource( 11 )
 
 [node name="Center" parent="containsLevel1/containsSaws/Saw4" index="0"]
 transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1, 0 )
@@ -2091,9 +2098,6 @@ curve = SubResource( 43 )
 [node name="MovingPlatform2" parent="containsLevel2/containsMovingPlatforms" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 26, 0 )
 
-[node name="KinematicBody" parent="containsLevel2/containsMovingPlatforms/MovingPlatform2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00043, 0, 0 )
-
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform2" index="1"]
 curve = SubResource( 44 )
 
@@ -2113,9 +2117,6 @@ anims/move_platform = SubResource( 49 )
 
 [node name="MovingPlatform4" parent="containsLevel2/containsMovingPlatforms" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 31, 0 )
-
-[node name="KinematicBody" parent="containsLevel2/containsMovingPlatforms/MovingPlatform4" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7832, 0, 0 )
 
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform4" index="1"]
 curve = SubResource( 47 )
@@ -2342,9 +2343,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 [node name="Path" parent="containsLevel2/containsSaws/Saw5" index="1"]
 curve = SubResource( 41 )
 
-[node name="PathFollow" parent="containsLevel2/containsSaws/Saw5/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
-
 [node name="AnimationPlayer" parent="containsLevel2/containsSaws/Saw5" index="2"]
 anims/move = SubResource( 42 )
 
@@ -2374,7 +2372,7 @@ mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 262142, 0, 0, 327679, 0, 0, 327680, 0, 0, 458736, 0, 0, 458737, 0, 0, 458738, 0, 0, 458739, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0 )
+"cells": PoolIntArray( 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 196608, 0, 0, 262142, 0, 0, 262143, 0, 0, 262144, 0, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 458736, 0, 0, 458737, 0, 0, 458738, 0, 0, 458739, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0, 124, 65182, 0, 84, 65297, 0, 70, 65337, 0, 57, 65373, 0, 48, 65399, 0, 42, 65418, 0, 38, 65429, 0, 33, 65441, 0, 30, 65451, 0, 27, 65457, 0, 26, 65463, 0, 24, 65467, 0, 22, 65472, 0, 21, 65474, 0, 21, 65477, 0, 20, 65478, 0, 20, 65479, 0, 19, 65480, 0, 19, 65481, 0, 19, 65482, 0, 18, 65484, 0, 17, 65485, 0, 17, 65486, 0, 17, 65487, 0, 16, 65488, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0

@@ -62,6 +62,7 @@ func _process(delta):
 # eg  home can close itsself and open wolrd+preGame and settings
 
 func _on_openHome():
+	emit_signal("stop_timer_robot")
 	$UI/HomeScreen.show()
 
 func _on_closeHome():

@@ -137,6 +137,7 @@ func _physics_process(delta):
 	
 	if timer_started:
 		game_timer += delta
+		get_node("../Interface/PlayerInterface/Top/MarginContainer/Label").text = "%.2f" % game_timer
 	
 	if !allowShoot:
 		shootimer += delta
@@ -443,9 +444,11 @@ func _on_PreGameScreen_chooseLevel(id):
 
 func _on_Root_start_timer_robot():
 	timer_started = true
+	get_node("../Interface").show()
 
 
 
 
 func _on_Root_stop_timer_robot():
 	timer_started = false
+	get_node("../Interface").hide()
