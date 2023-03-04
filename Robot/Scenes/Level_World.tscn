@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -13,7 +13,7 @@
 [ext_resource path="res://Scenes/UI_PlayerInterface.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Resources/MeshLibs/ne_L1_Cube.tres" type="MeshLibrary" id=12]
 [ext_resource path="res://Resources/MeshLibs/Grass.tres" type="MeshLibrary" id=13]
-[ext_resource path="res://assets/Hell-esrgan-x4.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Scripts/WorldEnvironment.gd" type="Script" id=14]
 [ext_resource path="res://Resources/3DObjectsLVL1/Mt2.glb" type="PackedScene" id=15]
 [ext_resource path="res://Resources/3DObjectsLVL1/Mt1.glb" type="PackedScene" id=16]
 [ext_resource path="res://Resources/3DObjectsLVL1/TreeBg.glb" type="PackedScene" id=17]
@@ -32,6 +32,7 @@
 [ext_resource path="res://Resources/3DObjectsLVL2/Saule2.glb" type="PackedScene" id=30]
 [ext_resource path="res://Resources/3DObjectsLVL2/Saule3.glb" type="PackedScene" id=31]
 [ext_resource path="res://Resources/3DObjectsLVL2/Saule4.glb" type="PackedScene" id=32]
+[ext_resource path="res://assets/bg0.png" type="Texture" id=33]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -1188,7 +1189,7 @@ tracks/19/enabled = true
 tracks/19/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.625, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
 [sub_resource type="PanoramaSky" id=36]
-panorama = ExtResource( 14 )
+panorama = ExtResource( 33 )
 
 [sub_resource type="Environment" id=37]
 background_mode = 2
@@ -1769,6 +1770,7 @@ parameters/TimeScale/scale = 1.8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 37 )
+script = ExtResource( 14 )
 
 [node name="containsLevel1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0276165, 0, -0.00469685 )

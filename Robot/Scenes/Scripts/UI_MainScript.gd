@@ -78,6 +78,7 @@ func _on_closeSets(game_data):
 
 func _on_openWorld():
 	$World.show()
+	$World/WorldEnvironment.level_id = level_id
 	
 func _on_closeWorld():
 	$World.hide()

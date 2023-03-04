@@ -2,16 +2,11 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hell-esrgan-x4.png-4b09219af884566cb51b8447f98eaf37.stex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
-source_file="res://assets/Hell-esrgan-x4.png"
-dest_files=[ "res://.import/Hell-esrgan-x4.png-4b09219af884566cb51b8447f98eaf37.stex" ]
-
+source_file="res://assets/bg0.png"
 [params]
 
 compress/mode=0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wasteland_clouds_puresky_4k.hdr-63a85ac14bf2929528c6819dd99f0007.stex"
+path="res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/wasteland_clouds_puresky_4k.hdr"
-dest_files=[ "res://.import/wasteland_clouds_puresky_4k.hdr-63a85ac14bf2929528c6819dd99f0007.stex" ]
+source_file="res://assets/bg1.png"
+dest_files=[ "res://.import/bg1.png-bea6453419024c7f77fe7ad1987516fc.stex" ]
 
 [params]
 
