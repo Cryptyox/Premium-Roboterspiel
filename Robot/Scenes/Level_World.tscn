@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Resources/3DObjectsLVL1/TreeSm.glb" type="PackedScene" id=18]
 [ext_resource path="res://Resources/3DObjectsLVL1/Tower.glb" type="PackedScene" id=19]
 [ext_resource path="res://Resources/3DObjectsLVL1/Castle.glb" type="PackedScene" id=20]
+[ext_resource path="res://Resources/Textures/new_arraymesh.tres" type="ArrayMesh" id=21]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -1778,11 +1779,11 @@ cell_center_y = false
 cell_center_z = false
 cell_scale = 0.1
 data = {
-"cells": PoolIntArray( 65552, 0, 0, 65553, 0, 0, 1114143, 0, 0, 1114150, 0, 0, 1114151, 0, 0, 1114199, 0, 0, 1114205, 0, 0, 1114206, 0, 0, 1114212, 0, 0, 1114213, 0, 0, 1245267, 0, 0, 1245268, 0, 0, 16, 1, 0, 43, 1, 0, 65537, 1, 0, 65538, 1, 0, 65541, 1, 0, 65542, 1, 0, 65546, 1, 0, 65547, 1, 0, 65549, 1, 0, 65557, 1, 0, 65558, 1, 0, 65575, 1, 0, 65580, 1, 0, 65584, 1, 0, 65585, 1, 0, 65592, 1, 0, 65593, 1, 0, 131060, 1, 0, 131063, 1, 0, 131064, 1, 0, 131065, 1, 0, 131100, 1, 0, 196591, 1, 0, 196592, 1, 0, 196593, 1, 0, 262202, 1, 0, 327661, 1, 0, 327740, 1, 0, 327741, 1, 0, 327743, 1, 0, 327744, 1, 0, 458732, 1, 0, 458818, 1, 0, 655427, 1, 0, 655428, 1, 0, 720967, 1, 0, 1048667, 1, 0, 1048668, 1, 0, 1048669, 1, 0, 1048670, 1, 0, 1048671, 1, 0, 1114147, 1, 0, 1114148, 1, 0, 1114149, 1, 0, 1114150, 1, 0, 1114200, 1, 0, 1114201, 1, 0, 1114212, 1, 0, 1114213, 1, 0, 1114214, 1, 0, 1179733, 1, 0, 1179734, 1, 0, -327644, 1, 0, -327643, 1, 0, -262106, 1, 0, -131037, 1, 0, 1048624, 65534, 0, 1179693, 65534, 0, 1245222, 65534, 0, 1703986, 65534, 0, 1769520, 65534, 0, 1835059, 65534, 0, 65573, 65535, 0, 65574, 65535, 0, 262192, 65535, 0, 327725, 65535, 0, 393262, 65535, 0, 524352, 65535, 0, 720875, 65535, 0, 786499, 65535, 0, 851978, 65535, 0, 851979, 65535, 0, 852038, 65535, 0, 852039, 65535, 0, 917576, 65535, 0, 983056, 65535, 0, 983057, 65535, 0, 983098, 65535, 0, 1048595, 65535, 0, 1048596, 65535, 0, 1048622, 65535, 0, 1048633, 65535, 0, 1114202, 65535, 0, 1114203, 65535, 0, 1114204, 65535, 0, 1114213, 65535, 0, 1179678, 65535, 0, 1179683, 65535, 0, 1179750, 65535, 0, 1179751, 65535, 0, 1376333, 65535, 0, 1376334, 65535, 0, 1441865, 65535, 0, 1441866, 65535, 0, 1507398, 65535, 0, 1507399, 65535, 0, 1572930, 65535, 0, 1638462, 65535, 0, 1638468, 65535, 0, 1638469, 65535, 0, 1703982, 65535, 0, 1769524, 65535, 0, 1769525, 65535, 0, 1769529, 65535, 0, 1769530, 65535, 0, 1769531, 65535, 0, 2228263, 65535, 0, 2228264, 65535, 0 )
+"cells": PoolIntArray( 65552, 0, 0, 65553, 0, 0, 1114143, 0, 0, 1114150, 0, 0, 1114151, 0, 0, 1114199, 0, 0, 1114205, 0, 0, 1114206, 0, 0, 1114212, 0, 0, 1114213, 0, 0, 1245267, 0, 0, 1245268, 0, 0, 16, 1, 0, 43, 1, 0, 65537, 1, 0, 65538, 1, 0, 65541, 1, 0, 65542, 1, 0, 65546, 1, 0, 65547, 1, 0, 65549, 1, 0, 65557, 1, 0, 65558, 1, 0, 65575, 1, 0, 65580, 1, 0, 65584, 1, 0, 65585, 1, 0, 65592, 1, 0, 65593, 1, 0, 131060, 1, 0, 131063, 1, 0, 131064, 1, 0, 131065, 1, 0, 131100, 1, 0, 196591, 1, 0, 196592, 1, 0, 196593, 1, 0, 262202, 1, 0, 327661, 1, 0, 327740, 1, 0, 327741, 1, 0, 327743, 1, 0, 327744, 1, 0, 458732, 1, 0, 458818, 1, 0, 655427, 1, 0, 655428, 1, 0, 720967, 1, 0, 983098, 1, 0, 983099, 1, 0, 1048667, 1, 0, 1048668, 1, 0, 1048669, 1, 0, 1048670, 1, 0, 1048671, 1, 0, 1114147, 1, 0, 1114148, 1, 0, 1114149, 1, 0, 1114150, 1, 0, 1114167, 1, 0, 1114200, 1, 0, 1114201, 1, 0, 1114212, 1, 0, 1114213, 1, 0, 1114214, 1, 0, 1179733, 1, 0, 1179734, 1, 0, 1245256, 1, 0, 1245265, 1, 0, 1245266, 1, 0, 1245267, 1, 0, 1310797, 1, 0, 1310798, 1, 0, 1441858, 1, 0, 1507391, 1, 0, 1507392, 1, 0, 1638447, 1, 0, 1638452, 1, 0, 1638453, 1, 0, 1703985, 1, 0, 1703993, 1, 0, 1769515, 1, 0, 1769516, 1, 0, 2031656, 1, 0, 2031657, 1, 0, -327644, 1, 0, -327643, 1, 0, -262106, 1, 0, -131049, 1, 0, -131037, 1, 0, 1048624, 65534, 0, 1179693, 65534, 0, 1245222, 65534, 0, 1703986, 65534, 0, 1769520, 65534, 0, 1835059, 65534, 0, 65573, 65535, 0, 65574, 65535, 0, 131075, 65535, 0, 131102, 65535, 0, 196631, 65535, 0, 262169, 65535, 0, 262192, 65535, 0, 327667, 65535, 0, 327725, 65535, 0, 393199, 65535, 0, 393262, 65535, 0, 524352, 65535, 0, 720875, 65535, 0, 786499, 65535, 0, 851978, 65535, 0, 851979, 65535, 0, 852038, 65535, 0, 852039, 65535, 0, 917576, 65535, 0, 983056, 65535, 0, 983057, 65535, 0, 983098, 65535, 0, 1048595, 65535, 0, 1048596, 65535, 0, 1048622, 65535, 0, 1048633, 65535, 0, 1114202, 65535, 0, 1114203, 65535, 0, 1114204, 65535, 0, 1114213, 65535, 0, 1179678, 65535, 0, 1179683, 65535, 0, 1179750, 65535, 0, 1179751, 65535, 0, 1376333, 65535, 0, 1376334, 65535, 0, 1441865, 65535, 0, 1441866, 65535, 0, 1507398, 65535, 0, 1507399, 65535, 0, 1572930, 65535, 0, 1638462, 65535, 0, 1638468, 65535, 0, 1638469, 65535, 0, 1703982, 65535, 0, 1769524, 65535, 0, 1769525, 65535, 0, 1769529, 65535, 0, 1769530, 65535, 0, 1769531, 65535, 0, 2228263, 65535, 0, 2228264, 65535, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0,
-"_editor_floor_": Vector3( 0, 1, -1 )
+"_editor_floor_": Vector3( 0, 1, 1 )
 }
 
 [node name="TreeSmall" type="Spatial" parent="containsLevel1/GridMap/Graphics"]
@@ -1869,6 +1870,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 16.75, 0 )
 [node name="KinematicBody" parent="containsLevel1/containsMovingPlatforms/MovingPlatform" index="0"]
 transform = Transform( 0.999999, -7.20848e-06, 0.000278185, 7.25157e-06, 1, -0.000126828, -0.000278185, 0.000126831, 1, 0, 0, 0 )
 
+[node name="MeshInstance" parent="containsLevel1/containsMovingPlatforms/MovingPlatform/KinematicBody" index="1"]
+transform = Transform( 3, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0 )
+mesh = ExtResource( 21 )
+
 [node name="Path" parent="containsLevel1/containsMovingPlatforms/MovingPlatform" index="1"]
 curve = SubResource( 9 )
 
@@ -1884,6 +1889,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 16.75, 0 )
 
 [node name="KinematicBody" parent="containsLevel1/containsMovingPlatforms/MovingPlatform2" index="0"]
 transform = Transform( 0.999999, -7.20848e-06, 0.000278185, 7.25157e-06, 1, -0.000126828, -0.000278185, 0.000126831, 1, 0, 0, 0 )
+
+[node name="MeshInstance" parent="containsLevel1/containsMovingPlatforms/MovingPlatform2/KinematicBody" index="1"]
+transform = Transform( 3, 0, 0, 0, 0.5, 0, 0, 0, 3, 0, 0, 0 )
+mesh = ExtResource( 21 )
 
 [node name="Path" parent="containsLevel1/containsMovingPlatforms/MovingPlatform2" index="1"]
 curve = SubResource( 17 )
@@ -1929,9 +1938,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 18, 0 )
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
-[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock1" index="2"]
 anims/RESET = SubResource( 12 )
 anims/move_block = SubResource( 13 )
@@ -1940,9 +1946,6 @@ anims/move_block = SubResource( 13 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 14, 0 )
 
 [node name="Body" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [node name="AnimationPlayer" parent="containsLevel1/containsFallingCubes/SqaushingBlock2" index="2"]
@@ -2094,10 +2097,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00043, 0, 0 )
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform2" index="1"]
 curve = SubResource( 44 )
 
-[node name="PathFollow" parent="containsLevel2/containsMovingPlatforms/MovingPlatform2/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00044, 0, 0 )
-offset = 3.99868
-
 [node name="AnimationPlayer" parent="containsLevel2/containsMovingPlatforms/MovingPlatform2" index="2"]
 anims/RESET = SubResource( 45 )
 anims/move_platform = SubResource( 46 )
@@ -2120,10 +2119,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7832, 0, 0 )
 
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform4" index="1"]
 curve = SubResource( 47 )
-
-[node name="PathFollow" parent="containsLevel2/containsMovingPlatforms/MovingPlatform4/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.7832, 0, 0 )
-offset = 15.7845
 
 [node name="AnimationPlayer" parent="containsLevel2/containsMovingPlatforms/MovingPlatform4" index="2"]
 anims/RESET = SubResource( 50 )
@@ -2372,14 +2367,14 @@ anims/move = SubResource( 42 )
 [node name="Graphics" type="Spatial" parent="containsLevel2"]
 
 [node name="containsLevel3" type="Spatial" parent="."]
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
 
 [node name="GridMap" type="GridMap" parent="containsLevel3"]
 mesh_library = ExtResource( 1 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
 data = {
-"cells": PoolIntArray( 196592, 0, 0 )
+"cells": PoolIntArray( 196592, 0, 0, 196593, 0, 0, 196594, 0, 0, 196595, 0, 0, 196596, 0, 0, 262142, 0, 0, 327679, 0, 0, 327680, 0, 0, 458736, 0, 0, 458737, 0, 0, 458738, 0, 0, 458739, 0, 0, 458740, 0, 0, 458741, 0, 0, 458742, 0, 0 )
 }
 __meta__ = {
 "_editor_clip_": 0
