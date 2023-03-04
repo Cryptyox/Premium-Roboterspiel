@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -32,7 +32,8 @@
 [ext_resource path="res://Resources/3DObjectsLVL2/Saule2.glb" type="PackedScene" id=30]
 [ext_resource path="res://Resources/3DObjectsLVL2/Saule3.glb" type="PackedScene" id=31]
 [ext_resource path="res://Resources/3DObjectsLVL2/Saule4.glb" type="PackedScene" id=32]
-[ext_resource path="res://assets/bg0.png" type="Texture" id=33]
+[ext_resource path="res://Resources/Textures/Level_Tiles_LVL2.tres" type="ArrayMesh" id=33]
+[ext_resource path="res://assets/bg2.png" type="Texture" id=34]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -1188,13 +1189,13 @@ tracks/19/imported = false
 tracks/19/enabled = true
 tracks/19/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.625, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="PanoramaSky" id=36]
-panorama = ExtResource( 33 )
+[sub_resource type="PanoramaSky" id=52]
+panorama = ExtResource( 34 )
 
-[sub_resource type="Environment" id=37]
+[sub_resource type="Environment" id=53]
 background_mode = 2
-background_sky = SubResource( 36 )
-background_energy = 0.53
+background_sky = SubResource( 52 )
+background_sky_orientation = Basis( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08 )
 
 [sub_resource type="Curve3D" id=9]
 _data = {
@@ -1769,11 +1770,12 @@ anims/Shoot = SubResource( 8 )
 parameters/TimeScale/scale = 1.8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 37 )
+environment = SubResource( 53 )
 script = ExtResource( 14 )
 
 [node name="containsLevel1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0276165, 0, -0.00469685 )
+visible = false
 
 [node name="GridMap" type="GridMap" parent="containsLevel1"]
 mesh_library = ExtResource( 12 )
@@ -2102,11 +2104,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 33, 0 )
 [node name="MovingPlatform" parent="containsLevel2/containsMovingPlatforms" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 19, 0 )
 
+[node name="MeshInstance" parent="containsLevel2/containsMovingPlatforms/MovingPlatform/KinematicBody" index="1"]
+transform = Transform( 1.5, 0, 0, 0, 0.25, 0, 0, 0, 1.5, 0, 0, 0 )
+mesh = ExtResource( 33 )
+
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform" index="1"]
 curve = SubResource( 43 )
 
 [node name="MovingPlatform2" parent="containsLevel2/containsMovingPlatforms" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 26, 0 )
+
+[node name="MeshInstance" parent="containsLevel2/containsMovingPlatforms/MovingPlatform2/KinematicBody" index="1"]
+transform = Transform( 1.5, 0, 0, 0, 0.25, 0, 0, 0, 1.5, 0, 0, 0 )
+mesh = ExtResource( 33 )
 
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform2" index="1"]
 curve = SubResource( 44 )
@@ -2118,6 +2128,10 @@ anims/move_platform = SubResource( 46 )
 [node name="MovingPlatform3" parent="containsLevel2/containsMovingPlatforms" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 31, 0 )
 
+[node name="MeshInstance" parent="containsLevel2/containsMovingPlatforms/MovingPlatform3/KinematicBody" index="1"]
+transform = Transform( 1.5, 0, 0, 0, 0.25, 0, 0, 0, 1.5, 0, 0, 0 )
+mesh = ExtResource( 33 )
+
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform3" index="1"]
 curve = SubResource( 47 )
 
@@ -2127,6 +2141,10 @@ anims/move_platform = SubResource( 49 )
 
 [node name="MovingPlatform4" parent="containsLevel2/containsMovingPlatforms" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 31, 0 )
+
+[node name="MeshInstance" parent="containsLevel2/containsMovingPlatforms/MovingPlatform4/KinematicBody" index="1"]
+transform = Transform( 1.5, 0, 0, 0, 0.25, 0, 0, 0, 1.5, 0, 0, 0 )
+mesh = ExtResource( 33 )
 
 [node name="Path" parent="containsLevel2/containsMovingPlatforms/MovingPlatform4" index="1"]
 curve = SubResource( 47 )
@@ -2405,7 +2423,6 @@ transform = Transform( 8.1122, 0, 0, 0, 8.1122, 0, 0, 0, 8.1122, -33.4814, -21.3
 transform = Transform( 2.84819, 0, 0, 0, 2.84819, 0, 0, 0, 2.84819, -14.4331, -15.9524, -18.2088 )
 
 [node name="containsLevel3" type="Spatial" parent="."]
-visible = false
 
 [node name="GridMap" type="GridMap" parent="containsLevel3"]
 mesh_library = ExtResource( 1 )
