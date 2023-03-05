@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/LVL1Domaru.mp3-4bddb246ce32db16e77c6e331bc6d4ee.mp3str"
+
+[deps]
+
+source_file="res://Resources/Music/LVL1Domaru.mp3"
+dest_files=[ "res://.import/LVL1Domaru.mp3-4bddb246ce32db16e77c6e331bc6d4ee.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

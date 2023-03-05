@@ -58,6 +58,8 @@ var tries = 1
 var timer_started = false
 var game_timer = 0
 
+var collected = false
+
 #caches path for creating instance of Bullet.tscn
 const BULLET = preload("res://Scenes/Player_Bullet.tscn")
 var allowShoot = true
@@ -73,6 +75,10 @@ onready var cam_player = $AnimationPlayer
 
 onready var root = get_parent().get_parent()
 onready var level_id = root.level_id
+
+
+var stairPossible = false
+
 
 # when starting the scene, this will set conditions
 func _ready():
@@ -186,6 +192,15 @@ func get_input(delta):
 	if Input.is_action_pressed("ability") && speedboost && cooldown == ABILITY_COOLDOWN:
 		duration -= delta
 	input = do_ability(delta, input)
+	
+	if stairPossible:
+			if Input.is_action_pressed("interact"):
+				stairPossible = false
+				if transform.origin.z >= 4.5:
+					transform.origin.z = 4
+				elif transform.origin.z <= 4.5:
+					transform.origin.z = 5
+	
 	
 	return input
 
@@ -358,6 +373,7 @@ func die():
 	
 	tries += 1
 	game_timer = 0
+	collected = false
 	
 	duration = ABILITY_DURATION
 	cooldown = ABILITY_COOLDOWN
@@ -371,6 +387,7 @@ func spawn():
 	transform.origin = respawn_point
 	tries = 1
 	game_timer = 0
+	collected = false
 	
 	get_node("../Interface/PlayerInterface/Bottom/HBoxContainer/MarginContainer2/TextureProgress").value = 0
 
@@ -386,8 +403,9 @@ func _on_CollisionArea_area_entered(area):
 	# killing areas
 	if area.is_in_group("killing"):
 		die()
-		
-	# druckplatte (sendet signal an tür) + timer
+	
+	if area.is_in_group("stair"):
+		stairPossible = true
 	
 	# detection zone für fallingBlock / squashing block
 	if area.is_in_group("detectionZone"):
@@ -402,9 +420,15 @@ func _on_CollisionArea_area_entered(area):
 		#wenn item eingesammelt
 			#root.game_data["progress"]["level_" + str(level_id)]["item_collected"] = true
 	# collectable
+	if area.is_in_group("collectable"):
+		area.deactivate()
+		collected = true
+	
+func _on_CollisionArea_area_exited(area):
 	
 	
-	
+	if area.is_in_group("stair"):
+		stairPossible = false
 	
 	
 
@@ -463,3 +487,6 @@ func _on_Root_start_timer_robot():
 func _on_Root_stop_timer_robot():
 	timer_started = false
 	get_node("../Interface").hide()
+
+
+

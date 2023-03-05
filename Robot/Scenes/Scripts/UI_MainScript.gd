@@ -92,6 +92,8 @@ func _on_closePre():
 	emit_signal("start_timer_robot")
 	level_id = $UI/PreGameScreen.level_id
 	$UI/PreGameScreen.hide()
+	
+	$World/WorldEnvironment.level_id = level_id
 
 
 func _on_openPause():
@@ -188,6 +190,7 @@ func resetGameData():
 
 
 func _on_return_game_data(game_data_new):
+	print("test")
 	game_data = game_data_new
 	save_json_file("res://savegame.json", game_data)
 	game_data = load_json_file("res://savegame.json")

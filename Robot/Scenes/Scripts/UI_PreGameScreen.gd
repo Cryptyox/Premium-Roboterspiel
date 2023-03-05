@@ -116,6 +116,9 @@ func _on_LevelSelectButton_pressed(id):
 	
 	world.set_is_paused(false)
 	
+	
+	get_node("../../World/WorldEnvironment").level_id = level_id
+	
 
 
 

@@ -65,13 +65,7 @@ current = false
 [node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
 [node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
 
 [node name="Center" parent="World/containsLevel1/containsSaws/Saw" index="0"]
@@ -101,6 +95,39 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999994, 0 )
 [node name="Center" parent="World/containsLevel2/containsSaws/Saw5" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 
+[node name="Center" parent="World/containsLevel3/containsSaws/Saw" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14788, -0.0999985, 0 )
+
+[node name="PathFollow" parent="World/containsLevel3/containsSaws/Saw/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.14788, -0.0999987, 0 )
+
+[node name="Center" parent="World/containsLevel3/containsSaws/Saw2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999985, 0 )
+
+[node name="Center" parent="World/containsLevel3/containsSaws/Saw3" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02073, -0.0999985, 0 )
+
+[node name="PathFollow" parent="World/containsLevel3/containsSaws/Saw3/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.02073, -0.0999993, 0 )
+
+[node name="Center" parent="World/containsLevel3/containsSaws/Saw4" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.633362, -0.0999985, 0 )
+
+[node name="PathFollow" parent="World/containsLevel3/containsSaws/Saw4/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.633363, -0.0999996, 0 )
+
+[node name="Center" parent="World/containsLevel3/containsSaws/Saw5" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.84931, -0.0999985, 0 )
+
+[node name="PathFollow" parent="World/containsLevel3/containsSaws/Saw5/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.84931, -0.0999987, 0 )
+
+[node name="Center" parent="World/containsLevel3/containsSaws/Saw6" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31393, -0.0999985, 0 )
+
+[node name="PathFollow" parent="World/containsLevel3/containsSaws/Saw6/Path" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31393, -0.0999996, 0 )
+
 [connection signal="game_data_ready" from="." to="UI/AfterGameScreen" method="_on_Root_game_data_ready"]
 [connection signal="game_data_ready" from="." to="UI/PauseScreen" method="_on_Root_game_data_ready"]
 [connection signal="game_data_ready" from="." to="UI/PreGameScreen" method="_on_Root_game_data_ready"]
@@ -112,6 +139,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 [connection signal="draw" from="UI/AfterGameScreen" to="UI/AfterGameScreen" method="_draw"]
 [connection signal="openHome" from="UI/AfterGameScreen" to="." method="_on_openHome"]
 [connection signal="openPre" from="UI/AfterGameScreen" to="." method="_on_openPre"]
+[connection signal="return_game_data" from="UI/AfterGameScreen" to="." method="_on_return_game_data"]
 [connection signal="closeHome" from="UI/HomeScreen" to="." method="_on_closeHome"]
 [connection signal="openPre" from="UI/HomeScreen" to="." method="_on_openPre"]
 [connection signal="openSets" from="UI/HomeScreen" to="." method="_on_openSets"]
@@ -143,6 +171,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 [editable path="World/Interface/PlayerInterface"]
 [editable path="World/Robot"]
 [editable path="World/Robot/Graphics/RBGODO"]
+[editable path="World/containsLevel1/GridMap/Graphics/Background/Mt5"]
 [editable path="World/containsLevel1/containsMovingPlatforms/MovingPlatform"]
 [editable path="World/containsLevel1/containsMovingPlatforms/MovingPlatform2"]
 [editable path="World/containsLevel1/containsFallingCubes/SqaushingBlock1"]
@@ -151,6 +180,27 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 [editable path="World/containsLevel1/containsSaws/Saw2"]
 [editable path="World/containsLevel1/containsSaws/Saw3"]
 [editable path="World/containsLevel1/containsSaws/Saw4"]
+[editable path="World/containsLevel2/GridMap/Graphics/LavaFall"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT3"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT2"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT1"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT4"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT5"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT6"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT7"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT8"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT9"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT10"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT11"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT12"]
+[editable path="World/containsLevel2/GridMap/Graphics/Säule1/Saule5"]
+[editable path="World/containsLevel2/GridMap/Graphics/Säule1/Saule3"]
+[editable path="World/containsLevel2/GridMap/Graphics/Säule1/Saule4"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial/Saule6"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial/Saule4"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial2/Saule2"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial2/Saule3"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial3/Saule1"]
 [editable path="World/containsLevel2/containsMovingPlatforms/MovingPlatform"]
 [editable path="World/containsLevel2/containsMovingPlatforms/MovingPlatform2"]
 [editable path="World/containsLevel2/containsMovingPlatforms/MovingPlatform3"]
@@ -160,5 +210,16 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 [editable path="World/containsLevel2/containsSaws/Saw3"]
 [editable path="World/containsLevel2/containsSaws/Saw4"]
 [editable path="World/containsLevel2/containsSaws/Saw5"]
+[editable path="World/containsLevel2/containsCollectables/Spatial"]
+[editable path="World/containsLevel3/containsMovingPlatforms/MovingPlatform"]
+[editable path="World/containsLevel3/containsSaws/Saw"]
+[editable path="World/containsLevel3/containsSaws/Saw2"]
+[editable path="World/containsLevel3/containsSaws/Saw3"]
+[editable path="World/containsLevel3/containsSaws/Saw4"]
+[editable path="World/containsLevel3/containsSaws/Saw5"]
+[editable path="World/containsLevel3/containsSaws/Saw6"]
 [editable path="World/containsLevel3/containsDoors/Door"]
 [editable path="World/containsLevel3/containsDoors/Door2"]
+[editable path="World/containsLevel3/containsDoors/Door3"]
+[editable path="World/containsLevel3/containsDoors/Door4"]
+[editable path="World/containsLevel3/containsCollectables/Spatial"]
