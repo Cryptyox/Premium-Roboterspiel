@@ -1,0 +1,43 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Resources/3DObjectsLVL3/MonitorLargeOn.glb" type="PackedScene" id=1]
+[ext_resource path="res://Resources/3DObjectsLVL3/FloorTile1_Lab.glb" type="PackedScene" id=2]
+[ext_resource path="res://Resources/3DObjectsLVL3/FloorTile4_Lab.glb" type="PackedScene" id=3]
+[ext_resource path="res://Resources/3DObjectsLVL3/FloorTile2_Lab.glb" type="PackedScene" id=4]
+[ext_resource path="res://Resources/3DObjectsLVL3/MonitorLargeOff.glb" type="PackedScene" id=5]
+[ext_resource path="res://Resources/3DObjectsLVL3/MonitorMediumOn.glb" type="PackedScene" id=6]
+[ext_resource path="res://Resources/3DObjectsLVL3/Vent.glb" type="PackedScene" id=7]
+[ext_resource path="res://Resources/3DObjectsLVL3/FloorTile3_Lab.glb" type="PackedScene" id=8]
+[ext_resource path="res://Resources/3DObjectsLVL3/Electrical2.glb" type="PackedScene" id=9]
+[ext_resource path="res://Resources/3DObjectsLVL3/MonitorMediumOff.glb" type="PackedScene" id=10]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="FloorTile1_Lab" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
+
+[node name="FloorTile2_Lab" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
+
+[node name="FloorTile3_Lab" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0 )
+
+[node name="FloorTile4_Lab" parent="." instance=ExtResource( 3 )]
+
+[node name="Electrical" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.02 )
+
+[node name="Vent" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.05 )
+
+[node name="MonitorLargeOn" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.05 )
+
+[node name="MonitorLargeOff" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.05 )
+
+[node name="MonitorMediumOff" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.05 )
+
+[node name="MonitorMediumOn" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.05 )
