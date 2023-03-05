@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://assets/Environments/2.tres" type="Environment" id=34]
 [ext_resource path="res://Scenes/Level_ChangeLayer.tscn" type="PackedScene" id=35]
 [ext_resource path="res://Scenes/Level_Collectable.tscn" type="PackedScene" id=36]
+[ext_resource path="res://Resources/MeshLibs/L3_Cube.tres" type="MeshLibrary" id=37]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -2924,7 +2925,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, 0.5, 0 )
 [node name="containsLevel3" type="Spatial" parent="."]
 
 [node name="GridMap" type="GridMap" parent="containsLevel3"]
-mesh_library = ExtResource( 1 )
+mesh_library = ExtResource( 37 )
 cell_size = Vector3( 1, 1, 1 )
 cell_center_z = false
 data = {
