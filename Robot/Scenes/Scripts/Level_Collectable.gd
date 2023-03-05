@@ -1,7 +1,10 @@
 extends Area
 
 func _ready():
-	self.show()
+	activate()
 
 func deactivate():
 	self.hide()
+
+func activate():
+	self.show()

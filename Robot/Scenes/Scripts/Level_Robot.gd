@@ -59,6 +59,7 @@ var timer_started = false
 var game_timer = 0
 
 var collected = false
+var item = null
 
 #caches path for creating instance of Bullet.tscn
 const BULLET = preload("res://Scenes/Player_Bullet.tscn")
@@ -375,6 +376,10 @@ func die():
 	game_timer = 0
 	collected = false
 	
+	if item != null:
+		item.activate()
+		item = null
+	
 	duration = ABILITY_DURATION
 	cooldown = ABILITY_COOLDOWN
 	
@@ -421,6 +426,7 @@ func _on_CollisionArea_area_entered(area):
 			#root.game_data["progress"]["level_" + str(level_id)]["item_collected"] = true
 	# collectable
 	if area.is_in_group("collectable"):
+		item = area
 		area.deactivate()
 		collected = true
 	
