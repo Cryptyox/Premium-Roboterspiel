@@ -196,10 +196,10 @@ func get_input(delta):
 	if stairPossible:
 			if Input.is_action_pressed("interact"):
 				stairPossible = false
-				if transform.origin.z == 5:
-					transform.origin.z -= 1
-				elif transform.origin.z == 4:
-					transform.origin.z += 1
+				if transform.origin.z >= 4.5:
+					transform.origin.z = 4
+				elif transform.origin.z <= 4.5:
+					transform.origin.z = 5
 	
 	
 	return input
