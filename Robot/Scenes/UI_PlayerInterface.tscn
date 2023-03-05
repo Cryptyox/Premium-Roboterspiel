@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/Fonts/Font.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/Textures/Speedboost.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Textures/Border.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Textures/Doublejump.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Textures/Cover.png" type="Texture" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -19,7 +20,7 @@ mouse_filter = 2
 
 [node name="Top" type="Control" parent="."]
 anchor_right = 1.0
-anchor_bottom = 0.2
+anchor_bottom = 0.3
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Top"]
@@ -27,14 +28,39 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 mouse_filter = 2
 custom_constants/margin_left = 75
+custom_constants/margin_bottom = 100
 
-[node name="Label" type="Label" parent="Top/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Top/MarginContainer"]
 margin_left = 75.0
-margin_top = 84.0
 margin_right = 1280.0
-margin_bottom = 204.0
+margin_bottom = 332.0
+
+[node name="Label" type="Label" parent="Top/MarginContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 1205.0
+margin_bottom = 176.0
+size_flags_vertical = 6
 custom_fonts/font = SubResource( 1 )
 text = "05:20"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/MarginContainer/VBoxContainer"]
+margin_top = 236.0
+margin_right = 1205.0
+margin_bottom = 332.0
+
+[node name="Label" type="Label" parent="Top/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 96.0
+margin_bottom = 96.0
+size_flags_vertical = 6
+text = "    "
+
+[node name="TextureRect" type="TextureRect" parent="Top/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 100.0
+margin_top = 16.0
+margin_right = 164.0
+margin_bottom = 80.0
+size_flags_vertical = 6
+texture = ExtResource( 6 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="Top"]
 anchor_left = 0.5
@@ -42,11 +68,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 custom_constants/margin_right = 75
+custom_constants/margin_bottom = 200
 
 [node name="Label" type="Label" parent="Top/MarginContainer2"]
-margin_top = 84.0
+margin_top = 56.0
 margin_right = 1205.0
-margin_bottom = 204.0
+margin_bottom = 176.0
 custom_fonts/font = SubResource( 1 )
 text = "Attempt 1"
 align = 2

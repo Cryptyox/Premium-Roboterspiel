@@ -101,6 +101,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999994, 0 )
 [node name="Center" parent="World/containsLevel2/containsSaws/Saw5" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 
+[node name="KinematicBody" parent="World/containsLevel3/containsMovingPlatforms/MovingPlatform2" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
 [node name="Center" parent="World/containsLevel3/containsSaws/Saw" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.0999985, 1 )
 
@@ -202,7 +205,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999985, 0 )
 [editable path="World/containsLevel2/containsSaws/Saw4"]
 [editable path="World/containsLevel2/containsSaws/Saw5"]
 [editable path="World/containsLevel2/containsCollectables/Spatial"]
+[editable path="World/containsLevel3/GridMap/Graphics/Source"]
 [editable path="World/containsLevel3/containsMovingPlatforms/MovingPlatform"]
+[editable path="World/containsLevel3/containsMovingPlatforms/MovingPlatform2"]
 [editable path="World/containsLevel3/containsSaws/Saw"]
 [editable path="World/containsLevel3/containsSaws/Saw2"]
 [editable path="World/containsLevel3/containsSaws/Saw3"]
@@ -213,4 +218,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999985, 0 )
 [editable path="World/containsLevel3/containsDoors/Door2"]
 [editable path="World/containsLevel3/containsDoors/Door3"]
 [editable path="World/containsLevel3/containsDoors/Door4"]
+[editable path="World/containsLevel3/containsDoors/Door5"]
+[editable path="World/containsLevel3/containsDoors/Door6"]
+[editable path="World/containsLevel3/containsDoors/Door7"]
+[editable path="World/containsLevel3/containsDoors/Door69"]
 [editable path="World/containsLevel3/containsCollectables/Spatial"]

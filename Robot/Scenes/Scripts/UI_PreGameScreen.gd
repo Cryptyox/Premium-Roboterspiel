@@ -22,18 +22,22 @@ onready var robot = world.get_node("Robot")
 
 onready var level1Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
 onready var level1Time = $MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+onready var level1Stars = $MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/TextureProgress
 
 onready var button2 = $MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton
 onready var level2Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
 onready var level2Time = $MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+onready var level2Stars = $MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton/Buttontext/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/TextureProgress
 
 onready var button3 = $MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton
 onready var level3Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
 onready var level3Time = $MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+onready var level3Stars = $MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/TextureProgress
 
 onready var button4 = $MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton
 onready var level4Attempts = $MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/Label2
 onready var level4Time = $MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/Label4
+onready var level4Stars = $MarginContainer/PanelContainer/VBoxContainer/Level4/LevelSelectButton/ButtonText/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/TextureProgress
 
 var game_data = null
 
@@ -45,19 +49,51 @@ func prepare_values():
 	
 	level1Attempts.text = str(game_data.result["progress"]["level_1"]["attempts"])
 	level1Time.text = str(game_data.result["progress"]["level_1"]["time"])
+	var stars1 = 0
+	if game_data.result["progress"]["level_1"]["finished"]:
+		stars1 += 1
+	if int(game_data.result["progress"]["level_1"]["time"]) < 60 && int(game_data.result["progress"]["level_1"]["time"]) != 0:
+		stars1 += 1
+	if game_data.result["progress"]["level_1"]["item_collected"]:
+		stars1 += 1
+	level1Stars.value = stars1
 	
 	level2Attempts.text = str(game_data.result["progress"]["level_2"]["attempts"])
 	level2Time.text = str(game_data.result["progress"]["level_2"]["time"])
+	var stars2 = 0
+	if game_data.result["progress"]["level_2"]["finished"]:
+		stars2 += 1
+	if int(game_data.result["progress"]["level_2"]["time"]) < 60 && int(game_data.result["progress"]["level_2"]["time"]) != 0:
+		stars2 += 1
+	if game_data.result["progress"]["level_2"]["item_collected"]:
+		stars2 += 1
+	level2Stars.value = stars2
 	#if !game_data.result["progress"]["level_1"]["finished"]:
 	#	button2.hide()
 	
 	level3Attempts.text = str(game_data.result["progress"]["level_3"]["attempts"])
 	level3Time.text = str(game_data.result["progress"]["level_3"]["time"])
+	var stars3 = 0
+	if game_data.result["progress"]["level_3"]["finished"]:
+		stars3 += 1
+	if int(game_data.result["progress"]["level_3"]["time"]) < 80 && int(game_data.result["progress"]["level_3"]["time"]) != 0:
+		stars3 += 1
+	if game_data.result["progress"]["level_3"]["item_collected"]:
+		stars3 += 1
+	level3Stars.value = stars3
 	#if !game_data.result["progress"]["level_2"]["finished"]:
 	#	button3.hide()
 	
 	level4Attempts.text = str(game_data.result["progress"]["level_4"]["attempts"])
 	level4Time.text = str(game_data.result["progress"]["level_4"]["time"])
+	var stars4 = 0
+	if game_data.result["progress"]["level_4"]["finished"]:
+		stars4 += 1
+	if int(game_data.result["progress"]["level_4"]["time"]) < 0 && int(game_data.result["progress"]["level_4"]["time"]) != 0:
+		stars4 += 1
+	if game_data.result["progress"]["level_4"]["item_collected"]:
+		stars4 += 1
+	level4Stars.value = stars4
 	#if !game_data.result["progress"]["level_3"]["finished"]:
 	#	button4.hide()
 	

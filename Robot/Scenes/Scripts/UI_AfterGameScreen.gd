@@ -52,6 +52,15 @@ func _draw():
 	$PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/LevelText.set_text(textb[level_id])
 	robot.do_cam(false)
 	world.set_is_paused(true)
+	
+	var stars = 1
+	if int(get_node("../../World/Robot").game_timer) < 60 && level_id < 2:
+		stars += 1
+	if int(get_node("../../World/Robot").game_timer) < 80 && level_id == 2:
+		stars += 1
+	if get_node("../../World/Robot").collected:
+		stars += 1
+	$PanelContainer/VBoxContainer/MarginContainer2/MarginContainer/TextureProgress.value = stars
 
 func saveValues():
 	game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"] = int(game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"]) + get_node("../../World/Robot").tries
