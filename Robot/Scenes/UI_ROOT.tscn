@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Scripts/UI_MainScript.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/UI_Homescreen.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/UI_PreGameScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Level_World.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/UI/ButtonTextures/SettingsButton/Tick_Slider.png" type="Texture" id=8]
+[ext_resource path="res://assets/Environments/2.tres" type="Environment" id=9]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -62,44 +63,8 @@ pause_mode = 1
 [node name="Camera" parent="World/Robot" index="2"]
 current = false
 
-[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock1/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="Body" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="PathFollow" parent="World/containsLevel1/containsFallingCubes/SqaushingBlock2/Path" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw2" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999999, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw3" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.0999985, 0 )
-
-[node name="Center" parent="World/containsLevel1/containsSaws/Saw4" index="0"]
-transform = Transform( 0.999987, 0, 0, 0, 0.999986, 0, 0, 0, 0.99999, 0.5, -0.1, 0 )
-
-[node name="Center" parent="World/containsLevel2/containsSaws/Saw" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
-
-[node name="Center" parent="World/containsLevel2/containsSaws/Saw2" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
-
-[node name="Center" parent="World/containsLevel2/containsSaws/Saw3" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
-
-[node name="Center" parent="World/containsLevel2/containsSaws/Saw4" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999994, 0 )
-
-[node name="Center" parent="World/containsLevel2/containsSaws/Saw5" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
+[node name="WorldEnvironment" parent="World" index="2"]
+environment = ExtResource( 9 )
 
 [connection signal="game_data_ready" from="." to="UI/AfterGameScreen" method="_on_Root_game_data_ready"]
 [connection signal="game_data_ready" from="." to="UI/PauseScreen" method="_on_Root_game_data_ready"]
@@ -112,6 +77,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 [connection signal="draw" from="UI/AfterGameScreen" to="UI/AfterGameScreen" method="_draw"]
 [connection signal="openHome" from="UI/AfterGameScreen" to="." method="_on_openHome"]
 [connection signal="openPre" from="UI/AfterGameScreen" to="." method="_on_openPre"]
+[connection signal="return_game_data" from="UI/AfterGameScreen" to="." method="_on_return_game_data"]
 [connection signal="closeHome" from="UI/HomeScreen" to="." method="_on_closeHome"]
 [connection signal="openPre" from="UI/HomeScreen" to="." method="_on_openPre"]
 [connection signal="openSets" from="UI/HomeScreen" to="." method="_on_openSets"]
@@ -151,6 +117,27 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0999999, 0 )
 [editable path="World/containsLevel1/containsSaws/Saw2"]
 [editable path="World/containsLevel1/containsSaws/Saw3"]
 [editable path="World/containsLevel1/containsSaws/Saw4"]
+[editable path="World/containsLevel2/GridMap/Graphics/LavaFall"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT3"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT2"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT1"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT4"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT5"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT6"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT7"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT8"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT9"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT10"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT11"]
+[editable path="World/containsLevel2/GridMap/Graphics/Mountains/LavaMT12"]
+[editable path="World/containsLevel2/GridMap/Graphics/Säule1/Saule5"]
+[editable path="World/containsLevel2/GridMap/Graphics/Säule1/Saule3"]
+[editable path="World/containsLevel2/GridMap/Graphics/Säule1/Saule4"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial/Saule6"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial/Saule4"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial2/Saule2"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial2/Saule3"]
+[editable path="World/containsLevel2/GridMap/Graphics/Spatial3/Saule1"]
 [editable path="World/containsLevel2/containsMovingPlatforms/MovingPlatform"]
 [editable path="World/containsLevel2/containsMovingPlatforms/MovingPlatform2"]
 [editable path="World/containsLevel2/containsMovingPlatforms/MovingPlatform3"]

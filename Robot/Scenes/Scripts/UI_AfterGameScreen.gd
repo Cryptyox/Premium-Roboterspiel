@@ -6,6 +6,8 @@ signal closeWorld
 signal openPre
 signal openHome
 
+signal return_game_data(game_data)
+
 var level_id = 0
 var text1a = "You have found yourself some pretty useful gear. Now you will be able to jump twice."
 var text2a = "Now the monster cannot summon any other evil creatures. The cultists are sad now, but who cares. Hopefully Bwoser won't mind."
@@ -55,6 +57,8 @@ func saveValues():
 	game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"] = int(game_data.result["progress"]["level_" + str(level_id + 1)]["attempts"]) + get_node("../../World/Robot").tries
 	if float(game_data.result["progress"]["level_" + str(level_id + 1)]["time"]) == 0 || float(game_data.result["progress"]["level_" + str(level_id + 1)]["time"]) > float(time):
 		game_data.result["progress"]["level_" + str(level_id + 1)]["time"] = time
+	if get_node("../../World/Robot").collected:
+		game_data.result["progress"]["level_" + str(level_id + 1)]["item_collected"] = true
 	game_data.result["progress"]["level_" + str(level_id + 1)]["finished"] = true
 	emit_signal("return_game_data", game_data)
 	
