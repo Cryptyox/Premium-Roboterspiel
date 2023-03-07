@@ -574,6 +574,34 @@ custom_fonts/font = SubResource( 4 )
 text = "Disturbance in the Force you felt? It is not Megatron training backflips. Something terrible must have happened. Find out what it is you must!"
 autowrap = true
 
+[node name="Control2" type="Control" parent="."]
+anchor_left = -1.05
+anchor_top = 0.8
+anchor_right = -0.05
+anchor_bottom = 1.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Control2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Control2/PanelContainer"]
+margin_right = 1152.0
+margin_bottom = 230.4
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="Control2/PanelContainer/MarginContainer"]
+margin_left = 50.0
+margin_top = 84.0
+margin_right = 1102.0
+margin_bottom = 145.0
+custom_constants/line_spacing = 10
+custom_fonts/font = SubResource( 4 )
+autowrap = true
+
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level1/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed" binds= [ 0 ]]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level2/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="MarginContainer/PanelContainer/VBoxContainer/Level3/LevelSelectButton" to="." method="_on_LevelSelectButton_pressed" binds= [ 2 ]]

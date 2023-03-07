@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=2]
+[gd_scene load_steps=135 format=2]
 
 [ext_resource path="res://Resources/Textures/blocks.meshlib" type="MeshLibrary" id=1]
 [ext_resource path="res://Scenes/Player_Robot.tscn" type="PackedScene" id=2]
@@ -49,6 +49,11 @@
 [ext_resource path="res://Resources/3DObjectsLVL3/MonitorLargeOn.glb" type="PackedScene" id=47]
 [ext_resource path="res://Resources/3DObjectsLVL3/MonitorMediumOff.glb" type="PackedScene" id=48]
 [ext_resource path="res://Resources/3DObjectsLVL3/Vent.glb" type="PackedScene" id=49]
+[ext_resource path="res://Scenes/Scripts/AudioStreamPlayer.gd" type="Script" id=50]
+[ext_resource path="res://Resources/Music/0.mp3" type="AudioStream" id=51]
+[ext_resource path="res://Resources/Music/1.mp3" type="AudioStream" id=52]
+[ext_resource path="res://Resources/Music/2.mp3" type="AudioStream" id=53]
+[ext_resource path="res://Scenes/Level_Cheese.tscn" type="PackedScene" id=54]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Accellerate"
@@ -2522,7 +2527,10 @@ script = ExtResource( 14 )
 
 [node name="containsLevel1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0276165, 0, -0.00469685 )
-visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="containsLevel1"]
+stream = ExtResource( 51 )
+script = ExtResource( 50 )
 
 [node name="GridMap" type="GridMap" parent="containsLevel1"]
 mesh_library = ExtResource( 12 )
@@ -2573,7 +2581,7 @@ transform = Transform( 1.4641, 0, 0, 0, 1.4641, 0, 0, 0, 1.4641, 88.1886, 16.911
 [node name="TreeBig" type="Spatial" parent="containsLevel1/GridMap/Graphics"]
 
 [node name="TreeBg" parent="containsLevel1/GridMap/Graphics/TreeBig" instance=ExtResource( 17 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.89575, 1.97437, 4.32438 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3958, 2.47437, 4.32438 )
 
 [node name="TreeBg2" parent="containsLevel1/GridMap/Graphics/TreeBig" instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.4765, 1.79985, 4.21767 )
@@ -2835,8 +2843,30 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.5, 21.5, 0 )
 
 [node name="containsDestroyableBlocks" type="Spatial" parent="containsLevel1"]
 
+[node name="Spatial" parent="containsLevel1" instance=ExtResource( 54 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.5, -1 )
+
+[node name="Label3D" parent="containsLevel1/Spatial" index="1"]
+text = "There you are Hero
+I've heard rumors about a monster. 
+Its slumber has been disturbed. 
+Steve was making shaby deals with
+some piglins. Hurry, you have to 
+equipp yourself to defend us.
+
+At the large Tower over there, 
+you can get a Cloud in the Bottle. 
+Go find it!
+
+"
+
 [node name="containsLevel2" type="Spatial" parent="."]
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="containsLevel2"]
+stream = ExtResource( 52 )
+pitch_scale = 0.01
+script = ExtResource( 50 )
 
 [node name="GridMap" type="GridMap" parent="containsLevel2"]
 mesh_library = ExtResource( 24 )
@@ -3296,8 +3326,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5, 0.5, 0 )
 
 [node name="containsDestroyableBlocks" type="Spatial" parent="containsLevel2"]
 
+[node name="Spatial" parent="containsLevel2" instance=ExtResource( 54 )]
+
 [node name="containsLevel3" type="Spatial" parent="."]
 visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="containsLevel3"]
+stream = ExtResource( 53 )
+pitch_scale = 0.01
+script = ExtResource( 50 )
 
 [node name="GridMap" type="GridMap" parent="containsLevel3"]
 mesh_library = ExtResource( 37 )
@@ -3998,6 +4035,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 12.5, -1 )
 
 [node name="containsDestroyableBlocks" type="Spatial" parent="containsLevel3"]
 
+[node name="Spatial" parent="containsLevel3" instance=ExtResource( 54 )]
+
 [node name="containsLevel4" type="Spatial" parent="."]
 visible = false
 
@@ -4081,6 +4120,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4, 0 )
 [editable path="containsLevel1/containsSaws/Saw2"]
 [editable path="containsLevel1/containsSaws/Saw3"]
 [editable path="containsLevel1/containsSaws/Saw4"]
+[editable path="containsLevel1/Spatial"]
 [editable path="containsLevel2/GridMap/Graphics/LavaFall"]
 [editable path="containsLevel2/GridMap/Graphics/Mountains/LavaMT3"]
 [editable path="containsLevel2/GridMap/Graphics/Mountains/LavaMT2"]
